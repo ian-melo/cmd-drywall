@@ -5,105 +5,136 @@
  */
 package DAO;
 
-import Clientes.Clientes;
 import Conexão.ConnectionFactory;
+import Entidade.Entidadecliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Alert;
-import tela_cadastro_materiais.Materiais;
 
 /**
  *
  * @author fe_mm
  */
-public class ClienteDAO {
-    
-    public void Create(Clientes cli)
+public class ClienteDAO 
+{
+    public void Create(Entidadecliente c)
     {
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
         try
         {
-            stat = con.prepareStatement("INSERT INTO cliente(Id,Nome,Endereco,Cpf,Projeto,Protocolo,Telefone,Email) VALUES(?,?,?,?,?,?,?,?)");
-            stat.setInt(1, cli.getId());
-            stat.setString(2, cli.getNome());
-            stat.setString(3, cli.getEndereço());
-            stat.setString(4, cli.getCpf_cnpj());
-            stat.setString(5, cli.getNome_projeto());
-            stat.setInt(6, cli.getNumero_protocolo());
-            stat.setString(7, cli.getTelefone());
-            stat.setString(8, cli.getEmail());
+            stat = con.prepareStatement("INSERT INTO cliente1(Id,Nome,Cpf,Endereco,Projeto,Protocolo,Telefone,Email) VALUES(?,?,?,?,?,?,?,?)");
+            stat.setInt(1, c.getId());
+            stat.setString(2, c.getNome());
+            stat.setString(3, c.getCpf());
+            stat.setString(4, c.getEndereço());
+            stat.setString(5, c.getProjeto());
+            stat.setInt(6, c.getProtocolo());
+            stat.setString(7, c.getTelefone());
+            stat.setString(8, c.getEmail());
             stat.executeUpdate();
-            Alert dialogo1 = new Alert(Alert.AlertType.INFORMATION);
-            dialogo1.setTitle("C.M.D");
-            dialogo1.setHeaderText("C.M.D Informa!!!");
-            dialogo1.setContentText("Dados Inseridos com Sucesso");
-            dialogo1.showAndWait();
-            
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("C.M.D");
+            alerta.setHeaderText("C.M.D Informa!!!");
+            alerta.setContentText("Dados cadastrados com sucesso");
+            alerta.showAndWait();
         }
-        catch(SQLDataException e)
+        catch(SQLException e)
         {
-            Alert dialogo = new Alert(Alert.AlertType.ERROR);
-            dialogo.setTitle("C.M.D");
-            dialogo.setHeaderText("C.M.D Informa!!!");
-            dialogo.setContentText("Erro ao gravar informações: \n" + e);
-            dialogo.showAndWait();
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Dados não cadastrados com sucesso");
+            alerta1.showAndWait();
             
-        } catch (SQLException ex) 
-        {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally
         {
-           ConnectionFactory.fechaConexão(con, stat);
+            ConnectionFactory.fechaConexão(con, stat);
         }
     }
     @SuppressWarnings("Unchecked")
-    public List<Clientes> ListClientes()
+    public List<Entidadecliente> ListaClientes()
     {
-        List<Clientes> list = new ArrayList<Clientes>();
+        List<Entidadecliente> cli = new ArrayList<>();
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         ResultSet rs = null;
         
         try
         {
-            stat = con.prepareStatement("SELECT * from cliente");
+            stat = con.prepareStatement("SELECT * from cliente1");
             rs = stat.executeQuery();
             
             while(rs.next())
             {
-                Clientes m = new Clientes();
-                m.setId(rs.getInt("Id"));
-                m.setNome(rs.getString("Nome"));
-                m.setEndereço(rs.getString("Endereco"));
-                m.setCpf_cnpj(rs.getString("Cpf"));
-                m.setNome_projeto(rs.getString("Projeto"));
-                m.setNumero_protocolo(rs.getInt("Protocolo"));
-                m.setTelefone(rs.getString("Telefone"));
-                m.setEmail(rs.getString("email"));
-                list.add(m);
+                Entidadecliente c = new Entidadecliente();
+                c.setId(rs.getInt("Id"));
+                c.setNome(rs.getString("Nome"));
+                c.setCpf(rs.getString("Cpf"));
+                c.setEndereço(rs.getString("Endereco"));
+                c.setProjeto(rs.getString("Projeto"));
+                c.setProtocolo(rs.getInt("Protocolo"));
+                c.setTelefone(rs.getString("Telefone"));
+                c.setEmail(rs.getString("Email"));
+                cli.add(c);
             }
             
         }
-        catch(SQLException ex)
+        catch(SQLException e)
         {
-            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Erro ao listar" + e);
+            alerta1.showAndWait();
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat, rs);
+           ConnectionFactory.fechaConexão(con, stat, rs);
         }
-        return list;
+        return cli;
     }
-    
-    
+    public void Update(Entidadecliente c)
+    {
+        Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        
+        try
+        {
+            stat = con.prepareStatement("UPDATE cliente1 SET Nome = ?, Cpf = ?, Endereco = ?, Projeto = ?, Protocolo = ?, Telefone = ?, Email = ? WHERE Id = ? ");
+            stat.setString(1, c.getNome());
+            stat.setString(2, c.getCpf());
+            stat.setString(3, c.getEndereço());
+            stat.setString(4, c.getProjeto());
+            stat.setInt(5, c.getProtocolo());
+            stat.setString(6, c.getTelefone());
+            stat.setString(7, c.getEmail());
+            stat.setInt(8, c.getId());
+            stat.executeUpdate();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("C.M.D");
+            alerta.setHeaderText("C.M.D Informa!!!");
+            alerta.setContentText("Dados alterados com sucesso");
+            alerta.showAndWait();
+        }
+        catch(SQLException e)
+        {
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Dados não alterados com sucesso");
+            alerta1.showAndWait();
+        }
+        finally
+        {
+            ConnectionFactory.fechaConexão(con, stat);
+        }
+    }
 }

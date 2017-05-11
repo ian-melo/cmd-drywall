@@ -19,10 +19,10 @@
             <VBox layoutX="13.0" layoutY="46.0" prefHeight="124.0" prefWidth="569.0">
                <children>
                   <Button fx:id="bt_materiais" mnemonicParsing="false" onAction="#ActionMateriais" prefHeight="25.0" prefWidth="574.0" text="Cadastro de Materias" />
-                  <Button fx:id="bt_gesso" mnemonicParsing="false" prefHeight="25.0" prefWidth="571.0" text="Calculo de forro de gesso" />
+                  <Button fx:id="bt_gesso" mnemonicParsing="false" onAction="#Forrogesso" prefHeight="25.0" prefWidth="571.0" text="Calculo de forro de gesso" />
                   <Button fx:id="bt_parede" mnemonicParsing="false" prefHeight="25.0" prefWidth="570.0" text="Calculo da parede de gesso" />
-                  <Button fx:id="bt_cleintes" mnemonicParsing="false" prefHeight="25.0" prefWidth="568.0" text="Cadastro de cleintes" />
-                  <Button fx:id="bt_orçamento" mnemonicParsing="false" prefHeight="25.0" prefWidth="574.0" text="Calculo de orçamento do projeto" />
+                  <Button fx:id="bt_cleintes" mnemonicParsing="false" onAction="#Clientes" prefHeight="25.0" prefWidth="568.0" text="Cadastro de cleintes" />
+                  <Button fx:id="bt_orçamento" mnemonicParsing="false" onAction="#Orcamento" prefHeight="25.0" prefWidth="574.0" text="Calculo de orçamento do projeto" />
                </children>
             </VBox>
             <Button fx:id="bt_sair" layoutX="271.0" layoutY="183.0" mnemonicParsing="false" onAction="#ActionSair" prefHeight="25.0" prefWidth="54.0" text="Sair" />

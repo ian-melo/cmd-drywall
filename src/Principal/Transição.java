@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tela_cadastro_materiais;
+package Principal;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -20,12 +20,12 @@ import javafx.stage.Stage;
  *
  * @author fe_mm
  */
-public class Tela_Materiais extends Application {
+public class Transição extends Application {
     
- @Override
+    @Override
     public void start(Stage stage) throws Exception    
     {
-        Parent root = FXMLLoader.load(getClass().getResource("MaterialFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLs/PrincipalFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -34,4 +34,5 @@ public class Tela_Materiais extends Application {
     {
         launch(args);
     }
+    
 }

@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 public class UsuárioDAO 
 {
     public boolean CheckLogin(String nome, String senha)
@@ -61,11 +62,19 @@ public class UsuárioDAO
             stat.setString(2,u.getNome());
             stat.setString(3,u.getSenha());
             stat.executeUpdate();
-            System.out.println("Salvo com sucesso");
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("C.M.D");
+            alerta.setHeaderText("C.M.D Informa!!!");
+            alerta.setContentText("Dados cadastrados com sucesso");
+            alerta.showAndWait();
         }
         catch(SQLException ex)
         {
-            System.out.println("Erro ao salvar" + ex);
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Dados não cadastrados com sucesso");
+            alerta1.showAndWait();
         }
         finally
         {

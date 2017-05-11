@@ -21,10 +21,10 @@ import javafx.stage.Stage;
  *
  * @author fe_mm
  */
-public class Tela_Forro extends Application {
+public class ForroMain extends Application {
     
-    @Override
-    public void start(Stage stage) throws IOException {
+     @Override
+     public void start(Stage stage) throws IOException {
         
   
         Parent root = FXMLLoader.load(getClass().getResource("/FXMLs/Forro_Gesso_01.fxml"));
@@ -44,7 +44,6 @@ public class Tela_Forro extends Application {
     }  
    
 
-    /**
-     * @param args the command line arguments
-     */  
+   
 }
+

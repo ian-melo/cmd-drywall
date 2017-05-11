@@ -35,7 +35,7 @@
                   <TextField fx:id="txt_qtd" />
                   <Label text="Preço:" />
                   <TextField fx:id="txt_preco" />
-                  <TableView fx:id="tb_precas" prefHeight="200.0" prefWidth="477.0">
+                  <TableView fx:id="tb_precas" onMouseClicked="#Transferir" prefHeight="200.0" prefWidth="477.0">
                     <columns>
                         <TableColumn fx:id="tc_id" prefWidth="105.0" resizable="false" text="Id" />
                       <TableColumn fx:id="tc_produto" prefWidth="139.0" resizable="false" text="Produto" />

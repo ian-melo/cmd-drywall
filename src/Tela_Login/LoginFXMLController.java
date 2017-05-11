@@ -79,6 +79,8 @@ public class LoginFXMLController implements Initializable {
             dialogo.setTitle("C.M.D");
             dialogo.setHeaderText("C.M.D Informa!!!");
             dialogo.setContentText("Usuário ou Senha incorretos: \n");
+            txt_nome.setText("");
+            txt_senha.setText("");
             dialogo.showAndWait();
         }
     }

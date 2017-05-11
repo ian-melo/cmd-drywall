@@ -90,4 +90,37 @@ public class MaterialDAO
         }
         return list;
     }
+    public void Update(Materiais m)
+    {
+        Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        
+        try
+        {
+            stat = con.prepareStatement("UPDATE materiais SET Nome = ?, Quantidade = ?, Preco = ? WHERE Id = ?");
+            stat.setString(1, m.getNome());
+            stat.setInt(2, m.getQuantidade());
+            stat.setFloat(3, m.getPreço());
+            stat.setInt(4, m.getId());
+            stat.executeUpdate();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("C.M.D");
+            alerta.setHeaderText("C.M.D Informa!!!");
+            alerta.setContentText("Dados alterados com sucesso");
+            alerta.showAndWait();
+        }
+        catch(SQLException e)
+        {
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Dados não alterados com sucesso");
+            alerta1.showAndWait();
+            
+        }
+        finally
+        {
+            ConnectionFactory.fechaConexão(con, stat); 
+        }
+    }
 }

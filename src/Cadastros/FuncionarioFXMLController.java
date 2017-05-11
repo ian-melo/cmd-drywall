@@ -61,12 +61,12 @@ public class FuncionarioFXMLController implements Initializable {
 
     @FXML
     private void Sair_Funcionario(ActionEvent event) throws IOException {
-       Parent funcionario_parent = FXMLLoader.load(getClass().getResource("/FXMLs/FuncionarioFXML.fxml"));
+       Parent funcionario_parent = FXMLLoader.load(getClass().getResource("/FXMLs/LoginFXML.fxml"));
        Scene funcionario_scene = new Scene(funcionario_parent);
        Stage app_tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
        app_tela.setScene(funcionario_scene);
-       app_tela.close();
-       
+       app_tela.show();
+  
     }
     
 }

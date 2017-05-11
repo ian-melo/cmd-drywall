@@ -1,12 +1,17 @@
+package Clientes;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Clientes;
 
 import DAO.ClienteDAO;
+import Entidade.ClienteTableView;
+import Entidade.Entidadecliente;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -14,14 +19,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -35,13 +46,15 @@ public class ClienteFXMLController implements Initializable {
     @FXML
     private TextField txt_endereco;
     @FXML
-    private TextField txt_fone;
-    @FXML
-    private TextField txt_cpf_cnpj;
+    private TextField txt_cpf;
     @FXML
     private TextField txt_projeto;
     @FXML
-    private Label lbl_random;
+    private Label lbl_protocolo;
+    @FXML
+    private TextField txt_fone;
+    @FXML
+    private TextField txt_mail;
     @FXML
     private Button bt_cadastrar;
     @FXML
@@ -49,50 +62,53 @@ public class ClienteFXMLController implements Initializable {
     @FXML
     private Button bt_sair;
     @FXML
-    private TextField txt_email;
+    private TableView<ClienteTableView> tb_clientes;
     @FXML
-    private TableView<ClienteTable> tb_clientes;
+    private TableColumn<ClienteTableView, Integer> tc_id;
     @FXML
-    private TableColumn<ClienteTable, Integer> tc_id;
+    private TableColumn<ClienteTableView, String> tc_nome;
     @FXML
-    private TableColumn<ClienteTable, String> tc_nome;
+    private TableColumn<ClienteTableView, String> tc_cpf;
     @FXML
-    private TableColumn<ClienteTable, String> tc_endereco;
+    private TableColumn<ClienteTableView, String> tc_endereco;
     @FXML
-    private TableColumn<ClienteTable, String> tc_cpf;
+    private TableColumn<ClienteTableView, String> tc_projeto;
     @FXML
-    private TableColumn<ClienteTable, String> tc_projeto;
+    private TableColumn<ClienteTableView, Integer> tc_protocolo;
     @FXML
-    private TableColumn<ClienteTable, String> tc_fone;
+    private TableColumn<ClienteTableView, String> tc_telefone;
     @FXML
-    private TableColumn<ClienteTable, String> tc_email;
-    @FXML
-    private TableColumn<ClienteTable, Integer> tc_protocolo;
+    private TableColumn<ClienteTableView, String> tc_email;
     
     private ClienteDAO dao = new ClienteDAO();
-    private List<Clientes> lista_de_clientes = dao.ListClientes();
-    private ObservableList<ClienteTable> cliente_table = FXCollections.observableArrayList();
+    private List<Entidadecliente> Listacli;
+    private ObservableList<ClienteTableView> tableview = FXCollections.observableArrayList();
     
-    public void ListarMateriais()
+    public void ListandoTableview()
     {
-        if(!cliente_table.isEmpty())
+        Listacli = dao.ListaClientes();
+        tableview.clear();
+        
+        for(Entidadecliente cli : Listacli)
         {
-            cliente_table.clear();
+            ClienteTableView t = new ClienteTableView(cli.getId(), cli.getNome(), cli.getCpf(), cli.getEndereço(), cli.getProjeto(), cli.getProtocolo(), cli.getTelefone(), cli.getEmail());
+            tableview.add(t);
         }
-        for(Clientes clientes : lista_de_clientes)
-        {
-            ClienteTable table = new ClienteTable(clientes.getId(),clientes.getNome(),clientes.getEndereço(),clientes.getCpf_cnpj(),clientes.getNome_projeto(),clientes.getProtocolo(),clientes.getTelefone(),clientes.getEmail());
-            cliente_table.add(table);
-        }
-        tc_id.setCellValueFactory(new PropertyValueFactory<ClienteTable, Integer>("Id"));
-        tc_nome.setCellValueFactory(new PropertyValueFactory<ClienteTable, String>("Nome"));
-        tc_endereco.setCellValueFactory(new PropertyValueFactory<ClienteTable, String>("Endereço"));
-        tc_cpf.setCellValueFactory(new PropertyValueFactory<ClienteTable, String>("CPF/CNPJ"));
-        tc_projeto.setCellValueFactory(new PropertyValueFactory<ClienteTable, String>("Projeto"));
-        tc_protocolo.setCellValueFactory(new PropertyValueFactory<ClienteTable, Integer>("Protocolo"));
-        tc_fone.setCellValueFactory(new PropertyValueFactory<ClienteTable, String>("Telefone"));
-        tc_email.setCellValueFactory(new PropertyValueFactory<ClienteTable, String>("Email"));
-        tb_clientes.setItems(cliente_table);
+        tc_id.setCellValueFactory(new PropertyValueFactory<ClienteTableView,Integer>("Id"));
+        tc_nome.setCellValueFactory(new PropertyValueFactory<ClienteTableView,String>("Nome"));
+        tc_cpf.setCellValueFactory(new PropertyValueFactory<ClienteTableView,String>("Cpf"));
+        tc_endereco.setCellValueFactory(new PropertyValueFactory<ClienteTableView,String>("Endereço"));
+        tc_projeto.setCellValueFactory(new PropertyValueFactory<ClienteTableView,String>("Projeto"));
+        tc_protocolo.setCellValueFactory(new PropertyValueFactory<ClienteTableView,Integer>("Protocolo"));
+        tc_telefone.setCellValueFactory(new PropertyValueFactory<ClienteTableView,String>("Telefone"));
+        tc_email.setCellValueFactory(new PropertyValueFactory<ClienteTableView,String>("Email"));
+        tb_clientes.setItems(tableview);
+    }
+    public void protocolo()
+    {
+        Random gerador = new Random();
+        int numero = gerador.nextInt(1000);
+        lbl_protocolo.setText(Integer.toString(numero));
     }
     
     
@@ -101,59 +117,118 @@ public class ClienteFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ListarMateriais();
+        ListandoTableview();
+        protocolo();
     }    
 
-
     @FXML
-    private void ActionCadastrar(ActionEvent event) {
-        Clientes cli = new Clientes();
-        ClienteDAO dao = new ClienteDAO();
-        String nome = txt_nome.getText();
-        String endereço = txt_endereco.getText();
-        String cpf_cnpj = txt_cpf_cnpj.getText();
-        String nome_projeto = txt_projeto.getText();
-        int numero_protocolo = Integer.parseInt(lbl_random.getText());
-        String telefone = txt_fone.getText();
-        String email = txt_email.getText();
-        String projeto = txt_projeto.getText();
-        cli.setNome(nome);
-        cli.setEndereço(endereço);
-        cli.setCpf_cnpj(cpf_cnpj);
-        cli.setNome_projeto(nome_projeto);
-        cli.setNumero_protocolo(numero_protocolo);
-        cli.setTelefone(telefone);
-        cli.setEmail(email);
-        dao.Create(cli);
-        txt_nome.setText("");
-        txt_endereco.setText("");
-        txt_email.setText("");
-        txt_cpf_cnpj.setText("");
-        txt_fone.setText("");
-        txt_projeto.setText("");
-        lbl_random.setText("");
-    }
-    
-    public void random()
-    {
-        Random gerador = new Random();
-        int numero = gerador.nextInt(100);
-        lbl_random.setText(Integer.toString(numero));
-    }
-    
-    
-
-    @FXML
-    private void ActionAlterar(ActionEvent event) {
-    }
-
-    @FXML
-    private void ActionSair(ActionEvent event) {
+    private void Cadastrar(ActionEvent event) {
+        if(txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty() || txt_endereco.getText().isEmpty() || txt_projeto.getText().isEmpty() || txt_fone.getText().isEmpty() || txt_mail.getText().isEmpty())
+        {
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("preencha todos os campos para continuar");
+            alerta1.showAndWait();
+        }
+        else
+        {
+            Entidadecliente cli = new Entidadecliente();
+            ClienteDAO dao = new ClienteDAO();
+            String nome = txt_nome.getText();
+            String endereço = txt_endereco.getText();
+            String cpf = txt_cpf.getText();
+            String projeto = txt_projeto.getText();
+            int numero_protocolo = Integer.parseInt(lbl_protocolo.getText());
+            String telefone = txt_fone.getText();
+            String email = txt_mail.getText();
+            cli.setNome(nome);
+            cli.setCpf(cpf);
+            cli.setEndereço(endereço);
+            cli.setProjeto(projeto);
+            cli.setProtocolo(numero_protocolo);
+            cli.setTelefone(telefone);
+            cli.setEmail(email);
+            dao.Create(cli);
+            txt_nome.setText("");
+            txt_endereco.setText("");
+            txt_cpf.setText("");
+            txt_projeto.setText("");
+            lbl_protocolo.setText("");
+            txt_fone.setText("");
+            txt_mail.setText("");
+            ListandoTableview();
+            
+        }
+        
     }
 
     @FXML
-    private void ActionProtocolo(InputMethodEvent event) {
-        random();
+    private void Alterar(ActionEvent event) {
+        if(txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty() || txt_endereco.getText().isEmpty() || txt_projeto.getText().isEmpty() || txt_fone.getText().isEmpty() || txt_mail.getText().isEmpty())
+        {
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("preencha todos os campos para continuar");
+            alerta1.showAndWait();
+            
+        }
+        else
+        {
+            Entidadecliente cli = new Entidadecliente();
+            ClienteDAO dao = new ClienteDAO();
+            cli.setId(tb_clientes.getSelectionModel().getSelectedItem().getId());
+            cli.setNome(txt_nome.getText());
+            cli.setCpf(txt_cpf.getText());
+            cli.setEndereço(txt_endereco.getText());
+            cli.setProjeto(txt_projeto.getText());
+            cli.setProtocolo(Integer.parseInt(lbl_protocolo.getText()));
+            cli.setTelefone(txt_fone.getText());
+            cli.setEmail(txt_mail.getText());
+            dao.Update(cli);
+            txt_nome.setText("");
+            txt_endereco.setText("");
+            txt_cpf.setText("");
+            txt_projeto.setText("");
+            lbl_protocolo.setText("");
+            txt_fone.setText("");
+            txt_mail.setText("");
+            ListandoTableview();
+            
+        }
+        
+    }
+
+    @FXML
+    private void Sair(ActionEvent event) throws IOException {
+         Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/PrincipalFXML.fxml"));
+        Scene scene = new Scene(cliente);
+        Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        tela.setScene(scene);
+        tela.show();
+    }
+
+    @FXML
+    private void Listar(MouseEvent event) {
+        if(event.getClickCount() == 1)
+        {
+            ClienteTableView view = tb_clientes.getSelectionModel().getSelectedItem();
+            String nome = view.getNome();
+            String endereço = view.getEndereço();
+            String cpf = view.getCpf();
+            String projeto = view.getProjeto();
+            int protocolo = view.getProtocolo();
+            String telefone = view.getTelefone();
+            String email = view.getEmail();
+            txt_nome.setText(nome);
+            txt_endereco.setText(endereço);
+            txt_cpf.setText(cpf);
+            txt_projeto.setText(projeto);
+            lbl_protocolo.setText(Integer.toString(protocolo));
+            txt_fone.setText(telefone);
+            txt_mail.setText(email);
+        }
     }
     
 }

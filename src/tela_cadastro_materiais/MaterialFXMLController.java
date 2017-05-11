@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.persistence.Id;
 
@@ -62,7 +64,7 @@ public class MaterialFXMLController implements Initializable {
     @FXML
     private TableColumn<MaterialTable, Integer> tc_id;
     private MaterialDAO dao = new MaterialDAO();
-    private List<Materiais> listmatt = dao.Listmateriais();
+    private List<Materiais> listmatt;
     private ObservableList<MaterialTable> mattab = FXCollections.observableArrayList();
     int id;
     String nome;
@@ -77,15 +79,15 @@ public class MaterialFXMLController implements Initializable {
      */
     public void listarmateriais() 
     {
-
-        if (!mattab.isEmpty()) 
-        {
-            mattab.clear();
-        }
+        //System.out.println("DADOS-----");
+        listmatt = dao.Listmateriais();
+        mattab.clear();
         for (Materiais materiais : listmatt) 
         {
             MaterialTable t = new MaterialTable(materiais.getId(), materiais.getNome(), materiais.getQuantidade(), materiais.getPreço());
             mattab.add(t);
+            //TESTE
+            //System.out.println(materiais.getId() + " " + materiais.getNome());
         }
         tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTable, Integer>("Id"));
         tc_produto.setCellValueFactory(new PropertyValueFactory<MaterialTable, String>("Nome"));
@@ -123,8 +125,18 @@ public class MaterialFXMLController implements Initializable {
 
     @FXML
     private void ActionAlterar(ActionEvent event) {
+        Materiais m = new Materiais();
+        MaterialDAO dao = new MaterialDAO();
         
-
+        m.setId(tb_precas.getSelectionModel().getSelectedItem().getId());
+        m.setNome(txt_nome.getText());
+        m.setQuantidade(Integer.parseInt(txt_qtd.getText()));
+        m.setPreço(Float.parseFloat(txt_preco.getText()));
+        dao.Update(m);
+        txt_nome.setText("");
+        txt_preco.setText("");
+        txt_qtd.setText("");
+        listarmateriais();
     }
 
     @FXML
@@ -134,13 +146,31 @@ public class MaterialFXMLController implements Initializable {
 
     @FXML
     private void ActionAtualizar(ActionEvent event) {
-        listarmateriais();
+       
     }
 
     @FXML
     private void ActionSair(ActionEvent event) throws IOException {
+        Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/PrincipalFXML.fxml"));
+        Scene scene = new Scene(cliente);
+        Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        tela.setScene(scene);
+        tela.show();
         
-        
+    }
+
+    @FXML
+    private void Transferir(MouseEvent event) {
+        if(event.getClickCount() == 1)
+        {
+            MaterialTable view = tb_precas.getSelectionModel().getSelectedItem();
+            String nome = view.getNome();
+            int quantidade = view.getQuantidade();
+            float preço = view.getPreço();
+            txt_nome.setText(nome);
+            txt_qtd.setText(Integer.toString(quantidade));
+            txt_preco.setText(Float.toString(preço));
+        }
     }
 
 }

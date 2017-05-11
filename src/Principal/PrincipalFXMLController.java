@@ -57,11 +57,38 @@ public class PrincipalFXMLController implements Initializable {
 
     @FXML
     private void ActionMateriais(ActionEvent event) throws IOException {
-       Parent funcionario_parent = FXMLLoader.load(getClass().getResource("/FXMLs/MateriaisFXML.fxml"));
-       Scene funcionario_scene = new Scene(funcionario_parent);
-       Stage app_tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       app_tela.setScene(funcionario_scene);
-       app_tela.show();
+       Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/MaterialFXML.fxml"));
+       Scene scene = new Scene(cliente);
+       Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       tela.setScene(scene);
+       tela.show();
+    }
+
+    @FXML
+    private void Forrogesso(ActionEvent event) throws IOException {
+       Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/Forro_Gesso_01.fxml"));
+       Scene scene = new Scene(cliente);
+       Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       tela.setScene(scene);
+       tela.show();
+    }
+
+    @FXML
+    private void Clientes(ActionEvent event) throws IOException {
+        Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/ClienteFXML.fxml"));
+       Scene scene = new Scene(cliente);
+       Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       tela.setScene(scene);
+       tela.show();
+    }
+
+    @FXML
+    private void Orcamento(ActionEvent event) throws IOException {
+         Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/CalculoFXML.fxml"));
+       Scene scene = new Scene(cliente);
+       Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       tela.setScene(scene);
+       tela.show();
     }
     
 }
