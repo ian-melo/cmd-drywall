@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="468.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tela_cadastro_materiais.MaterialFXMLController">
+<VBox prefHeight="468.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tela_cadastro_materiais.MaterialFXMLController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="495.0" prefWidth="593.0" styleClass="mainFxmlClass">
           <stylesheets>
@@ -33,7 +33,7 @@
                   <TextField fx:id="txt_nome" prefHeight="25.0" prefWidth="556.0" />
                   <Label text="Quantidade:" />
                   <TextField fx:id="txt_qtd" />
-                  <Label text="Preço:" />
+                  <Label text="Preço(R$):" />
                   <TextField fx:id="txt_preco" />
                   <TableView fx:id="tb_precas" onMouseClicked="#Transferir" prefHeight="200.0" prefWidth="477.0">
                     <columns>
@@ -41,6 +41,7 @@
                       <TableColumn fx:id="tc_produto" prefWidth="139.0" resizable="false" text="Produto" />
                       <TableColumn fx:id="tc_quantidade" prefWidth="160.0" resizable="false" text="Quantidade" />
                         <TableColumn fx:id="tc_preco" prefWidth="169.0" resizable="false" text="Preço" />
+                        <TableColumn prefWidth="178.0" text="Tipo" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

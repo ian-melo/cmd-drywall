@@ -15,7 +15,7 @@
          <children>
             <VBox alignment="TOP_CENTER" layoutX="238.0" layoutY="49.0" prefHeight="200.0" prefWidth="351.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="459.0" text="Bem-Vindo a Áre de Cadastro de Usuários" textAlignment="CENTER">
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="459.0" text="Bem-Vindo a Área de Cadastro de Usuários" textAlignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
