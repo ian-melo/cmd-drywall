@@ -5,9 +5,17 @@
  */
 package Tela_Forro_Gesso;
 
+import Conexão.ConnectionFactory;
+import DAO.ClienteDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -24,7 +33,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -37,28 +45,6 @@ public class Forro_GessoController implements Initializable {
     private AnchorPane form_forro_gesso;
     @FXML
     private Label lv;
-    @FXML
-    private Label vv;
-    @FXML
-    private Label lb_can;
-    @FXML
-    private Label lb_p;
-    @FXML
-    private Label lb_ara;
-    @FXML
-    private Label lb_para;
-    @FXML
-    private Label lb_pa;
-    @FXML
-    private Label lb_m;
-    @FXML
-    private Label lb_f;
-    @FXML
-    private Label lb_parafuso;
-    @FXML
-    private Label lb_r;
-    @FXML
-    private Label lb_a;
     @FXML
     private Label lb;
     @FXML
@@ -97,7 +83,6 @@ public class Forro_GessoController implements Initializable {
     private Button btn_limpar;
     @FXML
     private Button btn_salvar;
-    @FXML
     private Label lb_varia_combo;
     @FXML
     private ComboBox<String> cmb_modelo;
@@ -177,6 +162,28 @@ public class Forro_GessoController implements Initializable {
     private TextField txt_preco_02;
     @FXML
     private Button bt_sair;
+    @FXML
+    private ComboBox<String> cmb_item;
+    @FXML
+    private ComboBox<String> cmb_item1;
+    @FXML
+    private ComboBox<String> cmb_Item2;
+    @FXML
+    private ComboBox<String> cmb_item3;
+    @FXML
+    private ComboBox<String> cmb_item4;
+    @FXML
+    private ComboBox<String> cmb_item5;
+    @FXML
+    private ComboBox<String> cmb_item6;
+    @FXML
+    private ComboBox<String> cmb_item7;
+    @FXML
+    private ComboBox<String> cmb_item8;
+    @FXML
+    private ComboBox<String> cmb_item9;
+    @FXML
+    private ComboBox<String> cmb_item10;
 
     /**
      * Initializes the controller class.
@@ -197,16 +204,59 @@ public class Forro_GessoController implements Initializable {
         );
 
         cmb_modelo.setItems(opcao);
+        ObservableList<String> list = FXCollections.observableArrayList();
+        Connection con = ConnectionFactory.getConexao();
+         PreparedStatement stat = null;
+         ResultSet rs = null;
+       
+        try
+        {
+            stat = con.prepareStatement("SELECT * from materiais");
+            rs = stat.executeQuery();
+            
+            while(rs.next())
+            {
+               list.add(rs.getString("Nome"));
+            }
+            cmb_item.setItems(list);
+            cmb_item1.setItems(list);
+            cmb_Item2.setItems(list);
+            cmb_item3.setItems(list);
+            cmb_item4.setItems(list);
+            cmb_item5.setItems(list);
+            cmb_item6.setItems(list);
+            cmb_item7.setItems(list);
+            cmb_item8.setItems(list);
+            cmb_item9.setItems(list);
+            cmb_item10.setItems(list);
+            
+            
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            ConnectionFactory.fechaConexão(con, stat, rs);
+        }
+       
+     }
 
-    }
 
     @FXML
     private void Click_Calcular(MouseEvent event) throws NoSuchFieldException {
         //Falta validar
+
+        if ("".equals(txt_Area.getText().trim())) {
+            Mensagem_Alerta("Preencha campo Área");//Igual ao do Felipe - Padronizar no Projeto
+            return;
+        }
+
         Coloca_Zero();
+
         Calcula_Constante();
         Calcula_Preco_Unitario();
-
         Calcula_Soma();
         Calcula_Total_Area();
 
@@ -229,7 +279,7 @@ public class Forro_GessoController implements Initializable {
 
     @FXML
     private void Click_Salvar(MouseEvent event) {
-
+        Mensagem_Alerta("Ainda não feito");
     }
 
     @FXML
@@ -289,6 +339,14 @@ public class Forro_GessoController implements Initializable {
             txt_preco_12.setText("0");
         }
 
+    }
+
+    private void Mensagem_Alerta(String conteudo) {
+        Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+        dialogo.setTitle("C.M.D");
+        dialogo.setHeaderText("C.M.D Informa!!!");
+        dialogo.setContentText(conteudo + " \n");
+        dialogo.showAndWait();
     }
 
     private void Calcula_Soma() {

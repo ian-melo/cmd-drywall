@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -15,21 +14,6 @@
       <AnchorPane fx:id="form_forro_gesso" prefHeight="445.0" prefWidth="528.0">
          <children>
             <Label fx:id="lv" layoutX="21.0" layoutY="120.0" text="Materiais:" />
-            <Label fx:id="vv" layoutX="22.0" layoutY="181.0" text="PERFIL F530 - 3M" />
-            <Label fx:id="lb_can" layoutX="22.0" layoutY="209.0" text="CANTONEIRA CR2 OU TABICA - 3M">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Label>
-            <Label fx:id="lb_p" layoutX="22.0" layoutY="237.0" text="PRESILHA F530" />
-            <Label fx:id="lb_ara" layoutX="22.0" layoutY="265.0" text="ARAME - 10KG" />
-            <Label fx:id="lb_para" layoutX="22.0" layoutY="321.0" text="PARAFUSO TRPF 13 - 100UNID." />
-            <Label fx:id="lb_pa" layoutX="22.0" layoutY="293.0" text="PARAFUSO TTPC 25 - 100UNID." />
-            <Label fx:id="lb_m" layoutX="21.0" layoutY="376.0" text="MASSA PARA ACABAMENTO - 30KG" />
-            <Label fx:id="lb_f" layoutX="21.0" layoutY="405.0" text="FITA TELADA - 90M" />
-            <Label fx:id="lb_parafuso" layoutX="22.0" layoutY="347.0" text="PARAFUSO TTPC 45 - 100UNID." />
-            <Label fx:id="lb_r" layoutX="21.0" layoutY="434.0" text="REBITE OU PINO - 100UNID." />
-            <Label fx:id="lb_a" layoutX="21.0" layoutY="462.0" text="ARRUELA OU FINCA PINO - 100UNID." />
             <Label layoutX="483.0" layoutY="520.0" text="TOTAL P/ m²:" />
             <Label layoutX="302.0" layoutY="48.0" text="Especificação:" />
             <Label layoutX="671.0" layoutY="521.0" text="TOTAL " />
@@ -97,7 +81,6 @@
             <Button fx:id="btn_calcular" layoutX="18.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#Click_Calcular" text="Calcular" />
             <Button fx:id="btn_limpar" layoutX="212.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#Click_Limpar" text="Limpar" />
             <Button fx:id="btn_salvar" layoutX="90.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#Click_Salvar" prefHeight="25.0" prefWidth="53.0" text="Salvar" />
-            <Label fx:id="lb_varia_combo" layoutX="22.0" layoutY="154.0" text="PLACA ST BR12,5 (1200 x 1800) mm" />
             <ComboBox fx:id="cmb_modelo" layoutX="21.0" layoutY="66.0" onAction="#Click_On_Action" prefHeight="25.0" prefWidth="232.0" />
             <Label fx:id="lb_especificacao" layoutX="282.0" layoutY="69.0" text="APENAS PARA CHAPA ST" />
             <Label layoutX="28.0" layoutY="9.0" text="Bem-Vindo a Área de Cáculo do Forro de Gesso">
@@ -130,6 +113,18 @@
             <Label fx:id="lb_quant_11" layoutX="415.0" layoutY="434.0" text="0" />
             <Label fx:id="lb_quant_10" layoutX="415.0" layoutY="405.0" text="0" />
             <Button fx:id="bt_sair" layoutX="153.0" layoutY="515.0" mnemonicParsing="false" onAction="#Sair" prefHeight="25.0" prefWidth="53.0" text="Sair" />
+            <ComboBox fx:id="cmb_item" layoutX="21.0" layoutY="148.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item1" layoutX="21.0" layoutY="177.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_Item2" layoutX="21.0" layoutY="205.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item3" layoutX="21.0" layoutY="233.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item4" layoutX="21.0" layoutY="261.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item5" layoutX="21.0" layoutY="289.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item6" layoutX="21.0" layoutY="317.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item6" layoutX="21.0" layoutY="344.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item7" layoutX="21.0" layoutY="372.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item8" layoutX="21.0" layoutY="401.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item9" layoutX="21.0" layoutY="430.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_item10" layoutX="21.0" layoutY="458.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>
