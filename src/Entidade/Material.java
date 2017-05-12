@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tela_cadastro_materiais;
-
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
+package Entidade;
 
 /**
  *
  * @author fe_mm
  */
-public class Materiais 
+public class Material 
 {
     private int Id;
     private String Nome;
     private int Quantidade;
-    private float preço;
+    private float Preço;
+    private String Tipo;
+    private String Unidade;
 
     public int getId() {
         return Id;
@@ -45,10 +43,26 @@ public class Materiais
     }
 
     public float getPreço() {
-        return preço;
+        return Preço;
     }
 
-    public void setPreço(float preço) {
-        this.preço = preço;
+    public void setPreço(float Preço) {
+        this.Preço = Preço;
+    }
+
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+
+    public String getUnidade() {
+        return Unidade;
+    }
+
+    public void setUnidade(String Unidade) {
+        this.Unidade = Unidade;
     }
 }

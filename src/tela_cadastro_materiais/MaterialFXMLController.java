@@ -6,14 +6,13 @@
 package tela_cadastro_materiais;
 
 import DAO.MaterialDAO;
+import Entidade.ClienteTableView;
+import Entidade.Entidadecliente;
+import Entidade.Material;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,7 +30,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.persistence.Id;
 
 /**
  * FXML Controller class
@@ -38,139 +37,161 @@ import javax.persistence.Id;
  * @author fe_mm
  */
 public class MaterialFXMLController implements Initializable {
-   
+
     @FXML
     private TextField txt_nome;
     @FXML
-    private TextField txt_qtd;
+    private TextField txt_quantidade;
     @FXML
     private TextField txt_preco;
     @FXML
-    private TableView<MaterialTable> tb_precas;
+    private TextField txt_tipo;
+    @FXML
+    private TextField txt_unidade;
     @FXML
     private Button bt_cadastrar;
     @FXML
     private Button bt_alterar;
     @FXML
-    private Button bt_deletar;
-    @FXML
     private Button bt_sair;
     @FXML
-    private TableColumn<MaterialTable, String> tc_produto;
+    private TableColumn<MaterialTableView, Integer> tc_id;
     @FXML
-    private TableColumn<MaterialTable, Integer> tc_quantidade;
+    private TableColumn<MaterialTableView, String> tc_nome;
     @FXML
-    private TableColumn<MaterialTable, Float> tc_preco;
+    private TableColumn<MaterialTableView, Integer> tc_quantidade;
     @FXML
-    private TableColumn<MaterialTable, Integer> tc_id;
+    private TableColumn<MaterialTableView, String> tc_tipo;
+    @FXML
+    private TableColumn<MaterialTableView, String> tc_unidade;
+    @FXML
+    private TableColumn<MaterialTableView, Float> tc_preco;
     private MaterialDAO dao = new MaterialDAO();
-    private List<Materiais> listmatt;
-    private ObservableList<MaterialTable> mattab = FXCollections.observableArrayList();
-    int id;
-    String nome;
-    int qtd;
-    float preço;
+    private List<Material> Listamaterial;
+    private ObservableList<MaterialTableView> tableview = FXCollections.observableArrayList();
     @FXML
-    private Button bt_atualizar;
-
+    private TableView<MaterialTableView> tb_materiais;
     /**
      * Initializes the controller class.
-     *
      */
-    public void listarmateriais() 
+    public void ListandoTableView()
     {
-        //System.out.println("DADOS-----");
-        listmatt = dao.Listmateriais();
-        mattab.clear();
-        for (Materiais materiais : listmatt) 
+        Listamaterial = dao.ListaMaterial();
+        tableview.clear();
+        
+        for(Material M : Listamaterial)
         {
-            MaterialTable t = new MaterialTable(materiais.getId(), materiais.getNome(), materiais.getQuantidade(), materiais.getPreço());
-            mattab.add(t);
-            //TESTE
-            //System.out.println(materiais.getId() + " " + materiais.getNome());
+            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade());
+            tableview.add(view);
         }
-        tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTable, Integer>("Id"));
-        tc_produto.setCellValueFactory(new PropertyValueFactory<MaterialTable, String>("Nome"));
-        tc_quantidade.setCellValueFactory(new PropertyValueFactory<MaterialTable, Integer>("Quantidade"));
-        tc_preco.setCellValueFactory(new PropertyValueFactory<MaterialTable, Float>("Preço"));
-        tb_precas.setItems(mattab);
-        
+        tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTableView,Integer>("Id"));
+        tc_nome.setCellValueFactory(new PropertyValueFactory<MaterialTableView,String>("Nome"));
+        tc_quantidade.setCellValueFactory(new PropertyValueFactory<MaterialTableView,Integer>("Quantidade"));
+        tc_preco.setCellValueFactory(new PropertyValueFactory<MaterialTableView,Float>("Preço"));
+        tc_tipo.setCellValueFactory(new PropertyValueFactory<MaterialTableView,String>("Tipo"));
+        tc_unidade.setCellValueFactory(new PropertyValueFactory<MaterialTableView,String>("Unidade"));
+        tb_materiais.setItems(tableview);
     }
-
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
-    {
-        listarmateriais();
-    }
+    public void initialize(URL url, ResourceBundle rb) {
+        ListandoTableView();
+    }    
 
     @FXML
-    private void ActionCadastrar(ActionEvent event) 
-    {
-        Materiais m = new Materiais();
+    private void Cadastrar(ActionEvent event) {
         MaterialDAO dao = new MaterialDAO();
-        String nome = txt_nome.getText();
-        int qtd = Integer.parseInt(txt_qtd.getText());
-        float preço = Float.parseFloat(txt_preco.getText());
-        m.setNome(nome);
-        m.setQuantidade(qtd);
-        m.setPreço(preço);
-        dao.Create(m);
-        txt_nome.setText("");
-        txt_preco.setText("");
-        txt_qtd.setText("");
-        listarmateriais();
-    }
-   
-
-
-    @FXML
-    private void ActionAlterar(ActionEvent event) {
-        Materiais m = new Materiais();
-        MaterialDAO dao = new MaterialDAO();
+        Material M = new Material();
+        if(txt_nome.getText().isEmpty() || txt_quantidade.getText().isEmpty() ||
+                txt_preco.getText().isEmpty() || txt_tipo.getText().isEmpty() || txt_unidade.getText().isEmpty())
+        {
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("preencha todos os campos para continuar");
+            alerta1.showAndWait();
+        }
+        else
+        {
+          String nome = txt_nome.getText();
+          int quantidade = Integer.parseInt(txt_quantidade.getText()); 
+          float preço = Float.parseFloat(txt_preco.getText());
+          String tipo = txt_tipo.getText();
+          String unidade = txt_unidade.getText();
+          M.setNome(nome);
+          M.setQuantidade(quantidade);
+          M.setPreço(preço);
+          M.setTipo(tipo);
+          M.setUnidade(unidade);
+          dao.Create(M);
+          txt_nome.setText("");
+          txt_preco.setText("");
+          txt_quantidade.setText("");
+          txt_unidade.setText("");
+          txt_tipo.setText("");
+          ListandoTableView();
+        }
         
-        m.setId(tb_precas.getSelectionModel().getSelectedItem().getId());
-        m.setNome(txt_nome.getText());
-        m.setQuantidade(Integer.parseInt(txt_qtd.getText()));
-        m.setPreço(Float.parseFloat(txt_preco.getText()));
-        dao.Update(m);
-        txt_nome.setText("");
-        txt_preco.setText("");
-        txt_qtd.setText("");
-        listarmateriais();
     }
 
     @FXML
-    private void ActionDeletar(ActionEvent event) {
-
+    private void Alterar(ActionEvent event) {
+        if(txt_nome.getText().isEmpty() || txt_quantidade.getText().isEmpty() ||
+                txt_preco.getText().isEmpty() || txt_tipo.getText().isEmpty() || txt_unidade.getText().isEmpty())
+        {
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("preencha todos os campos para continuar");
+            alerta1.showAndWait();
+        }
+        else
+        {
+            MaterialDAO dao = new MaterialDAO();
+            Material M = new Material();
+            
+            M.setId(tb_materiais.getSelectionModel().getSelectedItem().getId());
+            M.setNome(txt_nome.getText());
+            M.setQuantidade(Integer.parseInt(txt_quantidade.getText()));
+            M.setPreço(Float.parseFloat(txt_preco.getText()));
+            M.setTipo(txt_tipo.getText());
+            M.setUnidade(txt_unidade.getText());
+            dao.Update(M);
+            txt_nome.setText("");
+            txt_preco.setText("");
+            txt_quantidade.setText("");
+            txt_unidade.setText("");
+            txt_tipo.setText("");
+            ListandoTableView();
+            
+        }
     }
 
     @FXML
-    private void ActionAtualizar(ActionEvent event) {
-       
-    }
-
-    @FXML
-    private void ActionSair(ActionEvent event) throws IOException {
+    private void Sair(ActionEvent event) throws IOException {
         Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/PrincipalFXML.fxml"));
         Scene scene = new Scene(cliente);
         Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         tela.setScene(scene);
         tela.show();
-        
     }
 
     @FXML
-    private void Transferir(MouseEvent event) {
+    private void Carregar(MouseEvent event) {
         if(event.getClickCount() == 1)
         {
-            MaterialTable view = tb_precas.getSelectionModel().getSelectedItem();
+            MaterialTableView view = tb_materiais.getSelectionModel().getSelectedItem();
             String nome = view.getNome();
             int quantidade = view.getQuantidade();
             float preço = view.getPreço();
+            String tipo = view.getTipo();
+            String unidade = view.getUnidade();
             txt_nome.setText(nome);
-            txt_qtd.setText(Integer.toString(quantidade));
+            txt_quantidade.setText(Integer.toString(quantidade));
             txt_preco.setText(Float.toString(preço));
+            txt_tipo.setText(tipo);
+            txt_unidade.setText(unidade);
+            
         }
     }
-
+    
 }

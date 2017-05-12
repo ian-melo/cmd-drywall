@@ -202,7 +202,7 @@ public class ClienteFXMLController implements Initializable {
 
     @FXML
     private void Sair(ActionEvent event) throws IOException {
-         Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/PrincipalFXML.fxml"));
+        Parent cliente = FXMLLoader.load(getClass().getResource("/FXMLs/PrincipalFXML.fxml"));
         Scene scene = new Scene(cliente);
         Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
         tela.setScene(scene);

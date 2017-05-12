@@ -25,7 +25,7 @@ public class Tela_Materiais extends Application {
  @Override
     public void start(Stage stage) throws Exception    
     {
-        Parent root = FXMLLoader.load(getClass().getResource("MaterialFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLs/MaterialFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

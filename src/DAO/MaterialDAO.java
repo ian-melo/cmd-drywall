@@ -6,17 +6,15 @@
 package DAO;
 
 import Conexão.ConnectionFactory;
+import Entidade.Entidadecliente;
+import Entidade.Material;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Alert;
-import tela_cadastro_materiais.Materiais;
-import tela_cadastro_materiais.MaterialTable;
 
 /**
  *
@@ -24,42 +22,46 @@ import tela_cadastro_materiais.MaterialTable;
  */
 public class MaterialDAO 
 {
-    public void Create(Materiais m)
+    public void Create(Material M)
     {
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
         try
         {
-            stat = con.prepareStatement("INSERT INTO materiais(Id,Nome,Quantidade,Preco) VALUES(?,?,?,?)");
-            stat.setInt(1,m.getId());
-            stat.setString(2,m.getNome());
-            stat.setInt(3,m.getQuantidade());
-            stat.setFloat(4,m.getPreço());
+            stat = con.prepareStatement("INSERT INTO materiais(Id,Nome,Quantidade,Preco,Tipo,Unidade) VALUES(?,?,?,?,?,?)");
+            stat.setInt(1, M.getId());
+            stat.setString(2, M.getNome());
+            stat.setInt(3, M.getQuantidade());
+            stat.setFloat(4, M.getPreço());
+            stat.setString(5, M.getTipo());
+            stat.setString(6, M.getUnidade());
             stat.executeUpdate();
-            Alert dialogo1 = new Alert(Alert.AlertType.INFORMATION);
-            dialogo1.setTitle("C.M.D");
-            dialogo1.setHeaderText("C.M.D Informa!!!");
-            dialogo1.setContentText("Dados Inseridos com Sucesso");
-            dialogo1.showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("C.M.D");
+            alerta.setHeaderText("C.M.D Informa!!!");
+            alerta.setContentText("Dados cadastrados com sucesso");
+            alerta.showAndWait();
         }
         catch(SQLException e)
         {
-            Alert dialogo = new Alert(Alert.AlertType.ERROR);
-            dialogo.setTitle("C.M.D");
-            dialogo.setHeaderText("C.M.D Informa!!!");
-            dialogo.setContentText("Erro ao gravar informações: \n" + e);
-            dialogo.showAndWait();
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Dados não cadastrados com sucesso");
+            alerta1.showAndWait();
+            
         }
         finally
         {
             ConnectionFactory.fechaConexão(con, stat);
         }
+        
     }
     @SuppressWarnings("Unchecked")
-    public List<Materiais> Listmateriais()
+    public List<Material> ListaMaterial()
     {
-        List<Materiais> list = new ArrayList<Materiais>();
+        List<Material> M = new ArrayList<>();
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         ResultSet rs = null;
@@ -71,37 +73,45 @@ public class MaterialDAO
             
             while(rs.next())
             {
-                Materiais m = new Materiais();
+                Material m = new Material();
                 m.setId(rs.getInt("Id"));
                 m.setNome(rs.getString("Nome"));
                 m.setQuantidade(rs.getInt("Quantidade"));
                 m.setPreço(rs.getFloat("Preco"));
-                list.add(m);
+                m.setTipo(rs.getString("Tipo"));
+                m.setUnidade(rs.getString("Unidade"));
+                M.add(m);
             }
             
         }
-        catch(SQLException ex)
+        catch(SQLException e)
         {
-            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+            alerta1.setTitle("C.M.D");
+            alerta1.setHeaderText("C.M.D Informa!!!");
+            alerta1.setContentText("Erro ao listar" + e);
+            alerta1.showAndWait();
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat, rs);
+           ConnectionFactory.fechaConexão(con, stat, rs);
         }
-        return list;
+        return M;
     }
-    public void Update(Materiais m)
+    public void Update(Material m)
     {
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
         try
         {
-            stat = con.prepareStatement("UPDATE materiais SET Nome = ?, Quantidade = ?, Preco = ? WHERE Id = ?");
+            stat = con.prepareStatement("UPDATE materiais SET Nome = ?, Quantidade = ?, Preco = ?, Tipo = ?, Unidade = ? WHERE Id = ? ");
             stat.setString(1, m.getNome());
             stat.setInt(2, m.getQuantidade());
             stat.setFloat(3, m.getPreço());
-            stat.setInt(4, m.getId());
+            stat.setString(4, m.getTipo());
+            stat.setString(5, m.getUnidade());
+            stat.setInt(6, m.getId());
             stat.executeUpdate();
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("C.M.D");
@@ -116,11 +126,11 @@ public class MaterialDAO
             alerta1.setHeaderText("C.M.D Informa!!!");
             alerta1.setContentText("Dados não alterados com sucesso");
             alerta1.showAndWait();
-            
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat); 
+            ConnectionFactory.fechaConexão(con, stat);
         }
     }
+    
 }
