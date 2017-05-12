@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -24,7 +25,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -203,10 +203,16 @@ public class Forro_GessoController implements Initializable {
     @FXML
     private void Click_Calcular(MouseEvent event) throws NoSuchFieldException {
         //Falta validar
+
+        if ("".equals(txt_Area.getText().trim())) {
+            Mensagem_Alerta("Preencha campo Área");//Igual ao do Felipe - Padronizar no Projeto
+            return;
+        }
+
         Coloca_Zero();
+
         Calcula_Constante();
         Calcula_Preco_Unitario();
-
         Calcula_Soma();
         Calcula_Total_Area();
 
@@ -229,7 +235,7 @@ public class Forro_GessoController implements Initializable {
 
     @FXML
     private void Click_Salvar(MouseEvent event) {
-
+        Mensagem_Alerta("Ainda não feito");
     }
 
     @FXML
@@ -289,6 +295,14 @@ public class Forro_GessoController implements Initializable {
             txt_preco_12.setText("0");
         }
 
+    }
+
+    private void Mensagem_Alerta(String conteudo) {
+        Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+        dialogo.setTitle("C.M.D");
+        dialogo.setHeaderText("C.M.D Informa!!!");
+        dialogo.setContentText(conteudo + " \n");
+        dialogo.showAndWait();
     }
 
     private void Calcula_Soma() {
