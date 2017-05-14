@@ -23,7 +23,7 @@ CREATE TABLE Cliente(
 	CodEndereco INT(11),
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodEndereco) EXTENDS Endereco(CodEndereco),
+	FOREIGN KEY(CodEndereco) REFERENCES Endereco(CodEndereco),
 /*PK*/
 	PRIMARY KEY(CodCliente)
 );
@@ -33,7 +33,7 @@ CREATE TABLE Telefone(
 	Numero VARCHAR(15),
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodCliente) EXTENDS Cliente(CodCliente),
+	FOREIGN KEY(CodCliente) REFERENCES Cliente(CodCliente),
 /*PK*/
 	PRIMARY KEY(CodCliente, Numero)
 );
@@ -46,7 +46,7 @@ CREATE TABLE PessoaJuridica(
 	DataFundacao DATE,
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodCliente) EXTENDS Cliente(CodCliente),
+	FOREIGN KEY(CodCliente) REFERENCES Cliente(CodCliente),
 /*PK*/
 	PRIMARY KEY(CodCliente)
 );
@@ -58,7 +58,7 @@ CREATE TABLE PessoaFisica(
 	DataNascimento DATE,
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodCliente) EXTENDS Cliente(CodCliente),
+	FOREIGN KEY(CodCliente) REFERENCES Cliente(CodCliente),
 /*PK*/
 	PRIMARY KEY(CodCliente)
 );
@@ -83,7 +83,7 @@ CREATE TABLE Parede(
 	EhRf BOOLEAN,
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodConstrucao) EXTENDS Construcao(CodConstrucao),
+	FOREIGN KEY(CodConstrucao) REFERENCES Construcao(CodConstrucao),
 /*PK*/
 	PRIMARY KEY(CodConstrucao)
 );
@@ -95,7 +95,7 @@ CREATE TABLE Forro(
 	EhRf BOOLEAN,
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodConstrucao) EXTENDS Construcao(CodConstrucao),
+	FOREIGN KEY(CodConstrucao) REFERENCES Construcao(CodConstrucao),
 /*PK*/
 	PRIMARY KEY(CodConstrucao)
 );
@@ -113,7 +113,7 @@ CREATE TABLE Material(
 	CodConstrucao INT(11),
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodConstrucao) EXTENDS Construcao(CodConstrucao),
+	FOREIGN KEY(CodConstrucao) REFERENCES Construcao(CodConstrucao),
 /*PK*/
 	PRIMARY KEY(CodMaterial)
 );
@@ -126,8 +126,8 @@ CREATE TABLE Orcamento(
 	CodEndereco INT(11),
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodCliente) EXTENDS Cliente(CodCliente),
-	FOREIGN KEY(CodEndereco) EXTENDS Endereco(CodEndereco),
+	FOREIGN KEY(CodCliente) REFERENCES Cliente(CodCliente),
+	FOREIGN KEY(CodEndereco) REFERENCES Endereco(CodEndereco),
 /*PK*/
 	PRIMARY KEY(CodOrcamento)
 );
@@ -143,8 +143,8 @@ CREATE TABLE Item(
 	CodOrcamento INT(11),
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodConstrucao) EXTENDS Construcao(CodConstrucao),
-	FOREIGN KEY(CodOrcamento) EXTENDS Orcamento(CodOrcamento),
+	FOREIGN KEY(CodConstrucao) REFERENCES Construcao(CodConstrucao),
+	FOREIGN KEY(CodOrcamento) REFERENCES Orcamento(CodOrcamento),
 /*PK*/
 	PRIMARY KEY(CodItem)
 );
@@ -156,8 +156,8 @@ CREATE TABLE MaterialItem(
 	PrecoUnitario DECIMAL(8,2),
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*FK*/
-	FOREIGN KEY(CodMaterial) EXTENDS Material(CodMaterial),
-	FOREIGN KEY(CodItem) EXTENDS Item(CodItem),
+	FOREIGN KEY(CodMaterial) REFERENCES Material(CodMaterial),
+	FOREIGN KEY(CodItem) REFERENCES Item(CodItem),
 /*PK*/
 	PRIMARY KEY(CodMaterial, CodItem)
 );
@@ -174,21 +174,21 @@ CREATE TABLE Funcionario(
 /*REGISTROATIVIDADE (--> Funcionario)*/
 CREATE TABLE RegistroAtividade(
 	CodRegistro INT(11) AUTO_INCREMENT,
-	CodFuncionario VARCHAR(11),
+	CodFuncionario INT(11),
 	DataHora DATE,
 /*FK*/
-	FOREIGN KEY(CodFuncionario) EXTENDS Funcionario(CodFuncionario),
+	FOREIGN KEY(CodFuncionario) REFERENCES Funcionario(CodFuncionario),
 /*PK*/
 	PRIMARY KEY(CodRegistro)
 );
-/*REGISTROCONSTRUCAO (--> RegistroConstrucao)*/
+/*REGISTROCONSTRUCAO (--> RegistroAtividade)*/
 CREATE TABLE RegistroConstrucao(
 	CodRegistro INT(11),
 	Atividade VARCHAR(30),
 	Tabela VARCHAR(20),
 	Detalhe VARCHAR(100),
 /*FK*/
-	FOREIGN KEY(CodRegistro) EXTENDS RegistroAtividade(CodRegistro),
+	FOREIGN KEY(CodRegistro) REFERENCES RegistroAtividade(CodRegistro),
 /*PK*/
 	PRIMARY KEY(CodRegistro)
 );
@@ -199,7 +199,7 @@ CREATE TABLE RegistroOrcamento(
 	Tabela VARCHAR(20),
 	Detalhe VARCHAR(100),
 /*FK*/
-	FOREIGN KEY(CodRegistro) EXTENDS RegistroAtividade(CodRegistro),
+	FOREIGN KEY(CodRegistro) REFERENCES RegistroAtividade(CodRegistro),
 /*PK*/
 	PRIMARY KEY(CodRegistro)
 );
