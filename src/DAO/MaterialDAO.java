@@ -29,13 +29,14 @@ public class MaterialDAO
         
         try
         {
-            stat = con.prepareStatement("INSERT INTO materiais(Id,Nome,Quantidade,Preco,Tipo,Unidade) VALUES(?,?,?,?,?,?)");
+            stat = con.prepareStatement("INSERT INTO materiais(Id,Nome,Quantidade,Preco,Tipo,Unidade,Codigo_construl) VALUES(?,?,?,?,?,?,?)");
             stat.setInt(1, M.getId());
             stat.setString(2, M.getNome());
             stat.setInt(3, M.getQuantidade());
             stat.setFloat(4, M.getPreço());
             stat.setString(5, M.getTipo());
             stat.setString(6, M.getUnidade());
+            stat.setInt(7, M.getCod_construl());
             stat.executeUpdate();
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("C.M.D");
@@ -80,6 +81,7 @@ public class MaterialDAO
                 m.setPreço(rs.getFloat("Preco"));
                 m.setTipo(rs.getString("Tipo"));
                 m.setUnidade(rs.getString("Unidade"));
+                m.setCod_construl(rs.getInt("Codigo_construl"));
                 M.add(m);
             }
             
@@ -105,13 +107,14 @@ public class MaterialDAO
         
         try
         {
-            stat = con.prepareStatement("UPDATE materiais SET Nome = ?, Quantidade = ?, Preco = ?, Tipo = ?, Unidade = ? WHERE Id = ? ");
+            stat = con.prepareStatement("UPDATE materiais SET Nome = ?, Quantidade = ?, Preco = ?, Tipo = ?, Unidade = ? Codigo_construl = ? WHERE Id = ? ");
             stat.setString(1, m.getNome());
             stat.setInt(2, m.getQuantidade());
             stat.setFloat(3, m.getPreço());
             stat.setString(4, m.getTipo());
             stat.setString(5, m.getUnidade());
             stat.setInt(6, m.getId());
+            stat.setInt(7, m.getCod_construl());
             stat.executeUpdate();
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("C.M.D");

@@ -12,6 +12,7 @@ import Entidade.Material;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,7 +82,7 @@ public class MaterialFXMLController implements Initializable {
         
         for(Material M : Listamaterial)
         {
-            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade());
+            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade(),M.getCod_construl());
             tableview.add(view);
         }
         tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTableView,Integer>("Id"));
@@ -99,6 +100,8 @@ public class MaterialFXMLController implements Initializable {
 
     @FXML
     private void Cadastrar(ActionEvent event) {
+        Random gerador = new Random();
+        int numero = gerador.nextInt(1000);
         MaterialDAO dao = new MaterialDAO();
         Material M = new Material();
         if(txt_nome.getText().isEmpty() || txt_quantidade.getText().isEmpty() ||
@@ -122,6 +125,7 @@ public class MaterialFXMLController implements Initializable {
           M.setPreço(preço);
           M.setTipo(tipo);
           M.setUnidade(unidade);
+          M.setCod_construl(numero);
           dao.Create(M);
           txt_nome.setText("");
           txt_preco.setText("");

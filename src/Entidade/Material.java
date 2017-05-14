@@ -17,7 +17,7 @@ public class Material
     private float Preço;
     private String Tipo;
     private String Unidade;
-
+    private int cod_construl;
     public int getId() {
         return Id;
     }
@@ -65,4 +65,13 @@ public class Material
     public void setUnidade(String Unidade) {
         this.Unidade = Unidade;
     }
+
+    public int getCod_construl() {
+        return cod_construl;
+    }
+
+    public void setCod_construl(int cod_construl) {
+        this.cod_construl = cod_construl;
+    }
+    
 }

@@ -21,8 +21,9 @@ public class MaterialTableView
     private SimpleFloatProperty Preço;
     private SimpleStringProperty Tipo;
     private SimpleStringProperty Unidade;
+    private SimpleIntegerProperty cod_construl;
     
-    public MaterialTableView(int id, String nome, int quantidade, float preço, String tipo, String unidade)
+    public MaterialTableView(int id, String nome, int quantidade, float preço, String tipo, String unidade, int cod_construl)
     {
         this.Id = new SimpleIntegerProperty(id);
         this.Nome = new SimpleStringProperty(nome);
@@ -30,6 +31,7 @@ public class MaterialTableView
         this.Preço = new SimpleFloatProperty(preço);
         this.Tipo = new SimpleStringProperty(tipo);
         this.Unidade = new SimpleStringProperty(unidade);
+        this.cod_construl = new SimpleIntegerProperty(cod_construl);
     }
     
     public Integer getId()
@@ -56,6 +58,9 @@ public class MaterialTableView
     {
         return this.Unidade.getValue();
     }
-    
+    public Integer getCod()
+    {
+        return this.cod_construl.getValue();
+    }
     
 }

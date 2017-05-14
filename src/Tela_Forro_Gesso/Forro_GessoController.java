@@ -184,6 +184,32 @@ public class Forro_GessoController implements Initializable {
     private ComboBox<String> cmb_item9;
     @FXML
     private ComboBox<String> cmb_item10;
+    @FXML
+    private Label lbl_un;
+    @FXML
+    private Label lbl_un1;
+    @FXML
+    private Label lbl_un3;
+    @FXML
+    private Label lbl_un2;
+    @FXML
+    private Label lbl_un7;
+    @FXML
+    private Label lbl_un4;
+    @FXML
+    private Label lbl_un5;
+    @FXML
+    private Label lbl_un6;
+    @FXML
+    private Label lbl_un9;
+    @FXML
+    private Label lbl_un8;
+    @FXML
+    private Label lbl_un11;
+    @FXML
+    private Label lbl_un10;
+    @FXML
+    private ComboBox<String> cmb_item11;
 
     /**
      * Initializes the controller class.
@@ -229,6 +255,7 @@ public class Forro_GessoController implements Initializable {
             cmb_item8.setItems(list);
             cmb_item9.setItems(list);
             cmb_item10.setItems(list);
+            cmb_item11.setItems(list);
             
             
         }
