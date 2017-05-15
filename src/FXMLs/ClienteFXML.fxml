@@ -10,20 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox alignment="TOP_CENTER" prefHeight="616.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.ClienteFXMLController">
+<HBox alignment="TOP_CENTER" prefHeight="616.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.ClienteFXMLController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="976.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="14.0" text="Bem-Vindo a Área de Cadastro de Clientes">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="368.0" layoutY="14.0" text="Bem-Vindo a Área de Cadastro de Clientes">
                <font>
-                  <Font size="16.0" />
+                  <Font size="13.0" />
                </font>
             </Label>
-            <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="48.0" prefHeight="289.0" prefWidth="957.0" AnchorPane.topAnchor="48.0">
+            <VBox alignment="TOP_CENTER" layoutX="319.0" layoutY="50.0" prefHeight="260.0" prefWidth="340.0" AnchorPane.topAnchor="50.0">
                <children>
                   <Label text="Nome" />
-                  <TextField fx:id="txt_nome" />
+                  <TextField fx:id="txt_nome" prefHeight="25.0" prefWidth="841.0" />
                   <Label text="Endereço" />
                   <TextField fx:id="txt_endereco" />
                   <Label text="Cpf" />
@@ -42,7 +41,7 @@
                   <TextField fx:id="txt_mail" />
                </children>
             </VBox>
-            <HBox layoutX="14.0" layoutY="349.0" prefHeight="37.0" prefWidth="951.0">
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="349.0" prefHeight="25.0" prefWidth="951.0">
                <children>
                   <Button fx:id="bt_cadastrar" mnemonicParsing="false" onAction="#Cadastrar" prefHeight="36.0" prefWidth="87.0" text="Cadastrar" />
                   <Button fx:id="bt_alterar" mnemonicParsing="false" onAction="#Alterar" prefHeight="37.0" prefWidth="83.0" text="Alterar" />

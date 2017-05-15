@@ -14,6 +14,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +40,7 @@ import javafx.stage.Stage;
  * @author fe_mm
  */
 public class MaterialFXMLController implements Initializable {
+    
 
     @FXML
     private TextField txt_nome;
@@ -72,6 +75,7 @@ public class MaterialFXMLController implements Initializable {
     private ObservableList<MaterialTableView> tableview = FXCollections.observableArrayList();
     @FXML
     private TableView<MaterialTableView> tb_materiais;
+   
     /**
      * Initializes the controller class.
      */
@@ -82,7 +86,7 @@ public class MaterialFXMLController implements Initializable {
         
         for(Material M : Listamaterial)
         {
-            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade(),M.getCod_construl());
+            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade());
             tableview.add(view);
         }
         tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTableView,Integer>("Id"));
@@ -97,13 +101,32 @@ public class MaterialFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ListandoTableView();
     }    
-
+    public int sorteio()
+    {
+        Random r = new Random(); // gera o ramdomico
+        final int H = 60; // intervalo mais alto
+        final int L = 1; // intervalo mais baixo
+        return r.nextInt(H+1)+L;
+    }
+    Set<Integer> sorteados = new TreeSet<Integer>();
+    public int sorteia()
+    {
+        Random r = new Random ();
+         final int H = 60; 
+         final int L = 1 ;
+         int result;
+         do
+               result = r.nextInt ( H+ 1 ) + L;
+               while ( !sorteados.add (  Integer.valueOf(result))) ;
+               return result;
+    }
     @FXML
     private void Cadastrar(ActionEvent event) {
-        Random gerador = new Random();
-        int numero = gerador.nextInt(1000);
+        //Random gerador = new Random();
+        //int numero = gerador.nextInt(3);
         MaterialDAO dao = new MaterialDAO();
         Material M = new Material();
+        sorteio();
         if(txt_nome.getText().isEmpty() || txt_quantidade.getText().isEmpty() ||
                 txt_preco.getText().isEmpty() || txt_tipo.getText().isEmpty() || txt_unidade.getText().isEmpty())
         {
@@ -125,7 +148,7 @@ public class MaterialFXMLController implements Initializable {
           M.setPreço(preço);
           M.setTipo(tipo);
           M.setUnidade(unidade);
-          M.setCod_construl(numero);
+          M.setCod_construl(sorteia());
           dao.Create(M);
           txt_nome.setText("");
           txt_preco.setText("");

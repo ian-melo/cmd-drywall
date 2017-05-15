@@ -11,9 +11,9 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="259.0" prefWidth="600.0">
          <children>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="14.0" text="Bem-vindo ao Menu Principal" textAlignment="CENTER">
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="226.0" layoutY="14.0" text="Bem-vindo ao Menu Principal" textAlignment="CENTER">
                <font>
-                  <Font size="23.0" />
+                  <Font size="13.0" />
                </font>
             </Label>
             <VBox layoutX="13.0" layoutY="46.0" prefHeight="124.0" prefWidth="569.0">

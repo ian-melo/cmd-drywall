@@ -115,6 +115,7 @@ public class MaterialDAO
             stat.setString(5, m.getUnidade());
             stat.setInt(6, m.getId());
             stat.setInt(7, m.getCod_construl());
+            stat.setInt(8, m.getId());
             stat.executeUpdate();
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("C.M.D");

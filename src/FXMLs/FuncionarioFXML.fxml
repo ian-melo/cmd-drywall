@@ -7,39 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<HBox alignment="TOP_CENTER" prefHeight="313.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cadastros.FuncionarioFXMLController">
+<HBox alignment="CENTER" prefHeight="234.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cadastros.FuncionarioFXMLController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="238.0" layoutY="49.0" prefHeight="200.0" prefWidth="351.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label layoutX="93.0" layoutY="14.0" text="Bem-Vindo a Área de Cadastro de Funcionarios" />
+            <VBox layoutX="14.0" layoutY="38.0" prefHeight="85.0" prefWidth="158.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="459.0" text="Bem-Vindo a Área de Cadastro de Usuários" textAlignment="CENTER">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <VBox prefHeight="214.0" prefWidth="600.0">
-                     <children>
-                        <Label text="Nome">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="txt_nome_func" />
-                        <Label layoutX="10.0" layoutY="10.0" text="Senha">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="txt_senha_func" />
-                     </children>
-                  </VBox>
-                  <Button fx:id="bt_cadastro_func" mnemonicParsing="false" onAction="#Cadastrar_Funcionario" text="Cadastrar" />
-                  <Button fx:id="bt_sair_func" mnemonicParsing="false" onAction="#Sair_Funcionario" prefHeight="25.0" prefWidth="66.0" text="Sair" />
+                  <Label text="Nome" />
+                  <TextField fx:id="txt_nome_func" />
+                  <Label text="Senha" />
+                  <PasswordField fx:id="txt_senha_func" />
                </children>
             </VBox>
+            <Button fx:id="bt_cadastro_func" layoutX="183.0" layoutY="151.0" mnemonicParsing="false" onAction="#Cadastrar_Funcionario" text="Cadastrar" />
+            <Button fx:id="bt_sair_func" layoutX="183.0" layoutY="184.0" mnemonicParsing="false" onAction="#Sair_Funcionario" prefHeight="25.0" prefWidth="67.0" text="Sair" />
          </children>
       </AnchorPane>
    </children>
