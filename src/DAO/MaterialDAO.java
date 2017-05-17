@@ -55,7 +55,7 @@ public class MaterialDAO
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat);
+            ConnectionFactory.fecharConexao(con, stat);
         }
         
     }
@@ -96,7 +96,7 @@ public class MaterialDAO
         }
         finally
         {
-           ConnectionFactory.fechaConexão(con, stat, rs);
+           ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return M;
     }
@@ -133,7 +133,7 @@ public class MaterialDAO
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat);
+            ConnectionFactory.fecharConexao(con, stat);
         }
     }
     

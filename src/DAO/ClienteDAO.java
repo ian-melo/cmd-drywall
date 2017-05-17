@@ -56,7 +56,7 @@ public class ClienteDAO
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat);
+            ConnectionFactory.fecharConexao(con, stat);
         }
     }
     @SuppressWarnings("Unchecked")
@@ -97,7 +97,7 @@ public class ClienteDAO
         }
         finally
         {
-           ConnectionFactory.fechaConexão(con, stat, rs);
+           ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return cli;
     }
@@ -134,7 +134,7 @@ public class ClienteDAO
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat);
+            ConnectionFactory.fecharConexao(con, stat);
         }
     }
 }

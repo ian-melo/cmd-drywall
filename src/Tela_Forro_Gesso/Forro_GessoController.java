@@ -265,7 +265,7 @@ public class Forro_GessoController implements Initializable {
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat, rs);
+            ConnectionFactory.fecharConexao(con, stat, rs);
         }
        
      }

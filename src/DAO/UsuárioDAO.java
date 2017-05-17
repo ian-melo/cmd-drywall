@@ -45,7 +45,7 @@ public class UsuárioDAO
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat, rs);
+            ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return check;
     }
@@ -78,7 +78,7 @@ public class UsuárioDAO
         }
         finally
         {
-            ConnectionFactory.fechaConexão(con, stat);
+            ConnectionFactory.fecharConexao(con, stat);
         }
         
     }
