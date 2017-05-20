@@ -13,22 +13,31 @@ import java.util.ArrayList;
  */
 public class Clientes {
     /*
-    private int id;
-    private String nome;
-    private String endereço;
-    private String cpf_cnpj;
-    private String nome_projeto;
-    private int numero_protocolo;
-    private String telefone;
-    private String email;
-    private int protocolo;
-*/
-    
+     private int id;
+     private String nome;
+     private String endereço;
+     private String cpf_cnpj;
+     private String nome_projeto;
+     private int numero_protocolo;
+     private String telefone;
+     private String email;
+     private int protocolo;
+     */
+
     private int id;
     private String dataInscricao;
     private PessoaFisica pessoaFisica;
     private PessoaJuridica pessoaJuridica;
+    private Endereco endereco;
     private ArrayList<Telefone> telefone;
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
     public int getId() {
         return id;
@@ -69,8 +78,5 @@ public class Clientes {
     public void setTelefone(ArrayList<Telefone> telefone) {
         this.telefone = telefone;
     }
-    
-    
-    
-    
+
 }

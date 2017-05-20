@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Clientes.Clientes;
 import Conexão.ConnectionFactory;
 import Entidade.Entidadecliente;
 import java.sql.Connection;
@@ -19,25 +20,24 @@ import javafx.scene.control.Alert;
 /**
  *
  * @author fe_mm
+ * modificado F
  */
-public class ClienteDAO 
-{
-    public void Create(Entidadecliente c)
+public class ClienteDAO{
+    private String sql;
+    
+    public void Create(Clientes c)
     {
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
-        try
-        {
-            stat = con.prepareStatement("INSERT INTO cliente1(Id,Nome,Cpf,Endereco,Projeto,Protocolo,Telefone,Email) VALUES(?,?,?,?,?,?,?,?)");
+        try{
+            sql = "INSERT INTO Cliente VALUES(NULL,?,?,?, FALSE)";
+            stat = con.prepareStatement(sql);
+            
             stat.setInt(1, c.getId());
-            stat.setString(2, c.getNome());
-            stat.setString(3, c.getCpf());
-            stat.setString(4, c.getEndereço());
-            stat.setString(5, c.getProjeto());
-            stat.setInt(6, c.getProtocolo());
-            stat.setString(7, c.getTelefone());
-            stat.setString(8, c.getEmail());
+            stat.setString(2, c.getDataInscricao());
+            stat.setString(3, c.getEndereco().toString());
+          
             stat.executeUpdate();
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("C.M.D");
