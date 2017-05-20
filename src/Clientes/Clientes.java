@@ -5,11 +5,14 @@
  */
 package Clientes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fe_mm
  */
 public class Clientes {
+    /*
     private int id;
     private String nome;
     private String endereço;
@@ -19,31 +22,13 @@ public class Clientes {
     private String telefone;
     private String email;
     private int protocolo;
-
-    public int getProtocolo() {
-        return protocolo;
-    }
-
-    public void setProtocolo(int protocolo) {
-        this.protocolo = protocolo;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+*/
     
-    
+    private int id;
+    private String dataInscricao;
+    private PessoaFisica pessoaFisica;
+    private PessoaJuridica pessoaJuridica;
+    private ArrayList<Telefone> telefone;
 
     public int getId() {
         return id;
@@ -53,45 +38,38 @@ public class Clientes {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDataInscricao() {
+        return dataInscricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDataInscricao(String dataInscricao) {
+        this.dataInscricao = dataInscricao;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public PessoaFisica getPessoaFisica() {
+        return pessoaFisica;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setPessoaFisica(PessoaFisica pessoaFisica) {
+        this.pessoaFisica = pessoaFisica;
     }
 
-    public String getCpf_cnpj() {
-        return cpf_cnpj;
+    public PessoaJuridica getPessoaJuridica() {
+        return pessoaJuridica;
     }
 
-    public void setCpf_cnpj(String cpf_cnpj) {
-        this.cpf_cnpj = cpf_cnpj;
+    public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
+        this.pessoaJuridica = pessoaJuridica;
     }
 
-    public String getNome_projeto() {
-        return nome_projeto;
+    public ArrayList<Telefone> getTelefone() {
+        return telefone;
     }
 
-    public void setNome_projeto(String nome_projeto) {
-        this.nome_projeto = nome_projeto;
+    public void setTelefone(ArrayList<Telefone> telefone) {
+        this.telefone = telefone;
     }
-
-    public int getNumero_protocolo() {
-        return numero_protocolo;
-    }
-
-    public void setNumero_protocolo(int numero_protocolo) {
-        this.numero_protocolo = numero_protocolo;
-    }
+    
     
     
     
