@@ -9,8 +9,8 @@ package Entidade;
  *
  * @author fe_mm
  */
-public class Entidadecliente 
-{
+public class Entidadecliente {
+
     private int Id;
     private String Nome;
     private String Endereço;
@@ -83,7 +83,5 @@ public class Entidadecliente
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    
-    
-    
+
 }

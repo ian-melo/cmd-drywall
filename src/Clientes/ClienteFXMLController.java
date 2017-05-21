@@ -150,7 +150,7 @@ public class ClienteFXMLController implements Initializable {
             cli.setTelefone(telefone);
             cli.setEmail(email);
             
-            dao.Create(cli);
+            //dao.Create(cli);
             
             txt_nome.setText("");
             txt_endereco.setText("");
