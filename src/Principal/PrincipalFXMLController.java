@@ -37,6 +37,8 @@ public class PrincipalFXMLController implements Initializable {
     private Button bt_orçamento;
     @FXML
     private Button bt_sair;
+    @FXML
+    private Button bt_relatorios;
 
     /**
      * Initializes the controller class.
@@ -89,6 +91,15 @@ public class PrincipalFXMLController implements Initializable {
        Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
        tela.setScene(scene);
        tela.show();
+    }
+
+    @FXML
+    private void Relatorios(ActionEvent event) throws IOException {
+        Parent funcionario_parent = FXMLLoader.load(getClass().getResource("/FXMLs/RelatorioFXML.fxml"));
+       Scene funcionario_scene = new Scene(funcionario_parent);
+       Stage app_tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       app_tela.setScene(funcionario_scene);
+       app_tela.show();
     }
     
 }
