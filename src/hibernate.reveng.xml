@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="drywall"/>
+  <table-filter match-name="Construcao"/>
+  <table-filter match-name="Item"/>
+  <table-filter match-name="Funcionario"/>
+  <table-filter match-name="Endereco"/>
+  <table-filter match-name="PessoaJuridica"/>
+  <table-filter match-name="Cliente"/>
+  <table-filter match-name="RegistroOrcamento"/>
+  <table-filter match-name="Orcamento"/>
+  <table-filter match-name="RegistroAtividade"/>
+  <table-filter match-name="Forro"/>
+  <table-filter match-name="RegistroConstrucao"/>
+  <table-filter match-name="MaterialItem"/>
+  <table-filter match-name="Telefone"/>
+  <table-filter match-name="PessoaFisica"/>
+  <table-filter match-name="Parede"/>
+  <table-filter match-name="Material"/>
+</hibernate-reverse-engineering>

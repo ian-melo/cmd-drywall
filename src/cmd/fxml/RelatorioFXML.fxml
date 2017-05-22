@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox alignment="CENTER" prefHeight="231.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cmd.telas.relatorio.RelatorioFXMLController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="107.0" layoutY="14.0" text="Bem-Vindo a Área de Relaórios" />
+            <VBox alignment="TOP_CENTER" layoutX="104.0" layoutY="40.0" prefHeight="126.0" prefWidth="166.0">
+               <children>
+                  <Button fx:id="bt_rel1" mnemonicParsing="false" onAction="#Relatorio1" prefHeight="25.0" prefWidth="174.0" text="Relatorio 1" />
+                  <Button fx:id="bt_rel2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Relatorio2" prefHeight="25.0" prefWidth="174.0" text="Relatorio 2" />
+                  <Button fx:id="bt_rel3" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" onAction="#Relatorio3" prefHeight="25.0" prefWidth="174.0" text="Relatorio 3" />
+                  <Button fx:id="bt_rel4" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#Relatorio4" prefHeight="25.0" prefWidth="174.0" text="Relatorio 4" />
+                  <Button fx:id="bt_rel5" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#Relatorio5" prefHeight="25.0" prefWidth="174.0" text="Relatorio 5" />
+               </children>
+            </VBox>
+            <Button fx:id="bt_sair" layoutX="143.0" layoutY="184.0" mnemonicParsing="false" onAction="#Sair" prefHeight="25.0" prefWidth="80.0" text="Sair" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

@@ -5,8 +5,8 @@
  */
 package DAO;
 
-import Clientes.Clientes;
-import Conexão.ConnectionFactory;
+import Entidade.Cliente;
+import cmd.conexao.ConnectionFactory;
 import Entidade.Entidadecliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +25,7 @@ import javafx.scene.control.Alert;
 public class ClienteDAO{
     private String sql;
     
-    public void Create(Clientes c)
+    public void Create(Cliente c)
     {
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;

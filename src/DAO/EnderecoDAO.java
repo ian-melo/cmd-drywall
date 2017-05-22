@@ -5,8 +5,8 @@
  */
 package DAO;
 
-import Clientes.Endereco;
-import Conexão.ConnectionFactory;
+import Entidade.Endereco;
+import cmd.conexao.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

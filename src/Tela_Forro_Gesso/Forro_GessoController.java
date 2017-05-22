@@ -5,7 +5,7 @@
  */
 package Tela_Forro_Gesso;
 
-import Conexão.ConnectionFactory;
+import cmd.conexao.ConnectionFactory;
 import DAO.ClienteDAO;
 import java.io.IOException;
 import java.net.URL;

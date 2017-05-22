@@ -9,8 +9,8 @@ package DAO;
  *
  * @author fe_mm
  */
-import Conexão.ConnectionFactory;
-import Usuario.Usuario;
+import cmd.conexao.ConnectionFactory;
+import Entidade.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

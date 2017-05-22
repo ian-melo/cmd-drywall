@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="CENTER" prefHeight="234.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cmd.telas.funcionario.FuncionarioFXMLController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="93.0" layoutY="14.0" text="Bem-Vindo a Área de Cadastro de Funcionarios" />
+            <VBox layoutX="14.0" layoutY="38.0" prefHeight="85.0" prefWidth="158.0">
+               <children>
+                  <Label text="Nome" />
+                  <TextField fx:id="txt_nome_func" />
+                  <Label text="Senha" />
+                  <PasswordField fx:id="txt_senha_func" />
+               </children>
+            </VBox>
+            <Button fx:id="bt_cadastro_func" layoutX="183.0" layoutY="151.0" mnemonicParsing="false" onAction="#Cadastrar_Funcionario" text="Cadastrar" />
+            <Button fx:id="bt_sair_func" layoutX="183.0" layoutY="184.0" mnemonicParsing="false" onAction="#Sair_Funcionario" prefHeight="25.0" prefWidth="67.0" text="Sair" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

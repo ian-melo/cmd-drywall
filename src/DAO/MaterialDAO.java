@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Conexão.ConnectionFactory;
+import cmd.conexao.ConnectionFactory;
 import Entidade.Entidadecliente;
 import Entidade.Material;
 import java.sql.Connection;
