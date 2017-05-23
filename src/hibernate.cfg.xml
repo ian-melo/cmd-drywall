@@ -9,5 +9,21 @@
     <property name="hibernate.connection.password">TCC</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="cmd/entidade/Item.hbm.xml"/>
+    <mapping resource="cmd/entidade/RegistroAtividade.hbm.xml"/>
+    <mapping resource="cmd/entidade/Funcionario.hbm.xml"/>
+    <mapping resource="cmd/entidade/PessoaJuridica.hbm.xml"/>
+    <mapping resource="cmd/entidade/Material.hbm.xml"/>
+    <mapping resource="cmd/entidade/Orcamento.hbm.xml"/>
+    <mapping resource="cmd/entidade/PessoaFisica.hbm.xml"/>
+    <mapping resource="cmd/entidade/Endereco.hbm.xml"/>
+    <mapping resource="cmd/entidade/Parede.hbm.xml"/>
+    <mapping resource="cmd/entidade/RegistroConstrucao.hbm.xml"/>
+    <mapping resource="cmd/entidade/MaterialItem.hbm.xml"/>
+    <mapping resource="cmd/entidade/Telefone.hbm.xml"/>
+    <mapping resource="cmd/entidade/RegistroOrcamento.hbm.xml"/>
+    <mapping resource="cmd/entidade/Forro.hbm.xml"/>
+    <mapping resource="cmd/entidade/Cliente.hbm.xml"/>
+    <mapping resource="cmd/entidade/Construcao.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
