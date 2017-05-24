@@ -9,6 +9,6 @@ public interface DAO <K> {
     public boolean inserir(K item);
     public boolean alterar(K item);
     public boolean excluir(K item);
-    public K buscar();
+    public K buscar(String consulta);
     public java.util.List<K> listar();
 }
