@@ -52,6 +52,7 @@ public class ConstrucaoControle {
      * @return true, caso a operação seja concluída<br/>false, caso contrário
      */
     public boolean inserirParede(Parede p) {
+        
         return false;
     }
     

@@ -1,7 +1,7 @@
 package cmd.DAO;
 
 import cmd.entidade.Construcao;
-import cmd.entidade.Forro;
+import cmd.entidade.Parede;
 import cmd.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -9,13 +9,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
- * Classe de DAO para Forro
+ * Classe de DAO para Parede
  * @author voce
  */
-public class ForroDAO implements DAO<Forro> {
+public class ParedeDAO implements DAO<Parede> {
 
     @Override
-    public boolean inserir(Forro item) {
+    public boolean inserir(Parede item) {
         /*
         try {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -32,22 +32,22 @@ public class ForroDAO implements DAO<Forro> {
     }
 
     @Override
-    public boolean alterar(Forro item) {
+    public boolean alterar(Parede item) {
         return false;
     }
 
     @Override
-    public boolean excluir(Forro item) {
+    public boolean excluir(Parede item) {
         return false;
     }
 
     @Override
-    public Forro buscar(String consulta) {
+    public Parede buscar(String consulta) {
         return null;
     }
 
     @Override
-    public List<Forro> listar() {
+    public List<Parede> listar() {
         return null;
     }
     

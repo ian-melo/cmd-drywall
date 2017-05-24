@@ -100,14 +100,15 @@ public class ConstrucaoFXMLController implements Initializable {
     private void ActionSalvar(ActionEvent event) throws IOException {
         boolean res; //Resultado da ação
         String info; //Texto informativo
-        //Retorna, caso os campos não estejam completos
+        //Retorna, caso os campos estejam inválidos
         if(!validarCampos())
             return;
         //Criação dos objetos
-        Construcao co = new Construcao();
+        Construcao co;
         Forro fo;
         Parede pa;
         //Construção
+        co = new Construcao();
         co.setDescricao(txt_descricao.getText());
         co.setDetalhes(txt_descricao.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
@@ -142,7 +143,7 @@ public class ConstrucaoFXMLController implements Initializable {
             res = controle.inserirParede(pa);
         }
         //Resultado
-        if(res) info = "Construção inserida com sucesso"; else info = "Não foi possível inserir construção";
+        if(res) info = "Construção salva com sucesso"; else info = "Não foi possível salvar construção";
         exibirAlerta(info);
     }
     
@@ -153,7 +154,56 @@ public class ConstrucaoFXMLController implements Initializable {
      */
     @FXML
     private void ActionAlterar(ActionEvent event) throws IOException {
-        // TODO
+        boolean res; //Resultado da ação
+        String info; //Texto informativo
+        //Retorna, caso os campos estejam inválidos
+        if(!validarCampos() || !validarCodigo())
+            return;
+        //Criação dos objetos
+        Construcao co;
+        Forro fo;
+        Parede pa;
+        //Construção
+        co = new Construcao();
+        co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+        co.setDescricao(txt_descricao.getText());
+        co.setDetalhes(txt_descricao.getText());
+        co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
+        co.setXdead(Boolean.FALSE);
+        co.setItems(null);
+        co.setMaterials(null);
+        //Caso forro
+        if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
+            fo = new Forro();
+            fo.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            fo.setEhRf(chk_rf.isSelected());
+            fo.setEhRu(chk_ru.isSelected());
+            fo.setEhSt(chk_st.isSelected());
+            fo.setXdead(Boolean.FALSE);
+            fo.setConstrucao(co);
+            co.setForro(fo);
+            co.setParede(null);
+            //Alteração de forro
+            res = controle.alterarForro(fo);
+        //Caso parede
+        } else {
+            pa = new Parede();
+            pa.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            pa.setMontante(BigDecimal.valueOf(Double.parseDouble(txt_montante.getText())));
+            pa.setAlturaLimite(BigDecimal.valueOf(Double.parseDouble(txt_alturaLim.getText())));
+            pa.setEhRf(chk_rf.isSelected());
+            pa.setEhRu(chk_ru.isSelected());
+            pa.setEhSt(chk_st.isSelected());
+            pa.setXdead(Boolean.FALSE);
+            pa.setConstrucao(co);
+            co.setParede(pa);
+            co.setForro(null);
+            //Alteração de parede
+            res = controle.alterarParede(pa);
+        }
+        //Resultado
+        if(res) info = "Construção alterada com sucesso"; else info = "Não foi possível alterar construção";
+        exibirAlerta(info);
     }
     
     /**
@@ -163,7 +213,56 @@ public class ConstrucaoFXMLController implements Initializable {
      */
     @FXML
     private void ActionExcluir(ActionEvent event) throws IOException {
-        // TODO
+        boolean res; //Resultado da ação
+        String info; //Texto informativo
+        //Retorna, caso os campos estejam inválidos
+        if(!validarCampos() || !validarCodigo())
+            return;
+        //Criação dos objetos
+        Construcao co;
+        Forro fo;
+        Parede pa;
+        //Construção
+        co = new Construcao();
+        co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+        co.setDescricao(txt_descricao.getText());
+        co.setDetalhes(txt_descricao.getText());
+        co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
+        co.setXdead(Boolean.FALSE);
+        co.setItems(null);
+        co.setMaterials(null);
+        //Caso forro
+        if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
+            fo = new Forro();
+            fo.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            fo.setEhRf(chk_rf.isSelected());
+            fo.setEhRu(chk_ru.isSelected());
+            fo.setEhSt(chk_st.isSelected());
+            fo.setXdead(Boolean.FALSE);
+            fo.setConstrucao(co);
+            co.setForro(fo);
+            co.setParede(null);
+            //Exclusão de forro
+            res = controle.excluirForro(fo);
+        //Caso parede
+        } else {
+            pa = new Parede();
+            pa.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            pa.setMontante(BigDecimal.valueOf(Double.parseDouble(txt_montante.getText())));
+            pa.setAlturaLimite(BigDecimal.valueOf(Double.parseDouble(txt_alturaLim.getText())));
+            pa.setEhRf(chk_rf.isSelected());
+            pa.setEhRu(chk_ru.isSelected());
+            pa.setEhSt(chk_st.isSelected());
+            pa.setXdead(Boolean.FALSE);
+            pa.setConstrucao(co);
+            co.setParede(pa);
+            co.setForro(null);
+            //Exclusão de parede
+            res = controle.excluirParede(pa);
+        }
+        //Resultado
+        if(res) info = "Construção excluída com sucesso"; else info = "Não foi possível excluir construção";
+        exibirAlerta(info);
     }
     
     /**
@@ -173,7 +272,60 @@ public class ConstrucaoFXMLController implements Initializable {
      */
     @FXML
     private void ActionProcurar(ActionEvent event) throws IOException {
-        // TODO
+        boolean res; //Resultado da ação
+        String info; //Texto informativo
+        //Retorna, caso o campo esteja inválido
+        if(!validarCodigo())
+            return;
+        //Criação dos objetos
+        Construcao co;
+        Forro fo;
+        Parede pa;
+        //Busca da construção
+        
+        //Construção
+        co = new Construcao();
+        co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+        /*
+        co.setDescricao(txt_descricao.getText());
+        co.setDetalhes(txt_descricao.getText());
+        co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
+        co.setXdead(Boolean.FALSE);
+        co.setItems(null);
+        co.setMaterials(null);
+        */
+        //Caso forro
+        if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
+            fo = new Forro();
+            fo.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            /*
+            fo.setEhRf(chk_rf.isSelected());
+            fo.setEhRu(chk_ru.isSelected());
+            fo.setEhSt(chk_st.isSelected());
+            fo.setXdead(Boolean.FALSE);
+            */
+            fo.setConstrucao(co);
+            co.setForro(fo);
+            co.setParede(null);
+        //Caso parede
+        } else {
+            pa = new Parede();
+            pa.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            /*
+            pa.setMontante(BigDecimal.valueOf(Double.parseDouble(txt_montante.getText())));
+            pa.setAlturaLimite(BigDecimal.valueOf(Double.parseDouble(txt_alturaLim.getText())));
+            pa.setEhRf(chk_rf.isSelected());
+            pa.setEhRu(chk_ru.isSelected());
+            pa.setEhSt(chk_st.isSelected());
+            pa.setXdead(Boolean.FALSE);
+            */
+            pa.setConstrucao(co);
+            co.setParede(pa);
+            co.setForro(null);
+        }
+        //Resultado
+        //if(res) info = "Construção excluída com sucesso"; else info = "Não foi possível excluir construção";
+        //exibirAlerta(info);
     }
     
     /**
