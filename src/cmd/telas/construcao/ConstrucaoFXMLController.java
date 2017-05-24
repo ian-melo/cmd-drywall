@@ -5,7 +5,12 @@
  */
 package cmd.telas.construcao;
 
+import cmd.controle.ConstrucaoControle;
+import cmd.entidade.Construcao;
+import cmd.entidade.Forro;
+import cmd.entidade.Parede;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -35,6 +40,8 @@ import javafx.stage.Stage;
 public class ConstrucaoFXMLController implements Initializable {
     @FXML
     private Button btn_salvar;
+    @FXML
+    private Button btn_alterar;
     @FXML
     private Button btn_excluir;
     @FXML
@@ -68,26 +75,85 @@ public class ConstrucaoFXMLController implements Initializable {
     @FXML
     private RadioButton op_forro;
     
+    private ConstrucaoControle controle;
+    
     /**
-     * Insere ou atualiza um registro de construção
+     * Volta para a tela anterior principal
+     * @param event Evento de ocorrência
+     * @throws IOException Exceção de ocorrência
+     */
+    @FXML
+    private void ActionVoltar(ActionEvent event) throws IOException {
+       Parent pai = FXMLLoader.load(getClass().getResource("/cmd/fxml/PrincipalFXML.fxml"));
+       Scene cena = new Scene(pai);
+       Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       tela.setScene(cena);
+       tela.show();
+    }
+    
+    /**
+     * Insere um registro de construção
      * @param event Evento de ocorrência
      * @throws IOException Exceção de ocorrência
      */
     @FXML
     private void ActionSalvar(ActionEvent event) throws IOException {
+        boolean res; //Resultado da ação
+        String info; //Texto informativo
         //Retorna, caso os campos não estejam completos
         if(!validarCampos())
             return;
-        //Criação do objeto
-        
-        //Insere, caso o campo ID esteja vazio
-        if(txt_id.getText().equals("")) {
-        
-        //Valida e atualiza, caso o campo ID não esteja vazio
+        //Criação dos objetos
+        Construcao co = new Construcao();
+        Forro fo;
+        Parede pa;
+        //Construção
+        co.setDescricao(txt_descricao.getText());
+        co.setDetalhes(txt_descricao.getText());
+        co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
+        co.setXdead(Boolean.FALSE);
+        co.setItems(null);
+        co.setMaterials(null);
+        //Caso forro
+        if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
+            fo = new Forro();
+            fo.setEhRf(chk_rf.isSelected());
+            fo.setEhRu(chk_ru.isSelected());
+            fo.setEhSt(chk_st.isSelected());
+            fo.setXdead(Boolean.FALSE);
+            fo.setConstrucao(co);
+            co.setForro(fo);
+            co.setParede(null);
+            //Inserção de forro
+            res = controle.inserirForro(fo);
+        //Caso parede
         } else {
-            
+            pa = new Parede();
+            pa.setMontante(BigDecimal.valueOf(Double.parseDouble(txt_montante.getText())));
+            pa.setAlturaLimite(BigDecimal.valueOf(Double.parseDouble(txt_alturaLim.getText())));
+            pa.setEhRf(chk_rf.isSelected());
+            pa.setEhRu(chk_ru.isSelected());
+            pa.setEhSt(chk_st.isSelected());
+            pa.setXdead(Boolean.FALSE);
+            pa.setConstrucao(co);
+            co.setParede(pa);
+            co.setForro(null);
+            //Inserção de parede
+            res = controle.inserirParede(pa);
         }
-        
+        //Resultado
+        if(res) info = "Construção inserida com sucesso"; else info = "Não foi possível inserir construção";
+        exibirAlerta(info);
+    }
+    
+    /**
+     * Alterar um registro de construção
+     * @param event Evento de ocorrência
+     * @throws IOException Exceção de ocorrência
+     */
+    @FXML
+    private void ActionAlterar(ActionEvent event) throws IOException {
+        // TODO
     }
     
     /**
@@ -195,6 +261,18 @@ public class ConstrucaoFXMLController implements Initializable {
         return true;
     }
     
+    /**
+     * Valida código de construção, vereficando também se já existe
+     * @return 
+     */
+    private boolean validarCodigo() {
+        return true;
+    }
+    
+    /**
+     * Exibe uma mensagem de alerta
+     * @param txt Texto do corpo a ser exibido no conteúdo
+     */
     private void exibirAlerta(String txt) {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("C.M.D");
@@ -203,24 +281,12 @@ public class ConstrucaoFXMLController implements Initializable {
             alerta.showAndWait();
     }
     
-    /**
-     * Volta para a tela anterior principal
-     * @param event Evento de ocorrência
-     * @throws IOException Exceção de ocorrência
-     */
-    @FXML
-    private void ActionVoltar(ActionEvent event) throws IOException {
-       Parent pai = FXMLLoader.load(getClass().getResource("/cmd/fxml/PrincipalFXML.fxml"));
-       Scene cena = new Scene(pai);
-       Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       tela.setScene(cena);
-       tela.show();
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Eventos
         grp_construcao.selectedToggleProperty().addListener(new ActionHabilitarParede());
+        //Controle
+        controle = new ConstrucaoControle();
     }    
     
     /**

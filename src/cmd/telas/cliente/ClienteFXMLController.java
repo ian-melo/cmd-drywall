@@ -5,7 +5,7 @@ package cmd.telas.cliente;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import DAO.ClienteDAO;
+import cmd.DAO.ClienteDAO;
 import Entidade.ClienteTableView;
 import Entidade.Entidadecliente;
 import java.io.IOException;

@@ -1,6 +1,8 @@
 package cmd.controle;
 
 import cmd.entidade.Construcao;
+import cmd.entidade.Forro;
+import cmd.entidade.Parede;
 
 /**
  * Classe de controle para CRUD de construção
@@ -9,30 +11,74 @@ import cmd.entidade.Construcao;
 public class ConstrucaoControle {
     
     /**
-     * Salva uma construção, nova ou já existente
-     * @param c Construção
-     * @param novo true, se é um novo registro<br/>false, caso contrário
+     * Insere um forro
+     * @param f Forro a ser inserido
      * @return true, caso a operação seja concluída<br/>false, caso contrário
      */
-    public boolean salvarConstrucao(Construcao c, boolean novo) {
-        return true;
+    public boolean inserirForro(Forro f) {
+        return false;
     }
     
     /**
-     * Exclui uma construção já existente
-     * @param c Construção
+     * Altera um forro
+     * @param f Forro a ser alterado
      * @return true, caso a operação seja concluída<br/>false, caso contrário
      */
-    public boolean excluirConstrucao(Construcao c) {
-        return true;
+    public boolean alterarForro(Forro f) {
+        return false;
     }
     
     /**
-     * Procura uma construção já existente a partir de código
-     * @param id Id da construção
-     * @return Construção, caso a operação seja concluída<br/>null, caso contrário
+     * Exclui um forro
+     * @param f Forro a ser excluído
+     * @return true, caso a operação seja concluída<br/>false, caso contrário
      */
-    public Construcao buscarConstrucao(String id) {
+    public boolean excluirForro(Forro f) {
+        return false;
+    }
+    
+    /**
+     * Busca um forro
+     * @param codigo Código do forro a ser buscado
+     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     */
+    public Forro buscarForro(String codigo) {
+        return null;
+    }
+    
+    /**
+     * Insere uma parede
+     * @param p Parede a ser inserida
+     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     */
+    public boolean inserirParede(Parede p) {
+        return false;
+    }
+    
+    /**
+     * Altera uma parede
+     * @param p Parede a ser alterada
+     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     */
+    public boolean alterarParede(Parede p) {
+        return false;
+    }
+    
+    /**
+     * Exclui uma parede
+     * @param p Parede a ser excluída
+     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     */
+    public boolean excluirParede(Parede p) {
+        return false;
+    }
+    
+    /**
+     * Busca uma parede
+     * @param codigo Código da parede a ser buscado
+     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     */
+    public Forro buscarParede(String codigo) {
         return null;
     }
 }

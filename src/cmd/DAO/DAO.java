@@ -1,4 +1,4 @@
-package DAO;
+package cmd.DAO;
 
 /**
  * Interface DAO para persistência de dados

@@ -5,7 +5,7 @@
  */
 package cmd.telas.material;
 
-import DAO.MaterialDAO;
+import cmd.DAO.MaterialDAO;
 import Entidade.ClienteTableView;
 import Entidade.Entidadecliente;
 import Entidade.Material;

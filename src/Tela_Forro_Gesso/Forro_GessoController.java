@@ -6,7 +6,7 @@
 package Tela_Forro_Gesso;
 
 import cmd.conexao.ConnectionFactory;
-import DAO.ClienteDAO;
+import cmd.DAO.ClienteDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;

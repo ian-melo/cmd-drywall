@@ -8,9 +8,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cmd.telas.construcao.ConstrucaoFXMLController">
     <children>
-      <HBox layoutX="169.0" layoutY="648.0" spacing="20.0">
+      <HBox layoutX="131.0" layoutY="648.0" spacing="20.0">
          <children>
               <Button fx:id="btn_salvar" layoutX="12.0" layoutY="661.0" mnemonicParsing="false" onAction="#ActionSalvar" text="Salvar" />
+              <Button fx:id="btn_alterar" disable="true" mnemonicParsing="false" onAction="#ActionAlterar" text="Alterar" />
               <Button fx:id="btn_excluir" disable="true" layoutX="82.0" layoutY="661.0" mnemonicParsing="false" onAction="#ActionExcluir" text="Excluir" />
               <Button fx:id="btn_limpar" layoutX="178.0" layoutY="661.0" mnemonicParsing="false" onAction="#ActionLimpar" text="Limpar" />
          </children>

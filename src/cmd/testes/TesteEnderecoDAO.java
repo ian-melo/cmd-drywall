@@ -6,7 +6,7 @@
 package cmd.testes;
 
 import Entidade.Endereco;
-import DAO.EnderecoDAO;
+import cmd.DAO.EnderecoDAO;
 import java.util.ArrayList;
 
 /**

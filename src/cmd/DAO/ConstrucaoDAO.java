@@ -1,4 +1,4 @@
-package DAO;
+package cmd.DAO;
 
 import cmd.entidade.Construcao;
 import cmd.util.HibernateUtil;
@@ -8,13 +8,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
- *
+ * Classe de DAO para Construção
  * @author voce
  */
 public class ConstrucaoDAO implements DAO<Construcao> {
 
     @Override
     public boolean inserir(Construcao item) {
+        /*
         try {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -25,27 +26,28 @@ public class ConstrucaoDAO implements DAO<Construcao> {
         } catch (HibernateException he) {
             he.printStackTrace();
         }
+        */
         return false;
     }
 
     @Override
     public boolean alterar(Construcao item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public boolean excluir(Construcao item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public Construcao buscar(String consulta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public List<Construcao> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
     
 }

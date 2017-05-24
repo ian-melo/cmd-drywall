@@ -5,7 +5,7 @@
  */
 package cmd.telas.funcionario;
 
-import DAO.UsuárioDAO;
+import cmd.DAO.UsuárioDAO;
 import Entidade.Usuario;
 import java.io.IOException;
 import java.net.URL;
