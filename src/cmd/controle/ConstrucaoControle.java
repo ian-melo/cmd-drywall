@@ -1,3 +1,4 @@
+//TODO: Implementar
 package cmd.controle;
 
 import cmd.entidade.Construcao;
@@ -40,7 +41,7 @@ public class ConstrucaoControle {
     /**
      * Busca um forro
      * @param codigo Código do forro a ser buscado
-     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     * @return Forro, caso encontre<br/>null, caso contrário
      */
     public Forro buscarForro(String codigo) {
         return null;
@@ -77,9 +78,9 @@ public class ConstrucaoControle {
     /**
      * Busca uma parede
      * @param codigo Código da parede a ser buscado
-     * @return true, caso a operação seja concluída<br/>false, caso contrário
+     * @return Parede, caso encontre<br/>null, caso contrário
      */
-    public Forro buscarParede(String codigo) {
+    public Parede buscarParede(String codigo) {
         return null;
     }
 }

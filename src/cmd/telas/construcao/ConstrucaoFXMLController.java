@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//TODO: Testar
 package cmd.telas.construcao;
 
 import cmd.controle.ConstrucaoControle;
@@ -110,7 +106,7 @@ public class ConstrucaoFXMLController implements Initializable {
         //Construção
         co = new Construcao();
         co.setDescricao(txt_descricao.getText());
-        co.setDetalhes(txt_descricao.getText());
+        co.setDetalhes(txt_detalhes.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
         co.setXdead(Boolean.FALSE);
         co.setItems(null);
@@ -167,7 +163,7 @@ public class ConstrucaoFXMLController implements Initializable {
         co = new Construcao();
         co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
         co.setDescricao(txt_descricao.getText());
-        co.setDetalhes(txt_descricao.getText());
+        co.setDetalhes(txt_detalhes.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
         co.setXdead(Boolean.FALSE);
         co.setItems(null);
@@ -226,7 +222,7 @@ public class ConstrucaoFXMLController implements Initializable {
         co = new Construcao();
         co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
         co.setDescricao(txt_descricao.getText());
-        co.setDetalhes(txt_descricao.getText());
+        co.setDetalhes(txt_detalhes.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
         co.setXdead(Boolean.FALSE);
         co.setItems(null);
@@ -272,60 +268,38 @@ public class ConstrucaoFXMLController implements Initializable {
      */
     @FXML
     private void ActionProcurar(ActionEvent event) throws IOException {
-        boolean res; //Resultado da ação
-        String info; //Texto informativo
         //Retorna, caso o campo esteja inválido
         if(!validarCodigo())
             return;
         //Criação dos objetos
-        Construcao co;
+        Construcao co = null;
         Forro fo;
         Parede pa;
         //Busca da construção
-        
-        //Construção
-        co = new Construcao();
-        co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
-        /*
-        co.setDescricao(txt_descricao.getText());
-        co.setDetalhes(txt_descricao.getText());
-        co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
-        co.setXdead(Boolean.FALSE);
-        co.setItems(null);
-        co.setMaterials(null);
-        */
+        fo = controle.buscarForro(txt_id.getText());
+        pa = controle.buscarParede(txt_id.getText());
         //Caso forro
-        if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
-            fo = new Forro();
-            fo.setCodConstrucao(Integer.parseInt(txt_id.getText()));
-            /*
-            fo.setEhRf(chk_rf.isSelected());
-            fo.setEhRu(chk_ru.isSelected());
-            fo.setEhSt(chk_st.isSelected());
-            fo.setXdead(Boolean.FALSE);
-            */
-            fo.setConstrucao(co);
-            co.setForro(fo);
-            co.setParede(null);
+        if(fo != null) {
+            chk_rf.setSelected(fo.getEhRf());
+            chk_ru.setSelected(fo.getEhRu());
+            chk_st.setSelected(fo.getEhSt());
+            co = fo.getConstrucao();
         //Caso parede
-        } else {
-            pa = new Parede();
-            pa.setCodConstrucao(Integer.parseInt(txt_id.getText()));
-            /*
-            pa.setMontante(BigDecimal.valueOf(Double.parseDouble(txt_montante.getText())));
-            pa.setAlturaLimite(BigDecimal.valueOf(Double.parseDouble(txt_alturaLim.getText())));
-            pa.setEhRf(chk_rf.isSelected());
-            pa.setEhRu(chk_ru.isSelected());
-            pa.setEhSt(chk_st.isSelected());
-            pa.setXdead(Boolean.FALSE);
-            */
-            pa.setConstrucao(co);
-            co.setParede(pa);
-            co.setForro(null);
+        } else if(pa != null) {
+            txt_montante.setText(pa.getMontante().toString());
+            txt_alturaLim.setText(pa.getAlturaLimite().toString());
+            chk_rf.setSelected(pa.getEhRf());
+            chk_ru.setSelected(pa.getEhRu());
+            chk_st.setSelected(pa.getEhSt());
+            co = pa.getConstrucao();
         }
-        //Resultado
-        //if(res) info = "Construção excluída com sucesso"; else info = "Não foi possível excluir construção";
-        //exibirAlerta(info);
+        //Construção
+        if(co != null) {
+            co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+            txt_descricao.setText(co.getDescricao());
+            txt_detalhes.setText(co.getDetalhes());
+            txt_qualidade.setText(co.getQualidade().toString());
+        }
     }
     
     /**
@@ -418,6 +392,24 @@ public class ConstrucaoFXMLController implements Initializable {
      * @return 
      */
     private boolean validarCodigo() {
+        Forro fo;
+        Parede pa;
+        if(txt_id.getText().equals("")) {
+            exibirAlerta("Preencha o ID construção.");
+            return false; 
+        }
+        try {
+            Integer.parseInt(txt_id.getText());
+        } catch(NumberFormatException ex) {
+            exibirAlerta("Preencha o ID da construção corretamente.\nUse somente números.");
+            return false;
+        }
+        fo = controle.buscarForro(txt_id.getText());
+        pa = controle.buscarParede(txt_id.getText());
+        if(fo == null && pa == null) {
+            exibirAlerta("Construção não encontrada.\nID de busca: " + txt_id.getText());
+            return false;
+        }
         return true;
     }
     
