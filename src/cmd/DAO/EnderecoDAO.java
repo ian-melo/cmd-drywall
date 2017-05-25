@@ -7,6 +7,7 @@ package cmd.DAO;
 
 import Entidade.Endereco;
 import cmd.conexao.ConnectionFactory;
+import cmd.entidade.Construcao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,12 +21,14 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class EnderecoDAO {
+public class EnderecoDAO implements DAO<Endereco> {
 
     private String sql;
+    Connection con = ConnectionFactory.getConexao();
 
-    public void Inserir(Endereco e) {
-        Connection con = ConnectionFactory.getConexao();
+    @Override
+    public boolean inserir(Endereco e) {
+
         PreparedStatement stat = null;
 
         try {
@@ -51,15 +54,134 @@ public class EnderecoDAO {
             //Mensagem_Alerta("Dados não cadastrados com sucesso");
             System.out.println("Erro: " + ex);
 
+            return false;
         } finally {
             ConnectionFactory.fecharConexao(con, stat);
         }
+
+        return true;
     }
 
-    @SuppressWarnings("Unchecked")
-    public List<Endereco> ListaEnderecos() {
+    @Override
+    public boolean alterar(Endereco e) {
+
+        PreparedStatement stat = null;
+
+        try {
+
+            sql = "UPDATE Endereco SET Logradouro = ?, Numero = ?, Complemento = ?, Cep = ?, Bairro = ?, Cidade = ?, Uf = ? WHERE CodEndereco = ? AND XDEAD = 0";
+            stat = con.prepareStatement(sql);
+
+            stat.setString(1, e.getLogradouro());
+            stat.setInt(2, e.getNumero());
+            stat.setString(3, e.getComplemento());
+            stat.setString(4, e.getCep());
+            stat.setString(5, e.getBairro());
+            stat.setString(6, e.getCidade());
+            stat.setString(7, e.getUf());
+            stat.setInt(8, e.getId());
+
+            stat.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Dados alterados com sucesso");
+            //Mensagem_Alerta_Info("Dados alterados com sucesso");
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "Dados não alterados com sucesso");
+            //Mensagem_Alerta_Info("Dados não alterados com sucesso");
+
+            System.out.println(ex);
+            return false;
+
+        } finally {
+            ConnectionFactory.fecharConexao(con, stat);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean excluir(Endereco e) {
+
+        PreparedStatement stat = null;
+
+        try {
+
+            sql = "UPDATE Endereco SET XDEAD = 1 WHERE CodEndereco = ? AND XDEAD = 0";
+            stat = con.prepareStatement(sql);
+
+            stat.setInt(1, e.getId());
+
+            stat.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Dado apagado com sucesso");
+            //Mensagem_Alerta_Info("Dados alterados com sucesso");
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "Dado não apagado");
+            //Mensagem_Alerta_Info("Dados não alterados com sucesso");
+
+            System.out.println(ex);
+            return false;
+        } finally {
+            ConnectionFactory.fecharConexao(con, stat);
+        }
+        return true;
+    }
+
+    @Override
+    public Endereco buscar(String e) {
+
+        PreparedStatement stat = null;
+
+        try {
+            sql = "SELECT * FROM Endereco WHERE CodEndereco=? AND XDEAD=0";
+            stat = con.prepareStatement(sql);
+
+            //stat.setInt(1, e.getId());
+            stat.setInt(1, Integer.parseInt(e));
+
+            ResultSet rs;
+
+            rs = stat.executeQuery();
+
+            Endereco end = new Endereco();
+            if (rs.next()) {
+                end = new Endereco();
+
+                end.setLogradouro(rs.getString("Logradouro"));
+                end.setNumero(rs.getInt("Numero"));
+                end.setComplemento(rs.getString("Complemento"));
+                end.setCep(rs.getString("Cep"));
+                end.setBairro(rs.getString("Bairro"));
+                end.setCidade(rs.getString("Cidade"));
+                end.setUf(rs.getString("Uf"));
+
+            }
+            if (end == null) {
+                ConnectionFactory.fecharConexao(con, stat);
+            }
+
+            return end;
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "Dado não encontrado");
+            //Mensagem_Alerta("Dados não cadastrados com sucesso");
+            System.out.println("Erro: " + ex);
+
+        } finally {
+            ConnectionFactory.fecharConexao(con, stat);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Endereco> listar() {
+
         List<Endereco> es = new ArrayList<>();
-        Connection con = ConnectionFactory.getConexao();
+
         PreparedStatement stat = null;
         ResultSet rs = null;
 
@@ -94,115 +216,6 @@ public class EnderecoDAO {
             ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return es;
-    }
-
-    public void Update(Endereco e) {
-        Connection con = ConnectionFactory.getConexao();
-        PreparedStatement stat = null;
-
-        try {
-
-            sql = "UPDATE Endereco SET Logradouro = ?, Numero = ?, Complemento = ?, Cep = ?, Bairro = ?, Cidade = ?, Uf = ? WHERE CodEndereco = ? AND XDEAD = 0";
-            stat = con.prepareStatement(sql);
-
-            stat.setString(1, e.getLogradouro());
-            stat.setInt(2, e.getNumero());
-            stat.setString(3, e.getComplemento());
-            stat.setString(4, e.getCep());
-            stat.setString(5, e.getBairro());
-            stat.setString(6, e.getCidade());
-            stat.setString(7, e.getUf());
-            stat.setInt(8, e.getId());
-
-            stat.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Dados alterados com sucesso");
-            //Mensagem_Alerta_Info("Dados alterados com sucesso");
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, "Dados não alterados com sucesso");
-            //Mensagem_Alerta_Info("Dados não alterados com sucesso");
-
-            System.out.println(ex);
-
-        } finally {
-            ConnectionFactory.fecharConexao(con, stat);
-        }
-    }
-
-    public void Deletar(Endereco e) {
-        Connection con = ConnectionFactory.getConexao();
-        PreparedStatement stat = null;
-
-        try {
-
-            sql = "UPDATE Endereco SET XDEAD = 1 WHERE CodEndereco = ? AND XDEAD = 0";
-            stat = con.prepareStatement(sql);
-
-            stat.setInt(1, e.getId());
-
-            stat.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Dado apagado com sucesso");
-            //Mensagem_Alerta_Info("Dados alterados com sucesso");
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, "Dado não apagado");
-            //Mensagem_Alerta_Info("Dados não alterados com sucesso");
-
-            System.out.println(ex);
-
-        } finally {
-            ConnectionFactory.fecharConexao(con, stat);
-        }
-    }
-
-    public Endereco buscarId(Endereco e) {
-
-        Connection con = ConnectionFactory.getConexao();
-        PreparedStatement stat = null;
-
-        try {
-            sql = "SELECT * FROM Endereco WHERE CodEndereco=? AND XDEAD=0";
-            stat = con.prepareStatement(sql);
-
-            stat.setInt(1, e.getId());
-
-            ResultSet rs;
-
-            rs = stat.executeQuery();
-
-            Endereco end = new Endereco();
-            if (rs.next()) {
-                end = new Endereco();
-
-                end.setLogradouro(rs.getString("Logradouro"));
-                end.setNumero(rs.getInt("Numero"));
-                end.setComplemento(rs.getString("Complemento"));
-                end.setCep(rs.getString("Cep"));
-                end.setBairro(rs.getString("Bairro"));
-                end.setCidade(rs.getString("Cidade"));
-                end.setUf(rs.getString("Uf"));
-
-            }
-            if (end == null) {
-                ConnectionFactory.fecharConexao(con, stat);
-            }
-            
-            return end;
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, "Dado não encontrado");
-            //Mensagem_Alerta("Dados não cadastrados com sucesso");
-            System.out.println("Erro: " + ex);
-
-        } finally {
-            ConnectionFactory.fecharConexao(con, stat);
-        }
-        return null;
     }
 
     private void Mensagem_Alerta(String conteudo) {

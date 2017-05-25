@@ -16,19 +16,19 @@ import java.util.ArrayList;
 public class TesteEnderecoDAO {
 
     public static void main(String[] args) {
-        testar_busca(8);
+        testar_busca();
         //testar_inserir();
         //testar_listar();
         //testar_update();
         //testar_deletar();
     }
 
-    private static void testar_busca(int id) {
+    private static void testar_busca() {
         EnderecoDAO eDAO = new EnderecoDAO();
         Endereco e = new Endereco();
         
-        e.setId(id);
-        e = eDAO.buscarId(e);
+        //e.setId(id);
+        e = eDAO.buscar("5");
         System.out.println("+++++++++++++++++++++");
         System.out.println(e.getComplemento());
         System.out.println(e.getCidade());
@@ -47,14 +47,14 @@ public class TesteEnderecoDAO {
         e.setNumero(55);
         e.setUf("SP");
 
-        eDAO.Inserir(e);
+        eDAO.inserir(e);
     }
 
     private static void testar_listar() {
         ArrayList<Endereco> enderecos = null;
         EnderecoDAO eDAO = new EnderecoDAO();
 
-        enderecos = (ArrayList<Endereco>) eDAO.ListaEnderecos();
+        enderecos = (ArrayList<Endereco>) eDAO.listar();
 
         for (Endereco o : enderecos) {
             //Exibição do Endereços
@@ -83,7 +83,7 @@ public class TesteEnderecoDAO {
         e.setLogradouro("_Logradouro5");
         e.setNumero(33);
         e.setUf("SP");
-        eDAO.Update(e);
+        eDAO.alterar(e);
     }
 
     private static void testar_deletar() {
@@ -91,7 +91,7 @@ public class TesteEnderecoDAO {
         Endereco e = new Endereco();
         e.setId(6);
 
-        eDAO.Deletar(e);
+        eDAO.excluir(e);
     }
 
 }
