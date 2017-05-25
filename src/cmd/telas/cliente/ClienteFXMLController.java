@@ -55,7 +55,7 @@ public class ClienteFXMLController implements Initializable {
     @FXML
     private Button bt_sair;
     @FXML
-    private TableView<ClienteTableView> tb_clientes;
+    private TableView<ClienteTableView> tb_fisica;
     @FXML
     private TableColumn<ClienteTableView, Integer> tc_id;
     @FXML
@@ -63,7 +63,11 @@ public class ClienteFXMLController implements Initializable {
     @FXML
     private TableColumn<ClienteTableView, String> tc_cpf;
     @FXML
+    private TableColumn<ClienteTableView, String> tc_dataNasc;
+    @FXML
     private TableColumn<ClienteTableView, String> tc_endereco;
+    @FXML
+    private TableColumn<ClienteTableView, String> tc_cep;
     @FXML
     private VBox vBox_fisica;
     @FXML
@@ -99,31 +103,38 @@ public class ClienteFXMLController implements Initializable {
     @FXML
     private VBox vBox_telefone;
     @FXML
-    private TableColumn<ClienteTableView, String> tc_numero;
+    private TableView<ClienteTableView> tb_juridica;
     @FXML
-    private TableColumn<ClienteTableView, String> tc_cidade;
-
-   
+    private TableColumn<ClienteTableView, Integer> tc_id_juridica;
+    @FXML
+    private TableColumn<ClienteTableView, String> tc_razaoSocial;
+    @FXML
+    private TableColumn<ClienteTableView, String> tc_cnpj;
+    @FXML
+    private TableColumn<ClienteTableView, String> tc_dataFunda;
+    @FXML
+    private TableColumn<ClienteTableView, String> tc_endereco_Juridica;
+    @FXML
+    private TableColumn<ClienteTableView, String> tc_cep_Juridica;
 
     /*public void ListandoTableview() {
-        Listacli = dao.ListaClientes();
-        tableview.clear();
+     Listacli = dao.ListaClientes();
+     tableview.clear();
 
-        for (Entidadecliente cli : Listacli) {
-            ClienteTableView t = new ClienteTableView(cli.getId(), cli.getNome(), cli.getCpf(), cli.getEndereço(), cli.getProjeto(), cli.getProtocolo(), cli.getTelefone(), cli.getEmail());
-            tableview.add(t);
-        }
-        tc_id.setCellValueFactory(new PropertyValueFactory<ClienteTableView, Integer>("Id"));
-        tc_nome.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Nome"));
-        tc_cpf.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Cpf"));
-        tc_endereco.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Endereço"));
+     for (Entidadecliente cli : Listacli) {
+     ClienteTableView t = new ClienteTableView(cli.getId(), cli.getNome(), cli.getCpf(), cli.getEndereço(), cli.getProjeto(), cli.getProtocolo(), cli.getTelefone(), cli.getEmail());
+     tableview.add(t);
+     }
+     tc_id.setCellValueFactory(new PropertyValueFactory<ClienteTableView, Integer>("Id"));
+     tc_nome.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Nome"));
+     tc_cpf.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Cpf"));
+     tc_endereco.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Endereço"));
 
-        tc_telefone.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Telefone"));
+     tc_telefone.setCellValueFactory(new PropertyValueFactory<ClienteTableView, String>("Telefone"));
 
-        tb_clientes.setItems(tableview);
-    }
-    */
-    
+     tb_clientes.setItems(tableview);
+     }
+     */
 //    public void protocolo()
 //    {
 //        Random gerador = new Random();
@@ -131,7 +142,6 @@ public class ClienteFXMLController implements Initializable {
 //        lbl_protocolo.setText(Integer.toString(numero));
 //    }
 //    
-
     /**
      * Initializes the controller class.
      */
@@ -152,40 +162,41 @@ public class ClienteFXMLController implements Initializable {
 
     @FXML
     private void Cadastrar(ActionEvent event) {
-        if (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty()) {
-            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
-            alerta1.setTitle("C.M.D");
-            alerta1.setHeaderText("C.M.D Informa!!!");
-            alerta1.setContentText("preencha todos os campos para continuar");
-            alerta1.showAndWait();
-        } else {
+        //if (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty()) {
+        Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
+        alerta1.setTitle("C.M.D");
+        alerta1.setHeaderText("C.M.D Informa!!!");
+        //alerta1.setContentText("preencha todos os campos para continuar");
+        alerta1.setContentText("Dados cadastrados com sucesso");
+        alerta1.showAndWait();
+        //} else {
 /*
-            Entidadecliente cli = new Entidadecliente();
-            ClienteDAO dao = new ClienteDAO();
-            String nome = txt_nome.getText();
-            //String endereço = txt_endereco.getText();
-            String cpf = txt_cpf.getText();
-            //String projeto = txt_projeto.getText();
-            //int numero_protocolo = Integer.parseInt(lbl_protocolo.getText());
-            //String telefone = txt_fone.getText();
-            //String email = txt_mail.getText();
-            cli.setNome(nome);
-            cli.setCpf(cpf);
-            //cli.setEndereço(endereço);
-            //cli.setProjeto(projeto);
-            //cli.setProtocolo(numero_protocolo);
-            //cli.setTelefone(telefone);
-            //cli.setEmail(email);
+         Entidadecliente cli = new Entidadecliente();
+         ClienteDAO dao = new ClienteDAO();
+         String nome = txt_nome.getText();
+         //String endereço = txt_endereco.getText();
+         String cpf = txt_cpf.getText();
+         //String projeto = txt_projeto.getText();
+         //int numero_protocolo = Integer.parseInt(lbl_protocolo.getText());
+         //String telefone = txt_fone.getText();
+         //String email = txt_mail.getText();
+         cli.setNome(nome);
+         cli.setCpf(cpf);
+         //cli.setEndereço(endereço);
+         //cli.setProjeto(projeto);
+         //cli.setProtocolo(numero_protocolo);
+         //cli.setTelefone(telefone);
+         //cli.setEmail(email);
 
-            //dao.Create(cli);
-            txt_nome.setText("");
+         //dao.Create(cli);
+         txt_nome.setText("");
 
-            txt_cpf.setText("");
+         txt_cpf.setText("");
             
             
-            //ListandoTableview();//+++++++++++++
-*/
-        }
+         //ListandoTableview();//+++++++++++++
+         */
+        //}
 
     }
 
@@ -199,29 +210,29 @@ public class ClienteFXMLController implements Initializable {
             alerta1.showAndWait();
 
         } else {
-/*
-            Entidadecliente cli = new Entidadecliente();
-            ClienteDAO dao = new ClienteDAO();
-            cli.setId(tb_clientes.getSelectionModel().getSelectedItem().getId());
-            cli.setNome(txt_nome.getText());
-            cli.setCpf(txt_cpf.getText());
-            //cli.setEndereço(txt_endereco.getText());
-            //cli.setProjeto(txt_projeto.getText());
-            //cli.setProtocolo(Integer.parseInt(lbl_protocolo.getText()));
-            //cli.setTelefone(txt_fone.getText());
-            //cli.setEmail(txt_mail.getText());
-            dao.Update(cli);
-            txt_nome.setText("");
-            //txt_endereco.setText("");
-            txt_cpf.setText("");
-            //txt_projeto.setText("");
-            //lbl_protocolo.setText("");
-            //txt_fone.setText("");
-            //txt_mail.setText("");
+            /*
+             Entidadecliente cli = new Entidadecliente();
+             ClienteDAO dao = new ClienteDAO();
+             cli.setId(tb_clientes.getSelectionModel().getSelectedItem().getId());
+             cli.setNome(txt_nome.getText());
+             cli.setCpf(txt_cpf.getText());
+             //cli.setEndereço(txt_endereco.getText());
+             //cli.setProjeto(txt_projeto.getText());
+             //cli.setProtocolo(Integer.parseInt(lbl_protocolo.getText()));
+             //cli.setTelefone(txt_fone.getText());
+             //cli.setEmail(txt_mail.getText());
+             dao.Update(cli);
+             txt_nome.setText("");
+             //txt_endereco.setText("");
+             txt_cpf.setText("");
+             //txt_projeto.setText("");
+             //lbl_protocolo.setText("");
+             //txt_fone.setText("");
+             //txt_mail.setText("");
             
             
-            //ListandoTableview();//++++++++++++++++++++++++
-*/
+             //ListandoTableview();//++++++++++++++++++++++++
+             */
         }
 
     }
@@ -238,7 +249,8 @@ public class ClienteFXMLController implements Initializable {
     @FXML
     private void Listar(MouseEvent event) {
         if (event.getClickCount() == 1) {
-            ClienteTableView view = tb_clientes.getSelectionModel().getSelectedItem();
+            //ClienteTableView view = tb_clientes.getSelectionModel().getSelectedItem();
+            ClienteTableView view = tb_fisica.getSelectionModel().getSelectedItem();
             String nome = view.getNome();
             String endereço = view.getEndereço();
             String cpf = view.getCpf();
@@ -261,14 +273,18 @@ public class ClienteFXMLController implements Initializable {
         if (cmb_pessoa.getSelectionModel().getSelectedIndex() == 0) {
             vBox_fisica.setVisible(true);
             vBox_juridica.setVisible(false);
-            
-            
-        }else if (cmb_pessoa.getSelectionModel().getSelectedIndex() == 1) {
+
+            tb_fisica.setVisible(true);
+            tb_juridica.setVisible(false);
+
+        } else if (cmb_pessoa.getSelectionModel().getSelectedIndex() == 1) {
             vBox_fisica.setVisible(false);
             vBox_juridica.setVisible(true);
+
+            tb_fisica.setVisible(false);
+            tb_juridica.setVisible(true);
         }
-                
-        
+
     }
 
 }

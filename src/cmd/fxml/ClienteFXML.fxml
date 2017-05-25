@@ -33,18 +33,18 @@
             <HBox alignment="CENTER" layoutX="14.0" layoutY="442.0" prefHeight="25.0" prefWidth="951.0">
                <children>
                   <Button fx:id="bt_cadastrar" mnemonicParsing="false" onAction="#Cadastrar" prefHeight="36.0" prefWidth="87.0" text="Cadastrar" />
-                  <Button fx:id="bt_alterar" mnemonicParsing="false" onAction="#Alterar" prefHeight="37.0" prefWidth="83.0" text="Alterar" />
+                  <Button fx:id="bt_alterar" disable="true" mnemonicParsing="false" onAction="#Alterar" prefHeight="37.0" prefWidth="83.0" text="Alterar" />
                   <Button fx:id="bt_sair" mnemonicParsing="false" onAction="#Sair" prefHeight="37.0" prefWidth="86.0" text="Sair" />
                </children>
             </HBox>
-            <TableView fx:id="tb_clientes" layoutX="14.0" layoutY="483.0" onMouseClicked="#Listar" prefHeight="98.0" prefWidth="951.0">
+            <TableView fx:id="tb_fisica" layoutX="14.0" layoutY="483.0" onMouseClicked="#Listar" prefHeight="98.0" prefWidth="951.0">
               <columns>
                 <TableColumn fx:id="tc_id" prefWidth="28.0" text="Id" />
-                <TableColumn fx:id="tc_nome" prefWidth="132.0" text="Nome" />
-                  <TableColumn fx:id="tc_cpf" text="Cpf" />
-                  <TableColumn fx:id="tc_endereco" prefWidth="243.0" text="Endereço" />
-                  <TableColumn fx:id="tc_numero" minWidth="0.0" prefWidth="64.0" text="Numero" />
-                  <TableColumn fx:id="tc_cidade" prefWidth="184.0" text="Cidade" />
+                <TableColumn fx:id="tc_nome" prefWidth="177.0" text="Nome" />
+                  <TableColumn fx:id="tc_cpf" prefWidth="148.0" text="Cpf" />
+                  <TableColumn fx:id="tc_dataNasc" minWidth="0.0" prefWidth="121.0" text="Data Neascimento" />
+                  <TableColumn fx:id="tc_endereco" prefWidth="334.0" text="Endereço" />
+                  <TableColumn fx:id="tc_cep" prefWidth="134.0" text="CEP" />
               </columns>
             </TableView>
             <VBox fx:id="vBox_fisica" layoutX="75.0" layoutY="99.0" prefHeight="134.0" prefWidth="229.0">
@@ -95,6 +95,16 @@
                   <TextField />
                </children>
             </VBox>
+            <TableView fx:id="tb_juridica" layoutX="14.0" layoutY="483.0" onMouseClicked="#Listar" prefHeight="98.0" prefWidth="951.0" visible="false">
+               <columns>
+                  <TableColumn fx:id="tc_id_juridica" prefWidth="28.0" text="Id" />
+                  <TableColumn fx:id="tc_razaoSocial" prefWidth="177.0" text="Razão Social" />
+                  <TableColumn fx:id="tc_cnpj" prefWidth="148.0" text="CNPJ" />
+                  <TableColumn fx:id="tc_dataFunda" minWidth="0.0" prefWidth="121.0" text="Data Fundação" />
+                  <TableColumn fx:id="tc_endereco_Juridica" prefWidth="334.0" text="Endereço" />
+                  <TableColumn fx:id="tc_cep_Juridica" prefWidth="134.0" text="CEP" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>
