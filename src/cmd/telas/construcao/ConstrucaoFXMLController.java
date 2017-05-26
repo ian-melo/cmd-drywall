@@ -141,6 +141,8 @@ public class ConstrucaoFXMLController implements Initializable {
         //Resultado
         if(res) info = "Construção salva com sucesso"; else info = "Não foi possível salvar construção";
         exibirAlerta(info);
+        //Volta ao estado inicial
+        if(res) resetarCampos();
     }
     
     /**
@@ -259,6 +261,8 @@ public class ConstrucaoFXMLController implements Initializable {
         //Resultado
         if(res) info = "Construção excluída com sucesso"; else info = "Não foi possível excluir construção";
         exibirAlerta(info);
+        //Volta ao estado inicial
+        if(res) resetarCampos();
     }
     
     /**
@@ -268,7 +272,7 @@ public class ConstrucaoFXMLController implements Initializable {
      */
     @FXML
     private void ActionProcurar(ActionEvent event) throws IOException {
-        //Retorna, caso o campo esteja inválido
+        //Retorna, caso o campo esteja inválido ou não foi encontrado construção
         if(!validarCodigo())
             return;
         //Criação dos objetos
@@ -300,6 +304,8 @@ public class ConstrucaoFXMLController implements Initializable {
             txt_detalhes.setText(co.getDetalhes());
             txt_qualidade.setText(co.getQualidade().toString());
         }
+        //Habilita exclusão e alteração
+        habilitarAlteravel(true);
     }
     
     /**
@@ -309,13 +315,13 @@ public class ConstrucaoFXMLController implements Initializable {
      */
     @FXML
     private void ActionLimpar(ActionEvent event) throws IOException {
-        limparCampos();
+        resetarCampos();
     }
     
     /**
-     * Limpa os campos do registro de construção
+     * Retorna os campos e botões aos respectivos estados iniciais
      */
-    private void limparCampos() {
+    private void resetarCampos() {
         txt_alturaLim.setText("");
         txt_descricao.setText("");
         txt_detalhes.setText("");
@@ -325,10 +331,28 @@ public class ConstrucaoFXMLController implements Initializable {
         chk_rf.setSelected(false);
         chk_ru.setSelected(false);
         chk_st.setSelected(false);
-        if ((RadioButton) grp_construcao.getSelectedToggle() != null )
-            ((RadioButton) grp_construcao.getSelectedToggle()).setSelected(false);
-        txt_alturaLim.setEditable(false);
-        txt_montante.setEditable(false);
+        op_parede.setSelected(false);
+        op_forro.setSelected(false);
+        habilitarParede(false);
+        habilitarAlteravel(false);
+    }
+    
+    /**
+     * Define se os campos pertinentes à construção do tipo parede estarão habilitados
+     * @param value Valor booleano de decisão
+     */
+    private void habilitarParede(boolean value) {
+        txt_alturaLim.setEditable(value);
+        txt_montante.setEditable(value);
+    }
+    
+    /**
+     * Define se as opções de alteração e exclusão pertinentes à construção estarão habilitados
+     * @param value Valor booleano de decisão
+     */
+    private void habilitarAlteravel(boolean value) {
+        btn_alterar.setDisable(!value);
+        btn_excluir.setDisable(!value);
     }
     
     /**
@@ -442,11 +466,9 @@ public class ConstrucaoFXMLController implements Initializable {
         public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
             if (grp_construcao.getSelectedToggle() != null) {
                 if(grp_construcao.getSelectedToggle().equals(op_parede)) {
-                    txt_montante.setEditable(true);
-                    txt_alturaLim.setEditable(true);
+                    habilitarParede(true);
                 } else {
-                    txt_montante.setEditable(false);
-                    txt_alturaLim.setEditable(false);
+                    habilitarParede(false);
                 }
             }
         }
