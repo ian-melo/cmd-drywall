@@ -10,7 +10,7 @@ import Entidade.ClienteTableView;
 import Entidade.Entidadecliente;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -38,6 +38,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author fe_mm
+ * mais comentarios
  */
 public class ClienteFXMLController implements Initializable {
 
