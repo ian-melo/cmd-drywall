@@ -5,8 +5,8 @@
  */
 package cmd.novaTela;
 
+import cmd.DAO.UsuárioDAO;
 import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -64,10 +64,20 @@ public class TLogin extends javax.swing.JFrame {
         bt_login.setBackground(new java.awt.Color(153, 153, 255));
         bt_login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_login.setText("Login");
+        bt_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_loginActionPerformed(evt);
+            }
+        });
 
         bt_sair.setBackground(new java.awt.Color(153, 153, 255));
         bt_sair.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_sair.setText("Sair");
+        bt_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sairActionPerformed(evt);
+            }
+        });
 
         img_cadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cmd/imagens/cadeado.jpg"))); // NOI18N
         img_cadeado.setToolTipText("");
@@ -131,6 +141,39 @@ public class TLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
+    private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bt_sairActionPerformed
+
+    private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
+        UsuárioDAO dao = new UsuárioDAO();
+
+        if ("".equals(txt_nome.getText()) || "".equals(txt_senha.getText())) {
+            JOptionPane.showMessageDialog(this, "Usuário ou Senha em Branco", "C.M.D Informa!!!", 1);//simbolo azul
+            return;
+        }
+
+        if (dao.CheckLogin(txt_nome.getText(), new String(txt_senha.getText()).trim())) {
+
+            //if ("adm".equals(txt_nome.getText().trim()) && "123".equals(txt_senha.getText().trim())) {//apagar este if
+            TPrincipal tPrincipal = new TPrincipal();
+            tPrincipal.show();
+
+            this.dispose();
+            JOptionPane.showMessageDialog(this, "Seja Bem-Vindo a Área Principal", "C.M.D Informa!!!", 1);//simbolo azul
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário ou Senha incorretos", "C.M.D Informa!!!", 0);//simbolo vermelho
+            //JOptionPane.showMessageDialog(this, "Usuário ou Senha incorretos:", "C.M.D Informa!!!", 1);//simbolo azul
+            //JOptionPane.showMessageDialog(this , "Usuário ou Senha incorretos:", "C.M.D Informa!!!", 2);//simbolo amarelo
+            //JOptionPane.showMessageDialog(this , "Usuário ou Senha incorretos:", "C.M.D Informa!!!", 3);//simbolo imterrogação
+            txt_nome.setText("");
+            txt_senha.setText("");
+
+        }
+        //}//retirar quando retirar o IF
+    }//GEN-LAST:event_bt_loginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,8 +199,6 @@ public class TLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
