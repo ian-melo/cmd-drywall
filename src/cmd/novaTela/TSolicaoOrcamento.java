@@ -40,24 +40,64 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_orcamento = new javax.swing.JTable();
+        btn_enviarEmail = new javax.swing.JButton();
+
         setClosable(true);
         setTitle("Solicitação de Orçamentos");
+
+        tb_orcamento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Possui Portas", "Possui Janelas", "Quantidade de Portas (Se houver)", "Quantidade Janelas (Se houver)"
+            }
+        ));
+        jScrollPane1.setViewportView(tb_orcamento);
+
+        btn_enviarEmail.setText("Enviar email ao cliente");
+        btn_enviarEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_enviarEmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1885, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_enviarEmail)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 328, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_enviarEmail)
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_enviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_enviarEmailActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_enviarEmail;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tb_orcamento;
     // End of variables declaration//GEN-END:variables
 }
