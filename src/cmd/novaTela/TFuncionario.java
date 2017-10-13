@@ -47,8 +47,8 @@ public class TFuncionario extends javax.swing.JInternalFrame {
         bt_cadastro_func = new javax.swing.JButton();
         bt_sair_func = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_Senha = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txt_senha = new javax.swing.JPasswordField();
+        txt_senha_confirma = new javax.swing.JPasswordField();
         img_funcionario = new javax.swing.JLabel();
 
         setClosable(true);
@@ -87,9 +87,9 @@ public class TFuncionario extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Confirma Senha");
 
-        txt_Senha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_senha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jPasswordField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_senha_confirma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         img_funcionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cmd/imagens/funcionarios.jpg"))); // NOI18N
 
@@ -116,8 +116,8 @@ public class TFuncionario extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                        .addComponent(txt_Senha)
+                                        .addComponent(txt_senha_confirma, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                        .addComponent(txt_senha)
                                         .addComponent(txt_nome_func))
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,11 +138,11 @@ public class TFuncionario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_senha_confirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(img_funcionario))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -160,7 +160,15 @@ public class TFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bt_sair_funcActionPerformed
 
     private void bt_cadastro_funcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastro_funcActionPerformed
-        // TODO add your handling code here:
+        CadastroFuncionarioControle cadFunC = new CadastroFuncionarioControle();
+
+        if (cadFunC.cadastrarFuncionario(txt_nome_func.getText(), txt_senha.getText()) == true) {
+            txt_nome_func.setText("");
+            txt_senha.setText("");
+            txt_senha_confirma.setText("");
+
+        }
+
     }//GEN-LAST:event_bt_cadastro_funcActionPerformed
 
     /**
@@ -207,8 +215,8 @@ public class TFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField txt_Senha;
     private javax.swing.JTextField txt_nome_func;
+    private javax.swing.JPasswordField txt_senha;
+    private javax.swing.JPasswordField txt_senha_confirma;
     // End of variables declaration//GEN-END:variables
 }

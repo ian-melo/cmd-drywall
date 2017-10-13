@@ -47,6 +47,7 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Solicitação de Orçamentos");
 
+        tb_orcamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_orcamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -57,6 +58,7 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tb_orcamento);
 
+        btn_enviarEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_enviarEmail.setText("Enviar email ao cliente");
         btn_enviarEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +86,7 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_enviarEmail)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         pack();

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javafx.scene.control.Alert;
 
+
 /**
  *
  * @author fe_mm
@@ -33,7 +34,7 @@ public class ClienteDAO{
         try{
             sql = "INSERT INTO Cliente VALUES(NULL,?,?,?, FALSE)";
             stat = con.prepareStatement(sql);
-            
+            //hhgh
             stat.setInt(1, c.getId());
             stat.setString(2, c.getDataInscricao());
             stat.setString(3, c.getEndereco().toString());
