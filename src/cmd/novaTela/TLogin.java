@@ -143,6 +143,9 @@ public class TLogin extends javax.swing.JFrame {
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
         this.dispose();
+        //Teste
+        //TPrincipal tPrincipal = new TPrincipal(txt_nome.getText());
+        //tPrincipal.show();
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
@@ -156,7 +159,7 @@ public class TLogin extends javax.swing.JFrame {
         if (dao.CheckLogin(txt_nome.getText(), new String(txt_senha.getText()).trim())) {
 
             //if ("adm".equals(txt_nome.getText().trim()) && "123".equals(txt_senha.getText().trim())) {//apagar este if
-            TPrincipal tPrincipal = new TPrincipal();
+            TPrincipal tPrincipal = new TPrincipal(txt_nome.getText());
             tPrincipal.show();
 
             this.dispose();

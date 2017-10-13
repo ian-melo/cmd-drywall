@@ -5,15 +5,25 @@
  */
 package cmd.novaTela;
 
+import cmd.novaTela.paineis.PnlJuridica;
+import cmd.novaTela.paineis.PnlFisica;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Usuario
  */
 public class TCliente extends javax.swing.JInternalFrame {
-    
-        public static TCliente clienteT;
+
+    public static TCliente clienteT;
+    PnlFisica pFi = new PnlFisica();
+    PnlJuridica pJu = new PnlJuridica();
 
     public static TCliente getInstancia() {
         if (clienteT == null) {
@@ -21,17 +31,22 @@ public class TCliente extends javax.swing.JInternalFrame {
         }
         return clienteT;
     }
-    
+
     /**
      * Creates new form ClienteT
      */
     public TCliente() {
         initComponents();
-         getContentPane().setBackground(Color.WHITE);
-         pnl_escolha.setBackground(Color.WHITE);
-         pnl_telefone.setBackground(Color.WHITE);
-         pnl_botoes.setBackground(Color.WHITE);
-         pnl_endereco.setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.WHITE);
+        pnl_escolha.setBackground(Color.WHITE);
+        pnl_telefone.setBackground(Color.WHITE);
+        pnl_botoes.setBackground(Color.WHITE);
+        pnl_endereco.setBackground(Color.WHITE);
+        pnl_cliente_pai.setBackground(Color.WHITE);
+
+        pJuridica();//Inicai com Pessoa Juridica Selecionado
+        colocaDataAtual();
+
     }
 
     /**
@@ -47,19 +62,12 @@ public class TCliente extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmb_pessoa = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
         lb_dataInscricao = new javax.swing.JLabel();
         pnl_telefone = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         txt_tel = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        txt_cnpj_cpf = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txxt_razaoSocial = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        txt_datafundacao_nascimento = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        pnl_cliente_pai = new javax.swing.JPanel();
         pnl_endereco = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         txt_cep = new javax.swing.JTextField();
@@ -93,9 +101,17 @@ public class TCliente extends javax.swing.JInternalFrame {
 
         cmb_pessoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cmb_pessoa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pessoa Jurídica", "Pessoa Física" }));
+        cmb_pessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_pessoaActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Data de inscrição: ");
 
         lb_dataInscricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lb_dataInscricao.setText("Data de inscrição: ");
+        lb_dataInscricao.setText("##/##/####");
 
         javax.swing.GroupLayout pnl_escolhaLayout = new javax.swing.GroupLayout(pnl_escolha);
         pnl_escolha.setLayout(pnl_escolhaLayout);
@@ -107,13 +123,17 @@ public class TCliente extends javax.swing.JInternalFrame {
                         .addGap(25, 25, 25)
                         .addComponent(jLabel1))
                     .addGroup(pnl_escolhaLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel2))
-                    .addGroup(pnl_escolhaLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(pnl_escolhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_dataInscricao)
-                            .addComponent(cmb_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(77, 77, 77)
+                        .addComponent(cmb_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl_escolhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnl_escolhaLayout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lb_dataInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_escolhaLayout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_escolhaLayout.setVerticalGroup(
@@ -126,7 +146,9 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmb_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lb_dataInscricao))
+                .addGroup(pnl_escolhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lb_dataInscricao)))
         );
 
         jLabel11.setText("Telefone:");
@@ -152,63 +174,15 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("CNPJ");
-
-        txt_cnpj_cpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Razão social: ");
-
-        txxt_razaoSocial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Ramo de atuação:");
-
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        txt_datafundacao_nascimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Data de fundação:");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(txt_cnpj_cpf)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txxt_razaoSocial)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(txt_datafundacao_nascimento)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(23, Short.MAX_VALUE))
+        javax.swing.GroupLayout pnl_cliente_paiLayout = new javax.swing.GroupLayout(pnl_cliente_pai);
+        pnl_cliente_pai.setLayout(pnl_cliente_paiLayout);
+        pnl_cliente_paiLayout.setHorizontalGroup(
+            pnl_cliente_paiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 217, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_cnpj_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txxt_razaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_datafundacao_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+        pnl_cliente_paiLayout.setVerticalGroup(
+            pnl_cliente_paiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 251, Short.MAX_VALUE)
         );
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -321,6 +295,11 @@ public class TCliente extends javax.swing.JInternalFrame {
         btn_Cadastrar.setBackground(new java.awt.Color(153, 153, 255));
         btn_Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_Cadastrar.setText("Cadastrar");
+        btn_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastrarActionPerformed(evt);
+            }
+        });
 
         btn_Alterar.setBackground(new java.awt.Color(153, 153, 255));
         btn_Alterar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -363,13 +342,13 @@ public class TCliente extends javax.swing.JInternalFrame {
         tb_FisicaEjuridica.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_FisicaEjuridica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Razão Social", "Ramo Atuação", "Telefone", "CEP", "Cidade"
             }
         ));
         jScrollPane1.setViewportView(tb_FisicaEjuridica);
@@ -386,7 +365,7 @@ public class TCliente extends javax.swing.JInternalFrame {
                         .addComponent(pnl_escolha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(287, 287, 287))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnl_cliente_pai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pnl_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -405,7 +384,7 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_botoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnl_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl_cliente_pai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnl_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,6 +397,99 @@ public class TCliente extends javax.swing.JInternalFrame {
     private void btn_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btn_SairActionPerformed
+
+    private void cmb_pessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_pessoaActionPerformed
+
+        if (cmb_pessoa.getSelectedIndex() == 0) {//Pessoa Juridica
+            pJuridica();
+        }
+        if (cmb_pessoa.getSelectedIndex() == 1) {//Pessoa Fisica
+            pFisica();
+        }
+
+        //Atualiza form...pequeno erro grafico
+        pequenoBug();//Corrige
+
+    }//GEN-LAST:event_cmb_pessoaActionPerformed
+
+    private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
+        if (verificaCamposEndereco() == false) {//Parte da parte futura de verificação
+            JOptionPane.showMessageDialog(null, "Preencha todos os canpos referentes ao Endereço");
+        }
+
+        //Exemplo de como funciona para pegar valores dentro do JTextField de outro JPanel
+        //Colocar igual ao exemplo do JOptionPane.showMessageDialog em baixo
+        //Ele pega no com um get q foi colocado no JPanel
+        if (cmb_pessoa.getSelectedIndex() == 0) {//Pessoa Juridica
+            JOptionPane.showMessageDialog(null, pJu.getTxt_cnpj_cpf_pnl());
+            JOptionPane.showMessageDialog(null, pJu.getTxt_razaoSocial_pnl());
+        }
+        if (cmb_pessoa.getSelectedIndex() == 1) {//Pessoa Fisica
+            JOptionPane.showMessageDialog(null, pFi.getTxt_cpf_pnl());
+            JOptionPane.showMessageDialog(null, pFi.getTxt_nome_pnl());
+        }
+
+    }//GEN-LAST:event_btn_CadastrarActionPerformed
+
+    private void pequenoBug() {
+        int x = this.getHeight();
+        int y = this.getWidth();
+        this.setSize(y - 1, x - 1);
+        this.setSize(y, x);
+    }
+
+    private void pJuridica() {
+        pnl_cliente_pai.removeAll();//remove cliente anterior
+
+        GridLayout gerente = new GridLayout(2, 1);//Mostra até 2 itens um em baixo do outro
+        pnl_cliente_pai.setLayout(gerente);//apenas um ajuste
+
+        pnl_cliente_pai.add(pJu);
+    }
+
+    private void pFisica() {
+        pnl_cliente_pai.removeAll();//remove cliente anterior
+
+        GridLayout gerente = new GridLayout(2, 1);//Mostra até 2 itens um em baixo do outro
+        pnl_cliente_pai.setLayout(gerente);//apenas um ajuste
+
+        pnl_cliente_pai.add(pFi);
+    }
+
+    private void colocaDataAtual() {
+        try {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            lb_dataInscricao.setText(sdf.format(new Date(System.currentTimeMillis())));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    private boolean verificaCamposEndereco() {
+//Verifica se todos os campos JTetField q estão dentro do pnl_endereco
+//estão sem nada exceto o campo txt_complemento q pode ficar sem nada
+        Component components[] = pnl_endereco.getComponents();
+        int i;
+        for (i = 0; i < components.length; i++) {
+            if (components[i] instanceof JTextField) {
+                if (((JTextField) components[i]).getText().isEmpty()) {
+                    if (i != 1) {//Este IF força que o componenete JTextField "TXT_COMPLEMENTO" possa ficar vazio
+
+                        return false;//False se NAO preenchido algum campo do endereço(dentro do pnl_endereco)
+                        //break;
+                    }
+
+                    //JOptionPane.showMessageDialog(null, "Preencher todos os campos");
+                    //return false;//False ser preenchido algum campo do endereço
+                    //break;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -461,7 +533,6 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_Sair;
     private javax.swing.JComboBox cmb_pessoa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -471,14 +542,11 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lb_dataInscricao;
     private javax.swing.JPanel pnl_botoes;
+    private javax.swing.JPanel pnl_cliente_pai;
     private javax.swing.JPanel pnl_endereco;
     private javax.swing.JPanel pnl_escolha;
     private javax.swing.JPanel pnl_telefone;
@@ -486,13 +554,10 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_bairro;
     private javax.swing.JTextField txt_cep;
     private javax.swing.JTextField txt_cidade;
-    private javax.swing.JTextField txt_cnpj_cpf;
     private javax.swing.JTextField txt_complemento;
-    private javax.swing.JTextField txt_datafundacao_nascimento;
     private javax.swing.JTextField txt_logradouro;
     private javax.swing.JTextField txt_numero;
     private javax.swing.JTextField txt_tel;
     private javax.swing.JTextField txt_uf;
-    private javax.swing.JTextField txxt_razaoSocial;
     // End of variables declaration//GEN-END:variables
 }

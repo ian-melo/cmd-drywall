@@ -21,12 +21,17 @@ public class TPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PrincipalT
      */
-    public TPrincipal() {
+    public TPrincipal(String nomeL) {
         initComponents();
         //getContentPane().setBackground(Color.WHITE);
         pnl_botoes.setBackground(new Color(153, 153, 255));
 
         this.gerenteDeJanelas = new GerenteDeJanelas(jDesktopPane1);
+
+        if (nomeL != null) {
+            lb_logado.setText(nomeL);
+        }
+
     }
 
     /**
@@ -48,6 +53,8 @@ public class TPrincipal extends javax.swing.JFrame {
         btn_cadFuncionarios = new javax.swing.JButton();
         btn_solicitacaoOrcamento = new javax.swing.JButton();
         btn_cadConstrucao = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lb_logado = new javax.swing.JLabel();
         ImageIcon icon = new ImageIcon(getClass().getResource("/cmd/imagens/logo.jpg"));
         Image image = icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
@@ -136,13 +143,18 @@ public class TPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Logado como:");
+
+        lb_logado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lb_logado.setText("NULL");
+
         javax.swing.GroupLayout pnl_botoesLayout = new javax.swing.GroupLayout(pnl_botoes);
         pnl_botoes.setLayout(pnl_botoesLayout);
         pnl_botoesLayout.setHorizontalGroup(
             pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_botoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_cadMateriais, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_calForroGesso, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_calParedeGesso, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,13 +163,21 @@ public class TPrincipal extends javax.swing.JFrame {
                     .addComponent(btn_calOrcamentoPrj, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cadFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_solicitacaoOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cadConstrucao, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_cadConstrucao, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_botoesLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_logado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         pnl_botoesLayout.setVerticalGroup(
             pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_botoesLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
+                .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lb_logado))
+                .addGap(37, 37, 37)
                 .addComponent(btn_cadMateriais)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_cadConstrucao)
@@ -324,7 +344,8 @@ public class TPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TPrincipal().setVisible(true);
+                new TPrincipal(null).setVisible(true);
+                //new TPrincipal().setVisible(true);//Original, foi alterado quando tentei passar info fo Form Login Para este
             }
         });
     }
@@ -340,6 +361,8 @@ public class TPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_relatorios;
     private javax.swing.JButton btn_solicitacaoOrcamento;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lb_logado;
     private javax.swing.JPanel pnl_botoes;
     // End of variables declaration//GEN-END:variables
 }
