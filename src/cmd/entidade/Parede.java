@@ -10,24 +10,28 @@ import java.math.BigDecimal;
 public class Parede  implements java.io.Serializable {
 
 
-     private int codConstrucao;
-     private Construcao construcao;
+     private int codConstrucao;//BD
+     
+     private Construcao construcao;//Esta diferente do diagrama de classes
+     
      private BigDecimal montante;
      private BigDecimal alturaLimite;
      private Boolean ehSt;
      private Boolean ehRu;
      private Boolean ehRf;
-     private Boolean xdead;
+     
+     private Boolean xdead;//BD
 
     public Parede() {
     }
 
 	
-    public Parede(Construcao construcao) {
-        this.construcao = construcao;
-    }
-    public Parede(Construcao construcao, BigDecimal montante, BigDecimal alturaLimite, Boolean ehSt, Boolean ehRu, Boolean ehRf, Boolean xdead) {
-       this.construcao = construcao;
+    //public Parede(Construcao construcao) {
+        //this.construcao = construcao;
+    //}
+    //public Parede(Construcao construcao, BigDecimal montante, BigDecimal alturaLimite, Boolean ehSt, Boolean ehRu, Boolean ehRf, Boolean xdead) {
+    public Parede(BigDecimal montante, BigDecimal alturaLimite, Boolean ehSt, Boolean ehRu, Boolean ehRf, Boolean xdead) {
+       //this.construcao = construcao;
        this.montante = montante;
        this.alturaLimite = alturaLimite;
        this.ehSt = ehSt;
@@ -43,11 +47,11 @@ public class Parede  implements java.io.Serializable {
     public void setCodConstrucao(int codConstrucao) {
         this.codConstrucao = codConstrucao;
     }
-    public Construcao getConstrucao() {
+    public Construcao getConstrucao() {//Esta dando erro em ConstruçãoControle qunado comento algumas linhas q estão direfentes do diagrma de classes
         return this.construcao;
     }
     
-    public void setConstrucao(Construcao construcao) {
+    public void setConstrucao(Construcao construcao) {//Esta dando erro em ConstruçãoControle qunado comento algumas linhas q estão direfentes do diagrma de classes
         this.construcao = construcao;
     }
     public BigDecimal getMontante() {

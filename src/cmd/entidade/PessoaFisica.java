@@ -10,22 +10,25 @@ import java.util.Date;
 public class PessoaFisica  implements java.io.Serializable {
 
 
-     private int codCliente;
-     private Cliente cliente;
+     private int codCliente;//BD
+     
+     //private Cliente cliente;
      private String cpf;
      private String nome;
      private Date dataNascimento;
-     private Boolean xdead;
+     
+     private Boolean xdead;//BD
 
     public PessoaFisica() {
     }
 
 	
-    public PessoaFisica(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    public PessoaFisica(Cliente cliente, String cpf, String nome, Date dataNascimento, Boolean xdead) {
-       this.cliente = cliente;
+//    public PessoaFisica(Cliente cliente) {
+//        this.cliente = cliente;
+//    }
+    //public PessoaFisica(Cliente cliente, String cpf, String nome, Date dataNascimento, Boolean xdead) {
+        public PessoaFisica(String cpf, String nome, Date dataNascimento, Boolean xdead) {
+       //this.cliente = cliente;
        this.cpf = cpf;
        this.nome = nome;
        this.dataNascimento = dataNascimento;
@@ -39,13 +42,13 @@ public class PessoaFisica  implements java.io.Serializable {
     public void setCodCliente(int codCliente) {
         this.codCliente = codCliente;
     }
-    public Cliente getCliente() {
-        return this.cliente;
-    }
-    
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+//    public Cliente getCliente() {
+//        return this.cliente;
+//    }
+//    
+//    public void setCliente(Cliente cliente) {
+//        this.cliente = cliente;
+//    }
     public String getCpf() {
         return this.cpf;
     }

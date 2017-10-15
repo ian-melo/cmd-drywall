@@ -109,7 +109,7 @@ public class ConstrucaoFXMLController implements Initializable {
         co.setDetalhes(txt_detalhes.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
         co.setXdead(Boolean.FALSE);
-        co.setItems(null);
+// co.setItems(null);//Retirado da erro em relação as atualizações das classes de entidade
         co.setMaterials(null);
         //Caso forro
         if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
@@ -168,7 +168,7 @@ public class ConstrucaoFXMLController implements Initializable {
         co.setDetalhes(txt_detalhes.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
         co.setXdead(Boolean.FALSE);
-        co.setItems(null);
+//co.setItems(null);
         co.setMaterials(null);
         //Caso forro
         if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
@@ -227,7 +227,7 @@ public class ConstrucaoFXMLController implements Initializable {
         co.setDetalhes(txt_detalhes.getText());
         co.setQualidade(Integer.parseInt(txt_qualidade.getText()));
         co.setXdead(Boolean.FALSE);
-        co.setItems(null);
+//co.setItems(null);
         co.setMaterials(null);
         //Caso forro
         if(((RadioButton) grp_construcao.getSelectedToggle()) == op_forro) {
