@@ -360,7 +360,7 @@ public class TPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_calParedeGesso;
     private javax.swing.JButton btn_relatorios;
     private javax.swing.JButton btn_solicitacaoOrcamento;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lb_logado;
     private javax.swing.JPanel pnl_botoes;

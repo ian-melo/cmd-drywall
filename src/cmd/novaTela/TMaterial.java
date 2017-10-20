@@ -7,6 +7,7 @@ package cmd.novaTela;
 
 import Entidade.Material;
 import cmd.DAO.MaterialDAO;
+import static cmd.novaTela.TPrincipal.jDesktopPane1;
 import cmd.telas.material.MaterialTableView;
 import java.awt.Color;
 import java.util.List;
@@ -15,10 +16,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +23,8 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class TMaterial extends javax.swing.JInternalFrame {
+    
+    GerenteDeJanelas gerenteDeJanelas;
 
     private MaterialDAO dao = new MaterialDAO();
     private List<Material> Listamaterial;
@@ -48,6 +47,11 @@ public class TMaterial extends javax.swing.JInternalFrame {
         getContentPane().setBackground(Color.WHITE);
         pnl_botoes.setBackground(Color.WHITE);
         pnl_opcao.setBackground(Color.WHITE);
+        
+        
+        this.gerenteDeJanelas = new GerenteDeJanelas(jDesktopPane1);
+        
+        
     }
 
     public void ListandoTableView() {
@@ -100,6 +104,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
         bt_cadastrar = new javax.swing.JButton();
         bt_alterar = new javax.swing.JButton();
         bt_sair = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Cadastro Materiais");
@@ -205,6 +210,11 @@ public class TMaterial extends javax.swing.JInternalFrame {
         bt_sair.setBackground(new java.awt.Color(153, 153, 255));
         bt_sair.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_sair.setText("Sair");
+        bt_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botoesLayout = new javax.swing.GroupLayout(pnl_botoes);
         pnl_botoes.setLayout(pnl_botoesLayout);
@@ -227,6 +237,16 @@ public class TMaterial extends javax.swing.JInternalFrame {
                 .addComponent(bt_sair)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
+
+        jLabel9.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel9.setText("*");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -259,9 +279,11 @@ public class TMaterial extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                                 .addComponent(pnl_botoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_precoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(txt_precoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
             .addGroup(layout.createSequentialGroup()
@@ -292,7 +314,9 @@ public class TMaterial extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txt_constanteMetro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_constanteMetro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -313,7 +337,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -327,6 +351,28 @@ public class TMaterial extends javax.swing.JInternalFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         alterar();
     }//GEN-LAST:event_bt_alterarActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
+       
+       // TAviso tAv = new TAviso();
+       // TPrincipal.jDesktopPane1.add(tAv);
+        
+        
+         try {
+            gerenteDeJanelas.abrirJanelas(TAviso.getInstancia());
+        } catch (IllegalArgumentException e) {
+            gerenteDeJanelas.abrirJanelas(TAviso.getInstancia());
+            //System.err.println(e);//ERRO ! - Erro - contornado.... retirar todo o try
+
+        }
+   
+        
+        
+    }//GEN-LAST:event_bt_sairActionPerformed
 
 //    private void Carregar(MouseEvent event) {
 //        if (event.getClickCount() == 1) {
@@ -474,6 +520,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
