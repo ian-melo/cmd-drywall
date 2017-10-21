@@ -26,13 +26,13 @@ import javax.swing.JOptionPane;
 public class TMaterial extends javax.swing.JInternalFrame {
     
     GerenteDeJanelas gerenteDeJanelas;
-
+    
     private MaterialDAO dao = new MaterialDAO();
     private List<Material> Listamaterial;
     private ObservableList<MaterialTableView> tableview = FXCollections.observableArrayList();
-
+    
     public static TMaterial materialT;
-
+    
     public static TMaterial getInstancia() {
         if (materialT == null) {
             materialT = new TMaterial();
@@ -49,16 +49,14 @@ public class TMaterial extends javax.swing.JInternalFrame {
         pnl_botoes.setBackground(Color.WHITE);
         pnl_opcao.setBackground(Color.WHITE);
         
-        
         this.gerenteDeJanelas = new GerenteDeJanelas(jDesktopPane1);
         
-        
     }
-
+    
     public void ListandoTableView() {
         Listamaterial = dao.ListaMaterial();
         tableview.clear();
-
+        
         for (Material M : Listamaterial) {
             MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade());
             tableview.add(view);
@@ -106,6 +104,8 @@ public class TMaterial extends javax.swing.JInternalFrame {
         bt_alterar = new javax.swing.JButton();
         bt_sair = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Cadastro Materiais");
@@ -243,9 +243,35 @@ public class TMaterial extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("*");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setName(""); // NOI18N
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
+            }
+        });
+
+        jLabel10.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("*");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setName(""); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel11.setText("*");
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.setName(""); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
             }
         });
 
@@ -263,7 +289,10 @@ public class TMaterial extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7)
-                            .addComponent(txt_qtdMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt_qtdMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(txt_nomeUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +313,10 @@ public class TMaterial extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
-                                .addComponent(txt_precoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txt_precoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
             .addGroup(layout.createSequentialGroup()
@@ -321,12 +353,16 @@ public class TMaterial extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_precoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_precoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)))
                             .addComponent(pnl_opcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_qtdMinima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_qtdMinima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -338,7 +374,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -354,26 +390,30 @@ public class TMaterial extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bt_alterarActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        
+        janelaAviso();
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
-       
-       // TAviso tAv = new TAviso();
-       // TPrincipal.jDesktopPane1.add(tAv);
+//        Teste tt = new Teste();
+//        tt.setVisible(true);
+//        tt.setModal(true);
         
+//        GeralAviso tt = new GeralAviso(null, "Ola1", "ola2", "o3");
+//        tt.setVisible(true);
+//        tt.setModal(true);
         
-         try {
-            gerenteDeJanelas.abrirJanelas(TAviso.getInstancia());
-        } catch (IllegalArgumentException e) {
-            gerenteDeJanelas.abrirJanelas(TAviso.getInstancia());
-            //System.err.println(e);//ERRO ! - Erro - contornado.... retirar todo o try
-
-        }
-   
-        
-        
+          TAviso tt = new TAviso(null, true);
+        tt.setVisible(true);
+        tt.setModal(true);
     }//GEN-LAST:event_bt_sairActionPerformed
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        janelaAviso();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        janelaAviso();
+    }//GEN-LAST:event_jLabel11MouseClicked
 
 //    private void Carregar(MouseEvent event) {
 //        if (event.getClickCount() == 1) {
@@ -391,13 +431,29 @@ public class TMaterial extends javax.swing.JInternalFrame {
 //
 //        }
 //    }
-
+    
+    
+    
+    
+    private void janelaAviso() {
+        // antiga forma da Janela, agora apenas didatico, tela apagada
+//        try {
+//            gerenteDeJanelas.abrirJanelas(TAviso_ALTERADO.getInstancia());
+//        } catch (IllegalArgumentException e) {
+//            gerenteDeJanelas.abrirJanelas(TAviso_ALTERADO.getInstancia());
+//            //System.err.println(e);//ERRO ! - Erro - contornado.... retirar todo o try
+//        }
+        
+        
+        TAviso tAvi = new TAviso(null, true);
+        tAvi.setVisible(true);
+    }
+    
     private void alterar() {
         if (txt_nomeUnidade.getText().isEmpty() || txt_qtdMinima.getText().isEmpty()
                 || txt_precoUnitario.getText().isEmpty() || txt_tipo.getText().isEmpty() || txt_constanteMetro.getText().isEmpty()) {
             
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos para continuar");
-            
             
         } else {
             MaterialDAO dao = new MaterialDAO();
@@ -416,10 +472,9 @@ public class TMaterial extends javax.swing.JInternalFrame {
 //            txt_constanteMetro.setText("");
 //            txt_tipo.setText("");
 //            ListandoTableView();
-
         }
     }
-
+    
     private void cadastrar() {
         //Random gerador = new Random();
         //int numero = gerador.nextInt(3);
@@ -430,7 +485,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
                 || txt_precoUnitario.getText().isEmpty() || txt_tipo.getText().isEmpty() || txt_constanteMetro.getText().isEmpty()) {
             
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos para continuar");
-
+            
         } else {
             String nome = txt_nomeUnidade.getText();
             int quantidade = Integer.parseInt(txt_qtdMinima.getText());
@@ -451,9 +506,9 @@ public class TMaterial extends javax.swing.JInternalFrame {
             txt_tipo.setText("");
             ListandoTableView();
         }
-
+        
     }
-
+    
     public int sorteio() {
         Random r = new Random(); // gera o ramdomico
         final int H = 60; // intervalo mais alto
@@ -461,7 +516,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
         return r.nextInt(H + 1) + L;
     }
     Set<Integer> sorteados = new TreeSet<Integer>();
-
+    
     public int sorteia() {
         Random r = new Random();
         final int H = 60;
@@ -514,6 +569,8 @@ public class TMaterial extends javax.swing.JInternalFrame {
     private javax.swing.JButton bt_cadastrar;
     private javax.swing.JButton bt_sair;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

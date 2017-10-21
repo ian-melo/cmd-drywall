@@ -5,45 +5,22 @@
  */
 package cmd.novo.telas;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 
 /**
  *
  * @author Usuario
  */
-public class TAviso extends javax.swing.JInternalFrame {
-
-    public static TAviso tAviso;
-
-    public static TAviso getInstancia() {
-        if (tAviso == null) {
-
-            tAviso = new TAviso();
-        }
-        return tAviso;
-    }
-
- 
+public class TAviso extends javax.swing.JDialog {
 
     /**
-     * Creates new form TAviso
+     * Creates new form NewJDialog
      */
-    public TAviso() {
-
+    public TAviso(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        getContentPane().setBackground(Color.WHITE);
-        //setLayout(new FlowLayout());
-        //pn_aviso.setLayout(new GridLayout(2, 1));
-        //pn_aviso.setLayout(new BorderLayout(0,0));
-        //pn_aviso.setLayout();
-        //lb_info.setLayout( new BorderLayout.CENTER);
-        //Border bb = null;
-        //this.setTitle(title);
-
-        //this.setBorder(null);
-        //this.setBorder(null);
+        Toolkit.getDefaultToolkit().beep();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -59,34 +36,12 @@ public class TAviso extends javax.swing.JInternalFrame {
         lb_info = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setClosable(true);
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-        });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pn_aviso.setBackground(new java.awt.Color(255, 255, 255));
 
         lb_info.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lb_info.setText("<html><center>CONSULTE O MANUAL <br> PARA MAIS DETALHES</center></html>");
+        lb_info.setText("<html><center>CONSULTE O GUIA <br> PARA MAIS DETALHES</center></html>");
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -117,20 +72,18 @@ public class TAviso extends javax.swing.JInternalFrame {
                 .addComponent(lb_info, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pn_aviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pn_aviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pn_aviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pn_aviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -141,23 +94,54 @@ public class TAviso extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        setPosicao();
-    }//GEN-LAST:event_formInternalFrameOpened
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TAviso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TAviso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TAviso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TAviso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        Toolkit.getDefaultToolkit().beep();
-    }//GEN-LAST:event_formComponentShown
-
-    public void setPosicao() {
-        //Toolkit.getDefaultToolkit().beep();
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                TAviso dialog = new TAviso(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lb_info;
     private javax.swing.JPanel pn_aviso;
     // End of variables declaration//GEN-END:variables
-
 }
