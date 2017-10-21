@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cmd.novaTela;
+package cmd.novo.telas;
 
 import Entidade.Material;
 import cmd.DAO.MaterialDAO;
-import static cmd.novaTela.TPrincipal.jDesktopPane1;
+import cmd.novo.GerenteDeJanelas;
+import static cmd.novo.telas.TPrincipal.jDesktopPane1;
 import cmd.telas.material.MaterialTableView;
 import java.awt.Color;
 import java.util.List;

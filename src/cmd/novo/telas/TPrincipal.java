@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cmd.novaTela;
+package cmd.novo.telas;
 
+import cmd.novo.GerenteDeJanelas;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Graphics;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cmd.novaTela.paineis;
+package cmd.novo.painel;
 
 import java.awt.Color;
 

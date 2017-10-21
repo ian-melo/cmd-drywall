@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cmd.telas.cliente;
+package cmd.novo;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +14,18 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ClienteTable 
 {
+    
+    /*
+    
+    ============================================================================
+    *****************ATENÇÃO ESTA CLASSE FOI APAGADA DO JAVAX*******************
+    ============================================================================
+    */
+    
+    
+    
+    
+    
     private SimpleIntegerProperty id;
     private SimpleStringProperty nome;
     private SimpleStringProperty endereço;

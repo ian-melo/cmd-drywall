@@ -6,7 +6,6 @@
 package cmd.telas.login;
 
 
-import cmd.telas.funcionario.FuncionarioMain;
 import cmd.conexao.ConnectionFactory;
 import cmd.DAO.UsuárioDAO;
 import Entidade.Usuario;
