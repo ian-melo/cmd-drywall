@@ -82,6 +82,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rios 01"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_rel1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bt_rel2">
       <Properties>
@@ -93,6 +96,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rios 02"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_rel2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bt_rel3">
       <Properties>
@@ -104,6 +110,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rios 03"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_rel3ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bt_rel4">
       <Properties>
@@ -115,6 +124,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rios 04"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_rel4ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bt_rel5">
       <Properties>
@@ -126,6 +138,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rios 05"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_rel5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_sair">
       <Properties>

@@ -4,13 +4,22 @@
  * and open the template in the editor.
  */
 package cmd.novo.telas;
-
+import cmd.conexao.ConnectionFactory;
 import java.awt.Color;
-
-/**
- *
- * @author Usuario
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.*;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 public class TRelatorio extends javax.swing.JInternalFrame {
 
     public static TRelatorio relatorioT;
@@ -54,22 +63,47 @@ public class TRelatorio extends javax.swing.JInternalFrame {
         bt_rel1.setBackground(new java.awt.Color(153, 153, 255));
         bt_rel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_rel1.setText("Relatórios 01");
+        bt_rel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_rel1ActionPerformed(evt);
+            }
+        });
 
         bt_rel2.setBackground(new java.awt.Color(153, 153, 255));
         bt_rel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_rel2.setText("Relatórios 02");
+        bt_rel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_rel2ActionPerformed(evt);
+            }
+        });
 
         bt_rel3.setBackground(new java.awt.Color(153, 153, 255));
         bt_rel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_rel3.setText("Relatórios 03");
+        bt_rel3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_rel3ActionPerformed(evt);
+            }
+        });
 
         bt_rel4.setBackground(new java.awt.Color(153, 153, 255));
         bt_rel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_rel4.setText("Relatórios 04");
+        bt_rel4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_rel4ActionPerformed(evt);
+            }
+        });
 
         bt_rel5.setBackground(new java.awt.Color(153, 153, 255));
         bt_rel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt_rel5.setText("Relatórios 05");
+        bt_rel5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_rel5ActionPerformed(evt);
+            }
+        });
 
         btn_sair.setBackground(new java.awt.Color(153, 153, 255));
         btn_sair.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -122,6 +156,151 @@ public class TRelatorio extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_rel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel1ActionPerformed
+        Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        
+        try
+        { 
+            stat = con.prepareStatement("SELECT * from material");
+            rs = stat.executeQuery();
+            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            view.toFront();
+        }
+        catch(JRException e)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+        }
+       
+        catch (SQLException ex) {
+            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            ConnectionFactory.fecharConexao(con,stat);
+        }
+    }//GEN-LAST:event_bt_rel1ActionPerformed
+
+    private void bt_rel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel2ActionPerformed
+              Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        
+        try
+        { 
+            stat = con.prepareStatement("SELECT * from material");
+            rs = stat.executeQuery();
+            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            view.toFront();
+        }
+        catch(JRException e)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+        }
+       
+        catch (SQLException ex) {
+            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            ConnectionFactory.fecharConexao(con,stat);
+        }
+    }//GEN-LAST:event_bt_rel2ActionPerformed
+
+    private void bt_rel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel3ActionPerformed
+        Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        
+        try
+        { 
+            stat = con.prepareStatement("SELECT * from material");
+            rs = stat.executeQuery();
+            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            view.toFront();
+        }
+        catch(JRException e)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+        }
+       
+        catch (SQLException ex) {
+            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            ConnectionFactory.fecharConexao(con,stat);
+        }
+    }//GEN-LAST:event_bt_rel3ActionPerformed
+
+    private void bt_rel4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel4ActionPerformed
+        Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        
+        try
+        { 
+            stat = con.prepareStatement("SELECT * from material");
+            rs = stat.executeQuery();
+            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            view.toFront();
+        }
+        catch(JRException e)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+        }
+       
+        catch (SQLException ex) {
+            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            ConnectionFactory.fecharConexao(con,stat);
+        }
+    }//GEN-LAST:event_bt_rel4ActionPerformed
+
+    private void bt_rel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel5ActionPerformed
+        Connection con = ConnectionFactory.getConexao();
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        
+        try
+        { 
+            stat = con.prepareStatement("SELECT * from material");
+            rs = stat.executeQuery();
+            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            view.toFront();
+        }
+        catch(JRException e)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+        }
+       
+        catch (SQLException ex) {
+            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            ConnectionFactory.fecharConexao(con,stat);
+        }
+    }//GEN-LAST:event_bt_rel5ActionPerformed
 
     /**
      * @param args the command line arguments
