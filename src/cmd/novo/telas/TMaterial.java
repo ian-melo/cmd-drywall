@@ -9,7 +9,7 @@ import Entidade.Material;
 import cmd.DAO.MaterialDAO;
 import cmd.novo.GerenteDeJanelas;
 import static cmd.novo.telas.TPrincipal.jDesktopPane1;
-import cmd.telas.material.MaterialTableView;
+import cmd.novo.MaterialTableView;
 import java.awt.Color;
 import java.util.List;
 import java.util.Random;

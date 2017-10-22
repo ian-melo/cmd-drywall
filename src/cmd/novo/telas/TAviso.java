@@ -6,6 +6,7 @@
 package cmd.novo.telas;
 
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -21,6 +22,7 @@ public class TAviso extends javax.swing.JDialog {
         initComponents();
         Toolkit.getDefaultToolkit().beep();
         this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -34,7 +36,7 @@ public class TAviso extends javax.swing.JDialog {
 
         pn_aviso = new javax.swing.JPanel();
         lb_info = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_OK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,12 +45,17 @@ public class TAviso extends javax.swing.JDialog {
         lb_info.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lb_info.setText("<html><center>CONSULTE O GUIA <br> PARA MAIS DETALHES</center></html>");
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_OK.setBackground(new java.awt.Color(153, 153, 255));
+        btn_OK.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn_OK.setText("OK");
+        btn_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_OKActionPerformed(evt);
+            }
+        });
+        btn_OK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_OKKeyPressed(evt);
             }
         });
 
@@ -62,7 +69,7 @@ public class TAviso extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_avisoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btn_OK)
                 .addGap(80, 80, 80))
         );
         pn_avisoLayout.setVerticalGroup(
@@ -71,7 +78,7 @@ public class TAviso extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lb_info, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btn_OK)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -89,10 +96,19 @@ public class TAviso extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OKActionPerformed
         //this.dispose();
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_OKActionPerformed
+
+    private void btn_OKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_OKKeyPressed
+        //A barra de espaço tambem funciona, é padrão, mas com esse codigo o enter tambem funciona
+        //- Para fechar o JDialog
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btn_OK.doClick();
+        }
+    }//GEN-LAST:event_btn_OKKeyPressed
 
     /**
      * @param args the command line arguments
@@ -140,7 +156,7 @@ public class TAviso extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_OK;
     private javax.swing.JLabel lb_info;
     private javax.swing.JPanel pn_aviso;
     // End of variables declaration//GEN-END:variables
