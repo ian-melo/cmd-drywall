@@ -14,12 +14,12 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.*;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRResultSetDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
+//import net.sf.jasperreports.*;
+//import net.sf.jasperreports.engine.JRException;
+//import net.sf.jasperreports.engine.JRResultSetDataSource;
+//import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
+//import net.sf.jasperreports.view.JasperViewer;
 public class TRelatorio extends javax.swing.JInternalFrame {
 
     public static TRelatorio relatorioT;
@@ -162,28 +162,24 @@ public class TRelatorio extends javax.swing.JInternalFrame {
         PreparedStatement stat = null;
         ResultSet rs = null;
         
-        try
-        { 
-            stat = con.prepareStatement("SELECT * from material");
-            rs = stat.executeQuery();
-            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
-            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
-            JasperViewer view = new JasperViewer(print,false);
-            view.setVisible(true);
-            view.toFront();
-        }
-        catch(JRException e)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
-        }
-       
-        catch (SQLException ex) {
-            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
-            ConnectionFactory.fecharConexao(con,stat);
-        }
+//        try
+//        { 
+//            stat = con.prepareStatement("SELECT * from material");
+//            rs = stat.executeQuery();
+//            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+//            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+//            JasperViewer view = new JasperViewer(print,false);
+//            view.setVisible(true);
+//            view.toFront();
+//        }
+//        catch(JRException e)
+//        {
+//            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+//        }
+//        finally
+//        {
+//            ConnectionFactory.fecharConexao(con,stat);
+//        }
     }//GEN-LAST:event_bt_rel1ActionPerformed
 
     private void bt_rel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel2ActionPerformed
@@ -191,28 +187,24 @@ public class TRelatorio extends javax.swing.JInternalFrame {
         PreparedStatement stat = null;
         ResultSet rs = null;
         
-        try
-        { 
-            stat = con.prepareStatement("SELECT * from material");
-            rs = stat.executeQuery();
-            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
-            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
-            JasperViewer view = new JasperViewer(print,false);
-            view.setVisible(true);
-            view.toFront();
-        }
-        catch(JRException e)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
-        }
-       
-        catch (SQLException ex) {
-            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
-            ConnectionFactory.fecharConexao(con,stat);
-        }
+//        try
+//        { 
+//            stat = con.prepareStatement("SELECT * from material");
+//            rs = stat.executeQuery();
+//            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+//            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+//            JasperViewer view = new JasperViewer(print,false);
+//            view.setVisible(true);
+//            view.toFront();
+//        }
+//        catch(JRException e)
+//        {
+//            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+//        }
+//        finally
+//        {
+//            ConnectionFactory.fecharConexao(con,stat);
+//        }
     }//GEN-LAST:event_bt_rel2ActionPerformed
 
     private void bt_rel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel3ActionPerformed
@@ -220,28 +212,24 @@ public class TRelatorio extends javax.swing.JInternalFrame {
         PreparedStatement stat = null;
         ResultSet rs = null;
         
-        try
-        { 
-            stat = con.prepareStatement("SELECT * from material");
-            rs = stat.executeQuery();
-            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
-            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
-            JasperViewer view = new JasperViewer(print,false);
-            view.setVisible(true);
-            view.toFront();
-        }
-        catch(JRException e)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
-        }
-       
-        catch (SQLException ex) {
-            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
-            ConnectionFactory.fecharConexao(con,stat);
-        }
+//        try
+//        { 
+//            stat = con.prepareStatement("SELECT * from material");
+//            rs = stat.executeQuery();
+//            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+//            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+//            JasperViewer view = new JasperViewer(print,false);
+//            view.setVisible(true);
+//            view.toFront();
+//        }
+//        catch(JRException e)
+//        {
+//            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+//        }
+//        finally
+//        {
+//            ConnectionFactory.fecharConexao(con,stat);
+//        }
     }//GEN-LAST:event_bt_rel3ActionPerformed
 
     private void bt_rel4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel4ActionPerformed
@@ -249,28 +237,24 @@ public class TRelatorio extends javax.swing.JInternalFrame {
         PreparedStatement stat = null;
         ResultSet rs = null;
         
-        try
-        { 
-            stat = con.prepareStatement("SELECT * from material");
-            rs = stat.executeQuery();
-            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
-            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
-            JasperViewer view = new JasperViewer(print,false);
-            view.setVisible(true);
-            view.toFront();
-        }
-        catch(JRException e)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
-        }
-       
-        catch (SQLException ex) {
-            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
-            ConnectionFactory.fecharConexao(con,stat);
-        }
+//        try
+//        { 
+//            stat = con.prepareStatement("SELECT * from material");
+//            rs = stat.executeQuery();
+//            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+//            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+//            JasperViewer view = new JasperViewer(print,false);
+//            view.setVisible(true);
+//            view.toFront();
+//        }
+//        catch(JRException e)
+//        {
+//            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+//        }
+//        finally
+//        {
+//            ConnectionFactory.fecharConexao(con,stat);
+//        }
     }//GEN-LAST:event_bt_rel4ActionPerformed
 
     private void bt_rel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rel5ActionPerformed
@@ -278,28 +262,24 @@ public class TRelatorio extends javax.swing.JInternalFrame {
         PreparedStatement stat = null;
         ResultSet rs = null;
         
-        try
-        { 
-            stat = con.prepareStatement("SELECT * from material");
-            rs = stat.executeQuery();
-            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
-            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
-            JasperViewer view = new JasperViewer(print,false);
-            view.setVisible(true);
-            view.toFront();
-        }
-        catch(JRException e)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
-        }
-       
-        catch (SQLException ex) {
-            Logger.getLogger(TRelatorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
-            ConnectionFactory.fecharConexao(con,stat);
-        }
+//        try
+//        { 
+//            stat = con.prepareStatement("SELECT * from material");
+//            rs = stat.executeQuery();
+//            JRResultSetDataSource relatresult = new JRResultSetDataSource(rs);
+//            JasperPrint print = JasperFillManager.fillReport("caminho a ser colocado", new HashMap(), relatresult);
+//            JasperViewer view = new JasperViewer(print,false);
+//            view.setVisible(true);
+//            view.toFront();
+//        }
+//        catch(JRException e)
+//        {
+//            JOptionPane.showMessageDialog(rootPane, "Erro ao chamar o relatorio: \n" + e );
+//        }
+//        finally
+//        {
+//            ConnectionFactory.fecharConexao(con,stat);
+//        }
     }//GEN-LAST:event_bt_rel5ActionPerformed
 
     /**

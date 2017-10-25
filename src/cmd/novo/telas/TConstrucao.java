@@ -11,11 +11,6 @@ import cmd.entidade.Forro;
 import cmd.entidade.Parede;
 import java.awt.Color;
 import java.math.BigDecimal;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javax.swing.JOptionPane;
 
 /**

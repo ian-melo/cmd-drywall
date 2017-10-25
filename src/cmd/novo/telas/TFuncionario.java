@@ -11,6 +11,7 @@ import java.awt.Color;
 /**
  *
  * @author Usuario
+ * Cadastra novos usuarios
  */
 public class TFuncionario extends javax.swing.JInternalFrame {
 

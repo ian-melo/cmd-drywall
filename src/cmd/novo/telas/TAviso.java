@@ -16,6 +16,7 @@ public class TAviso extends javax.swing.JDialog {
 
     /**
      * Creates new form NewJDialog
+     * Aviso padrão de quando for necessario consultar o guia
      */
     public TAviso(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

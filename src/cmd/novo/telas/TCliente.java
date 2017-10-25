@@ -7,7 +7,7 @@ package cmd.novo.telas;
 
 import cmd.novo.painel.PnlJuridica;
 import cmd.novo.painel.PnlFisica;
-import cmd.novo.painel.PnlTelefone;
+//import cmd.novo.painel.PnlTelefone;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;

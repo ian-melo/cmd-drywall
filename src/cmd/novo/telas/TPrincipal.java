@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 /**
  *
  * @author Usuario
+ * Tela principal
  */
 public class TPrincipal extends javax.swing.JFrame {
 
