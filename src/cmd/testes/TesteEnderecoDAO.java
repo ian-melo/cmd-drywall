@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class TesteEnderecoDAO {
 
     public static void main(String[] args) {
-        testar_busca();
+        System.out.println("Qualquer coisa");
+        //testar_busca();
         //testar_inserir();
         //testar_listar();
         //testar_update();
