@@ -29,6 +29,8 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
     public TSolicaoOrcamento() {
         initComponents();
         getContentPane().setBackground(Color.WHITE);
+        pn_conteudo.setBackground(Color.WHITE);
+       
     }
 
     /**
@@ -40,24 +42,16 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_enviarEmail = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pn_conteudo = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_orcamento = new javax.swing.JTable();
-        btn_enviarEmail = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Solicitação de Orçamentos");
 
-        tb_orcamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tb_orcamento.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Possui Portas", "Possui Janelas", "Quantidade de Portas (Se houver)", "Quantidade Janelas (Se houver)"
-            }
-        ));
-        jScrollPane1.setViewportView(tb_orcamento);
-
+        btn_enviarEmail.setBackground(new java.awt.Color(153, 153, 255));
         btn_enviarEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_enviarEmail.setText("Enviar email ao cliente");
         btn_enviarEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +60,32 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
             }
         });
 
+        tb_orcamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tb_orcamento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Possui Portas", "Possui Janelas", "Quantidade de Portas (Se houver)", "Quantidade Janelas (Se houver)"
+            }
+        ));
+        jScrollPane1.setViewportView(tb_orcamento);
+
+        javax.swing.GroupLayout pn_conteudoLayout = new javax.swing.GroupLayout(pn_conteudo);
+        pn_conteudo.setLayout(pn_conteudoLayout);
+        pn_conteudoLayout.setHorizontalGroup(
+            pn_conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1885, Short.MAX_VALUE)
+        );
+        pn_conteudoLayout.setVerticalGroup(
+            pn_conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(pn_conteudo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,20 +93,20 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1885, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_enviarEmail)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 787, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_enviarEmail)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,6 +120,8 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_enviarEmail;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel pn_conteudo;
     private javax.swing.JTable tb_orcamento;
     // End of variables declaration//GEN-END:variables
 }
