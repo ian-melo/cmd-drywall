@@ -6,25 +6,22 @@ package cmd.entidade;
  */
 public class Forro implements java.io.Serializable {
 
-    private int codConstrucao;//BD
-
-    private Construcao construcao;//Esta diferente do diagrama de classes
-
+    private int codConstrucao;
+    private Construcao construcao;
     private Boolean ehSt;
     private Boolean ehRu;
     private Boolean ehRf;
-
-    private Boolean xdead;//BD
+    private Boolean xdead;
 
     public Forro() {
     }
 
-//    public Forro(Construcao construcao) {
-//        this.construcao = construcao;
-//    }
-    //public Forro(Construcao construcao, Boolean ehSt, Boolean ehRu, Boolean ehRf, Boolean xdead) {
-    public Forro(Boolean ehSt, Boolean ehRu, Boolean ehRf, Boolean xdead) {
-        //this.construcao = construcao;
+    public Forro(Construcao construcao) {
+        this.construcao = construcao;
+    }
+    
+    public Forro(Construcao construcao, Boolean ehSt, Boolean ehRu, Boolean ehRf, Boolean xdead) {
+        this.construcao = construcao;
         this.ehSt = ehSt;
         this.ehRu = ehRu;
         this.ehRf = ehRf;

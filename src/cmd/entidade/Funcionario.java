@@ -34,6 +34,7 @@ public class Funcionario  implements java.io.Serializable {
     public void setCodFuncionario(Integer codFuncionario) {
         this.codFuncionario = codFuncionario;
     }
+    
     public String getLogin() {
         return this.login;
     }
@@ -41,6 +42,7 @@ public class Funcionario  implements java.io.Serializable {
     public void setLogin(String login) {
         this.login = login;
     }
+    
     public String getSenha() {
         return this.senha;
     }
@@ -48,6 +50,7 @@ public class Funcionario  implements java.io.Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
     public Boolean getXdead() {
         return this.xdead;
     }
@@ -55,6 +58,7 @@ public class Funcionario  implements java.io.Serializable {
     public void setXdead(Boolean xdead) {
         this.xdead = xdead;
     }
+    
     public Set getRegistroAtividades() {
         return this.registroAtividades;
     }
@@ -63,9 +67,4 @@ public class Funcionario  implements java.io.Serializable {
         this.registroAtividades = registroAtividades;
     }
 
-
-
-
 }
-
-

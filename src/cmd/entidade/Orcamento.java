@@ -10,18 +10,16 @@ import java.util.Set;
  */
 public class Orcamento implements java.io.Serializable {
 
-    private Integer codOrcamento;//BD
-
+    private Integer codOrcamento;
     private Cliente cliente;
     private Endereco endereco;
     private Date dataHora;
     private Set items = new HashSet(0);
-
-    private Boolean xdead;//BD
-
+    private Boolean xdead;
+    
     public Orcamento() {
     }
-
+    
     public Orcamento(Cliente cliente, Endereco endereco, Date dataHora, Boolean xdead, Set items) {
         this.cliente = cliente;
         this.endereco = endereco;
@@ -33,47 +31,47 @@ public class Orcamento implements java.io.Serializable {
     public Integer getCodOrcamento() {
         return this.codOrcamento;
     }
-
+    
     public void setCodOrcamento(Integer codOrcamento) {
         this.codOrcamento = codOrcamento;
     }
-
+    
     public Cliente getCliente() {
         return this.cliente;
     }
-
+    
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
+    
     public Endereco getEndereco() {
         return this.endereco;
     }
-
+    
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
+    
     public Date getDataHora() {
         return this.dataHora;
     }
-
+    
     public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
-
+    
     public Boolean getXdead() {
         return this.xdead;
     }
-
+    
     public void setXdead(Boolean xdead) {
         this.xdead = xdead;
     }
-
+    
     public Set getItems() {
         return this.items;
     }
-
+    
     public void setItems(Set items) {
         this.items = items;
     }

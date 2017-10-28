@@ -10,27 +10,23 @@ import java.util.Set;
  */
 public class Item implements java.io.Serializable {
 
-    private Integer codItem;//BD
-
+    private Integer codItem;
     private Construcao construcao;
-     //private Orcamento orcamento;
-
+    private Orcamento orcamento;
     private BigDecimal altura;
     private BigDecimal largura;
     private BigDecimal areaPorta;
     private BigDecimal areaJanela;
     private BigDecimal precoTotal;
     private Set materialItems = new HashSet(0);
-
-    private Boolean xdead;//BD
+    private Boolean xdead;
 
     public Item() {
     }
 
-    //public Item(Construcao construcao, Orcamento orcamento, BigDecimal altura, BigDecimal largura, BigDecimal areaPorta, BigDecimal areaJanela, BigDecimal precoTotal, Boolean xdead, Set materialItems) {
-    public Item(Construcao construcao, BigDecimal altura, BigDecimal largura, BigDecimal areaPorta, BigDecimal areaJanela, BigDecimal precoTotal, Boolean xdead, Set materialItems) {
+    public Item(Construcao construcao, Orcamento orcamento, BigDecimal altura, BigDecimal largura, BigDecimal areaPorta, BigDecimal areaJanela, BigDecimal precoTotal, Boolean xdead, Set materialItems) {
         this.construcao = construcao;
-        //this.orcamento = orcamento;
+        this.orcamento = orcamento;
         this.altura = altura;
         this.largura = largura;
         this.areaPorta = areaPorta;
@@ -55,13 +51,14 @@ public class Item implements java.io.Serializable {
     public void setConstrucao(Construcao construcao) {
         this.construcao = construcao;
     }
-//    public Orcamento getOrcamento() {
-//        return this.orcamento;
-//    }
-//    
-//    public void setOrcamento(Orcamento orcamento) {
-//        this.orcamento = orcamento;
-//    }
+    
+    public Orcamento getOrcamento() {
+        return this.orcamento;
+    }
+    
+    public void setOrcamento(Orcamento orcamento) {
+        this.orcamento = orcamento;
+    }
 
     public BigDecimal getAltura() {
         return this.altura;

@@ -9,14 +9,12 @@ import java.util.Date;
 public class PessoaJuridica implements java.io.Serializable {
 
     private int codCliente;
-
     private Cliente cliente;
     private String cnpj;
     private String razaoSocial;
     private String ramoAtuacao;
     private Date dataFundacao;
-
-    private Boolean xdead;//BD
+    private Boolean xdead;
 
     public PessoaJuridica() {
     }
@@ -24,6 +22,7 @@ public class PessoaJuridica implements java.io.Serializable {
     public PessoaJuridica(Cliente cliente) {
         this.cliente = cliente;
     }
+    
     public PessoaJuridica(Cliente cliente, String cnpj, String razaoSocial, String ramoAtuacao, Date dataFundacao, Boolean xdead) {
         this.cliente = cliente;
         this.cnpj = cnpj;
@@ -40,6 +39,7 @@ public class PessoaJuridica implements java.io.Serializable {
     public void setCodCliente(int codCliente) {
         this.codCliente = codCliente;
     }
+    
     public Cliente getCliente() {
         return this.cliente;
     }

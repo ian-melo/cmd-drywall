@@ -10,37 +10,34 @@ import java.util.Set;
  */
 public class Material implements java.io.Serializable {
 
-    private Integer codMaterial;//BD
-
-    //private Construcao construcao;
+    private Integer codMaterial;
+    private Construcao construcao;
     private String descricao;
     private String nomeUnidade;
     private BigDecimal constanteMetro;
     private BigDecimal precoUnitario;
     private Boolean ehOpcional;
-    //private Integer qualidade;//Não tem no Diagrama de classe
+    private Integer qualidade;
     private String tipo;
     private Integer quantidadeMinima;
-
-     //private Set materialItems = new HashSet(0);//???????
-    private Boolean xdead;//BD
+    private Set materialItems = new HashSet(0);
+    private Boolean xdead;
 
     public Material() {
     }
 
-    //public Material(Construcao construcao, String descricao, String nomeUnidade, BigDecimal constanteMetro, BigDecimal precoUnitario, Boolean ehOpcional, Integer qualidade, String tipo, Integer quantidadeMinima, Boolean xdead, Set materialItems) {
-    public Material(String descricao, String nomeUnidade, BigDecimal constanteMetro, BigDecimal precoUnitario, Boolean ehOpcional, String tipo, Integer quantidadeMinima, Boolean xdead) {
-        //this.construcao = construcao;
+    public Material(Construcao construcao, String descricao, String nomeUnidade, BigDecimal constanteMetro, BigDecimal precoUnitario, Boolean ehOpcional, Integer qualidade, String tipo, Integer quantidadeMinima, Boolean xdead, Set materialItems) {
+        this.construcao = construcao;
         this.descricao = descricao;
         this.nomeUnidade = nomeUnidade;
         this.constanteMetro = constanteMetro;
         this.precoUnitario = precoUnitario;
         this.ehOpcional = ehOpcional;
-        //this.qualidade = qualidade;
+        this.qualidade = qualidade;
         this.tipo = tipo;
         this.quantidadeMinima = quantidadeMinima;
         this.xdead = xdead;
-        //this.materialItems = materialItems;
+        this.materialItems = materialItems;
     }
 
     public Integer getCodMaterial() {
@@ -50,13 +47,14 @@ public class Material implements java.io.Serializable {
     public void setCodMaterial(Integer codMaterial) {
         this.codMaterial = codMaterial;
     }
-//    public Construcao getConstrucao() {
-//        return this.construcao;
-//    }
-//    
-//    public void setConstrucao(Construcao construcao) {
-//        this.construcao = construcao;
-//    }
+    
+    public Construcao getConstrucao() {
+        return this.construcao;
+    }
+    
+    public void setConstrucao(Construcao construcao) {
+        this.construcao = construcao;
+    }
 
     public String getDescricao() {
         return this.descricao;
@@ -97,13 +95,14 @@ public class Material implements java.io.Serializable {
     public void setEhOpcional(Boolean ehOpcional) {
         this.ehOpcional = ehOpcional;
     }
-//    public Integer getQualidade() {
-//        return this.qualidade;
-//    }
-//    
-//    public void setQualidade(Integer qualidade) {
-//        this.qualidade = qualidade;
-//    }
+
+    public Integer getQualidade() {
+        return this.qualidade;
+    }
+    
+    public void setQualidade(Integer qualidade) {
+        this.qualidade = qualidade;
+    }
 
     public String getTipo() {
         return this.tipo;
@@ -128,12 +127,13 @@ public class Material implements java.io.Serializable {
     public void setXdead(Boolean xdead) {
         this.xdead = xdead;
     }
-//    public Set getMaterialItems() {
-//        return this.materialItems;
-//    }
-//    
-//    public void setMaterialItems(Set materialItems) {
-//        this.materialItems = materialItems;
-//    }
+
+    public Set getMaterialItems() {
+        return this.materialItems;
+    }
+    
+    public void setMaterialItems(Set materialItems) {
+        this.materialItems = materialItems;
+    }
 
 }

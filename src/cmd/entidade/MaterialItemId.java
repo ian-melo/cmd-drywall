@@ -8,9 +8,8 @@ package cmd.entidade;
  */
 public class MaterialItemId  implements java.io.Serializable {
 
-
-     private int codMaterial;
-     private int codItem;
+    private int codMaterial;
+    private int codItem;
 
     public MaterialItemId() {
     }
@@ -34,27 +33,21 @@ public class MaterialItemId  implements java.io.Serializable {
     public void setCodItem(int codItem) {
         this.codItem = codItem;
     }
-
-
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof MaterialItemId) ) return false;
-		 MaterialItemId castOther = ( MaterialItemId ) other; 
-         
-		 return (this.getCodMaterial()==castOther.getCodMaterial())
- && (this.getCodItem()==castOther.getCodItem());
-   }
-   
-   public int hashCode() {
+    
+    public boolean equals(Object other) {
+        if ( (this == other ) ) return true;
+        if ( (other == null ) ) return false;
+    	if ( !(other instanceof MaterialItemId) ) return false;
+    	MaterialItemId castOther = ( MaterialItemId ) other; 
+        return (this.getCodMaterial()==castOther.getCodMaterial())
+            && (this.getCodItem()==castOther.getCodItem());
+    }
+    
+    public int hashCode() {
          int result = 17;
-         
          result = 37 * result + this.getCodMaterial();
          result = 37 * result + this.getCodItem();
          return result;
-   }   
-
-
+    }
+    
 }
-
-

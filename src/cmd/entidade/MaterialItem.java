@@ -9,23 +9,22 @@ import java.math.BigDecimal;
  */
 public class MaterialItem  implements java.io.Serializable {
 
-
-     private MaterialItemId id;
-     private Item item;
-     private Material material;
-     private Integer quantidade;
-     private BigDecimal precoUnitario;
-     private Boolean xdead;
+    private MaterialItemId id;
+    private Item item;
+    private Material material;
+    private Integer quantidade;
+    private BigDecimal precoUnitario;
+    private Boolean xdead;
 
     public MaterialItem() {
     }
-
 	
     public MaterialItem(MaterialItemId id, Item item, Material material) {
         this.id = id;
         this.item = item;
         this.material = material;
     }
+
     public MaterialItem(MaterialItemId id, Item item, Material material, Integer quantidade, BigDecimal precoUnitario, Boolean xdead) {
        this.id = id;
        this.item = item;
@@ -78,9 +77,4 @@ public class MaterialItem  implements java.io.Serializable {
         this.xdead = xdead;
     }
 
-
-
-
 }
-
-

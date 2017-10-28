@@ -6,24 +6,21 @@ package cmd.entidade;
  */
 public class Telefone implements java.io.Serializable {
 
-    private TelefoneId id;//BD
-    //private Cliente cliente;
-    private Boolean xdead;//BD
+    private TelefoneId id;
+    private Cliente cliente;
+    private Boolean xdead;
 
     public Telefone() {
     }
 
-    //public Telefone(TelefoneId id, Cliente cliente) {
-    public Telefone(TelefoneId id) {
+    public Telefone(TelefoneId id, Cliente cliente) {
         this.id = id;
-        //this.cliente = cliente;
+        this.cliente = cliente;
     }
 
-    //public Telefone(TelefoneId id, Cliente cliente, Boolean xdead) {
-
-    public Telefone(TelefoneId id, Boolean xdead) {
+    public Telefone(TelefoneId id, Cliente cliente, Boolean xdead) {
         this.id = id;
-        //this.cliente = cliente;
+        this.cliente = cliente;
         this.xdead = xdead;
     }
 
@@ -34,13 +31,14 @@ public class Telefone implements java.io.Serializable {
     public void setId(TelefoneId id) {
         this.id = id;
     }
-//    public Cliente getCliente() {
-//        return this.cliente;
-//    }
-//    
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public Boolean getXdead() {
         return this.xdead;

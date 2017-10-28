@@ -9,29 +9,25 @@ import java.util.Set;
  */
 public class Construcao implements java.io.Serializable {
 
-    private Integer codConstrucao;//BD
-
+    private Integer codConstrucao;
     private String descricao;
     private String detalhes;
     private Integer qualidade;
-    
-    //private Set items = new HashSet(0);//?????????
+    private Set items = new HashSet(0);
     private Set<Material> materials = new HashSet(0);
     private Forro forro;
     private Parede parede;
-
-    private Boolean xdead;//BD
+    private Boolean xdead;
 
     public Construcao() {
     }
 
-    //public Construcao(String descricao, String detalhes, Integer qualidade, Boolean xdead, Set items, Forro forro, Set materials, Parede parede) {
-    public Construcao(String descricao, String detalhes, Integer qualidade, Boolean xdead, Forro forro, Set materials, Parede parede) {
+    public Construcao(String descricao, String detalhes, Integer qualidade, Boolean xdead, Set items, Forro forro, Set materials, Parede parede) {
         this.descricao = descricao;
         this.detalhes = detalhes;
         this.qualidade = qualidade;
         this.xdead = xdead;
-        //this.items = items;
+        this.items = items;
         this.forro = forro;
         this.materials = materials;
         this.parede = parede;
@@ -77,13 +73,13 @@ public class Construcao implements java.io.Serializable {
         this.xdead = xdead;
     }
 
-//    public Set getItems() {
-//        return this.items;
-//    }
-//
-//    public void setItems(Set items) {
-//        this.items = items;
-//    }
+    public Set getItems() {
+        return this.items;
+    }
+
+    public void setItems(Set items) {
+        this.items = items;
+    }
 
     public Forro getForro() {
         return this.forro;

@@ -10,31 +10,26 @@ import java.util.Set;
  */
 public class Cliente implements java.io.Serializable {
 
-    private Integer codCliente;//BD
-
+    private Integer codCliente;
     private Date dataInscricao;
-
     private Endereco endereco;
     private PessoaFisica pessoaFisica;
     private PessoaJuridica pessoaJuridica;
     private Set telefones = new HashSet(0);
-
-     //private Set orcamentos = new HashSet(0);
-    //private Orcamento orcamentos;
-    private Boolean xdead;//BD
+    private Set orcamentos = new HashSet(0);
+    private Boolean xdead;
 
     public Cliente() {
     }
 
-    //public Cliente(Endereco endereco, Date dataInscricao, Boolean xdead, PessoaFisica pessoaFisica, Set telefones, PessoaJuridica pessoaJuridica, Set orcamentos) {
-    public Cliente(Endereco endereco, Date dataInscricao, Boolean xdead, PessoaFisica pessoaFisica, Set telefones, PessoaJuridica pessoaJuridica) {
+    public Cliente(Endereco endereco, Date dataInscricao, Boolean xdead, PessoaFisica pessoaFisica, Set telefones, PessoaJuridica pessoaJuridica, Set orcamentos) {
         this.endereco = endereco;
         this.dataInscricao = dataInscricao;
         this.xdead = xdead;
         this.pessoaFisica = pessoaFisica;
         this.telefones = telefones;
         this.pessoaJuridica = pessoaJuridica;
-        //this.orcamentos = orcamentos;
+        this.orcamentos = orcamentos;
     }
 
     public Integer getCodCliente() {
@@ -92,12 +87,13 @@ public class Cliente implements java.io.Serializable {
     public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
         this.pessoaJuridica = pessoaJuridica;
     }
-//    public Set getOrcamentos() {
-//        return this.orcamentos;
-//    }
-//    
-//    public void setOrcamentos(Set orcamentos) {
-//        this.orcamentos = orcamentos;
-//    }
+    
+    public Set getOrcamentos() {
+        return this.orcamentos;
+    }
+    
+    public void setOrcamentos(Set orcamentos) {
+        this.orcamentos = orcamentos;
+    }
 
 }
