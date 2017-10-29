@@ -1,5 +1,5 @@
 package cmd.entidade;
-// Generated 23/05/2017 06:48:11 by Hibernate Tools 4.3.1
+// Generated 29/10/2017 11:08:24 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -34,7 +34,6 @@ public class Funcionario  implements java.io.Serializable {
     public void setCodFuncionario(Integer codFuncionario) {
         this.codFuncionario = codFuncionario;
     }
-    
     public String getLogin() {
         return this.login;
     }
@@ -42,7 +41,6 @@ public class Funcionario  implements java.io.Serializable {
     public void setLogin(String login) {
         this.login = login;
     }
-    
     public String getSenha() {
         return this.senha;
     }
@@ -50,7 +48,6 @@ public class Funcionario  implements java.io.Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
     public Boolean getXdead() {
         return this.xdead;
     }
@@ -58,7 +55,6 @@ public class Funcionario  implements java.io.Serializable {
     public void setXdead(Boolean xdead) {
         this.xdead = xdead;
     }
-    
     public Set getRegistroAtividades() {
         return this.registroAtividades;
     }
@@ -67,4 +63,9 @@ public class Funcionario  implements java.io.Serializable {
         this.registroAtividades = registroAtividades;
     }
 
+
+
+
 }
+
+

@@ -1,5 +1,5 @@
 package cmd.entidade;
-// Generated 23/05/2017 06:48:11 by Hibernate Tools 4.3.1
+// Generated 29/10/2017 11:08:24 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -46,7 +46,6 @@ public class Endereco  implements java.io.Serializable {
     public void setCodEndereco(Integer codEndereco) {
         this.codEndereco = codEndereco;
     }
-    
     public String getLogradouro() {
         return this.logradouro;
     }
@@ -54,7 +53,6 @@ public class Endereco  implements java.io.Serializable {
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
-    
     public String getNumero() {
         return this.numero;
     }
@@ -62,7 +60,6 @@ public class Endereco  implements java.io.Serializable {
     public void setNumero(String numero) {
         this.numero = numero;
     }
-    
     public String getComplemento() {
         return this.complemento;
     }
@@ -70,7 +67,6 @@ public class Endereco  implements java.io.Serializable {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
     public String getCep() {
         return this.cep;
     }
@@ -78,7 +74,6 @@ public class Endereco  implements java.io.Serializable {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
     public String getBairro() {
         return this.bairro;
     }
@@ -86,7 +81,6 @@ public class Endereco  implements java.io.Serializable {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-    
     public String getCidade() {
         return this.cidade;
     }
@@ -94,7 +88,6 @@ public class Endereco  implements java.io.Serializable {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
     public String getUf() {
         return this.uf;
     }
@@ -102,7 +95,6 @@ public class Endereco  implements java.io.Serializable {
     public void setUf(String uf) {
         this.uf = uf;
     }
-    
     public Boolean getXdead() {
         return this.xdead;
     }
@@ -110,7 +102,6 @@ public class Endereco  implements java.io.Serializable {
     public void setXdead(Boolean xdead) {
         this.xdead = xdead;
     }
-    
     public Set getClientes() {
         return this.clientes;
     }
@@ -118,7 +109,6 @@ public class Endereco  implements java.io.Serializable {
     public void setClientes(Set clientes) {
         this.clientes = clientes;
     }
-    
     public Set getOrcamentos() {
         return this.orcamentos;
     }
@@ -127,4 +117,9 @@ public class Endereco  implements java.io.Serializable {
         this.orcamentos = orcamentos;
     }
 
+
+
+
 }
+
+

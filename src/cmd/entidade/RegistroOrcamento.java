@@ -1,5 +1,6 @@
 package cmd.entidade;
-// Generated 23/05/2017 06:48:11 by Hibernate Tools 4.3.1
+// Generated 29/10/2017 11:08:24 by Hibernate Tools 4.3.1
+
 
 
 /**
@@ -7,19 +8,20 @@ package cmd.entidade;
  */
 public class RegistroOrcamento  implements java.io.Serializable {
 
-    private int codRegistro;
-    private RegistroAtividade registroAtividade;
-    private String atividade;
-    private String tabela;
-    private String detalhe;
+
+     private int codRegistro;
+     private RegistroAtividade registroAtividade;
+     private String atividade;
+     private String tabela;
+     private String detalhe;
 
     public RegistroOrcamento() {
     }
-    
+
+	
     public RegistroOrcamento(RegistroAtividade registroAtividade) {
         this.registroAtividade = registroAtividade;
     }
-    
     public RegistroOrcamento(RegistroAtividade registroAtividade, String atividade, String tabela, String detalhe) {
        this.registroAtividade = registroAtividade;
        this.atividade = atividade;
@@ -34,7 +36,6 @@ public class RegistroOrcamento  implements java.io.Serializable {
     public void setCodRegistro(int codRegistro) {
         this.codRegistro = codRegistro;
     }
-    
     public RegistroAtividade getRegistroAtividade() {
         return this.registroAtividade;
     }
@@ -42,7 +43,6 @@ public class RegistroOrcamento  implements java.io.Serializable {
     public void setRegistroAtividade(RegistroAtividade registroAtividade) {
         this.registroAtividade = registroAtividade;
     }
-    
     public String getAtividade() {
         return this.atividade;
     }
@@ -50,7 +50,6 @@ public class RegistroOrcamento  implements java.io.Serializable {
     public void setAtividade(String atividade) {
         this.atividade = atividade;
     }
-    
     public String getTabela() {
         return this.tabela;
     }
@@ -58,7 +57,6 @@ public class RegistroOrcamento  implements java.io.Serializable {
     public void setTabela(String tabela) {
         this.tabela = tabela;
     }
-    
     public String getDetalhe() {
         return this.detalhe;
     }
@@ -67,4 +65,9 @@ public class RegistroOrcamento  implements java.io.Serializable {
         this.detalhe = detalhe;
     }
 
+
+
+
 }
+
+
