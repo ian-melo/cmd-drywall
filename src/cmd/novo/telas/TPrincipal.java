@@ -342,6 +342,12 @@ public class TPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -350,6 +356,7 @@ public class TPrincipal extends javax.swing.JFrame {
                 //new TPrincipal().setVisible(true);//Original, foi alterado quando tentei passar info fo Form Login Para este
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
