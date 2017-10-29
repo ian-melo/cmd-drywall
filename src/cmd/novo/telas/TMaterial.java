@@ -5,12 +5,13 @@
  */
 package cmd.novo.telas;
 
-import Entidade.Material;
+import cmd.entidade.Material;
 import cmd.DAO.MaterialDAO;
 import cmd.novo.GerenteDeJanelas;
 import static cmd.novo.telas.TPrincipal.jDesktopPane1;
 import cmd.novo.MaterialTableView;
 import java.awt.Color;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -53,23 +54,22 @@ public class TMaterial extends javax.swing.JInternalFrame {
 
     }
 
-    public void ListandoTableView() {
-        Listamaterial = dao.ListaMaterial();
-        tableview.clear();
-
-        for (Material M : Listamaterial) {
-            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade());
-            tableview.add(view);
-        }
-//        tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTableView, Integer>("Id"));
-//        tc_nome.setCellValueFactory(new PropertyValueFactory<MaterialTableView, String>("Nome"));
-//        tc_quantidade.setCellValueFactory(new PropertyValueFactory<MaterialTableView, Integer>("Quantidade"));
-//        tb_materiais.setCellValueFactory(new PropertyValueFactory<MaterialTableView, Float>("Preço"));
-//        tc_tipo.setCellValueFactory(new PropertyValueFactory<MaterialTableView, String>("Tipo"));
-//        tc_unidade.setCellValueFactory(new PropertyValueFactory<MaterialTableView, String>("Unidade"));
-//        tb_materiais.setItems(tableview);
-    }
-
+//    public void ListandoTableView() {
+//        Listamaterial = dao.ListaMaterial();
+//        tableview.clear();
+//
+//        for (Material M : Listamaterial) {
+//            MaterialTableView view = new MaterialTableView(M.getId(), M.getNome(), M.getQuantidade(), M.getPreço(), M.getTipo(), M.getUnidade());
+//            tableview.add(view);
+//        }
+////        tc_id.setCellValueFactory(new PropertyValueFactory<MaterialTableView, Integer>("Id"));
+////        tc_nome.setCellValueFactory(new PropertyValueFactory<MaterialTableView, String>("Nome"));
+////        tc_quantidade.setCellValueFactory(new PropertyValueFactory<MaterialTableView, Integer>("Quantidade"));
+////        tb_materiais.setCellValueFactory(new PropertyValueFactory<MaterialTableView, Float>("Preço"));
+////        tc_tipo.setCellValueFactory(new PropertyValueFactory<MaterialTableView, String>("Tipo"));
+////        tc_unidade.setCellValueFactory(new PropertyValueFactory<MaterialTableView, String>("Unidade"));
+////        tb_materiais.setItems(tableview);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +110,8 @@ public class TMaterial extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         cmb_nomeUnidade = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cmb_qualidade = new javax.swing.JComboBox();
 
         setClosable(true);
         setTitle("Cadastro Materiais");
@@ -303,6 +305,12 @@ public class TMaterial extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("Qualidade:");
+
+        cmb_qualidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmb_qualidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -339,7 +347,9 @@ public class TMaterial extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(pnl_opcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(cmb_qualidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,12 +413,15 @@ public class TMaterial extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(25, 29, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_qtdMinima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(cmb_qualidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -519,7 +532,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
         //Random gerador = new Random();
         //int numero = gerador.nextInt(3);
         MaterialDAO dao = new MaterialDAO();
-        Material M = new Material();
+
         sorteio();
         if (txt_qtdMinima.getText().isEmpty() || txt_precoUnitario.getText().isEmpty()
                 || txt_tipo.getText().isEmpty() || txt_constanteMetro.getText().isEmpty()) {
@@ -527,24 +540,32 @@ public class TMaterial extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos para continuar");
 
         } else {
+            boolean val;
+            if (rd_sim.isSelected()) {
+                val = true;
+            } else {
+                val = false;
+            }
+
+            //null, title, title, BigDecimal.ZERO, BigDecimal.ZERO, iconable, WIDTH, title, SOMEBITS, isIcon, sorteados
             String nome = cmb_nomeUnidade.getSelectedItem().toString();
             int quantidade = Integer.parseInt(txt_qtdMinima.getText());
             float preço = Float.parseFloat(txt_precoUnitario.getText());
             String tipo = txt_tipo.getText();
             String unidade = txt_constanteMetro.getText();
-            M.setNome(nome);
-            M.setQuantidade(quantidade);
-            M.setPreço(preço);
-            M.setTipo(tipo);
-            M.setUnidade(unidade);
-            M.setCod_construl(sorteia());
-            dao.Create(M);
+//            M.setNome(nome);
+//            M.setQuantidade(quantidade);
+//            M.setPreço(preço);
+//            M.setTipo(tipo);
+//            M.setUnidade(unidade);
+//            M.setCod_construl(sorteia());
+//            dao.Create(M);
 
             txt_precoUnitario.setText("");
             txt_qtdMinima.setText("");
             txt_constanteMetro.setText("");
             txt_tipo.setText("");
-            ListandoTableView();
+            //ListandoTableView();
         }
 
     }
@@ -621,12 +642,14 @@ public class TMaterial extends javax.swing.JInternalFrame {
     private javax.swing.JButton bt_cadastrar;
     private javax.swing.JButton bt_sair;
     private javax.swing.JComboBox cmb_nomeUnidade;
+    private javax.swing.JComboBox cmb_qualidade;
     private javax.swing.ButtonGroup grupRadioOpc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

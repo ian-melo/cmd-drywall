@@ -5,7 +5,7 @@
  */
 package cmd.novo.telas;
 
-import cmd.novo.CadastroFuncionarioControle;
+import cmd.novo.controle.CadastroFuncionarioControle;
 import java.awt.Color;
 
 /**
