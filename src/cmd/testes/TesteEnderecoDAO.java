@@ -5,7 +5,7 @@
  */
 package cmd.testes;
 
-import Entidade.Endereco;
+import cmd.entidade.Endereco;
 import cmd.DAO.EnderecoDAO;
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class TesteEnderecoDAO {
         e.setCidade("cidade5");
         e.setComplemento("Complemento5");
         e.setLogradouro("Logradouro5");
-        e.setNumero(55);
+        //e.setNumero(55);
         e.setUf("SP");
 
         eDAO.inserir(e);
@@ -60,7 +60,7 @@ public class TesteEnderecoDAO {
         for (Endereco o : enderecos) {
             //Exibição do Endereços
             System.out.println("-----------------");
-            System.out.println(o.getId());
+            //System.out.println(o.getId());
             System.out.println(o.getLogradouro());
             System.out.println(o.getComplemento());
             System.out.println(o.getCep());
@@ -75,14 +75,14 @@ public class TesteEnderecoDAO {
     private static void testar_update() {
         EnderecoDAO eDAO = new EnderecoDAO();
         Endereco e = new Endereco();
-        e.setId(5);
+        //e.setId(5);
 
         e.setBairro("_bairro5");
         e.setCep("555");
         e.setCidade("_cidade5");
         e.setComplemento("_Complemento5");
         e.setLogradouro("_Logradouro5");
-        e.setNumero(33);
+        //e.setNumero(33);
         e.setUf("SP");
         eDAO.alterar(e);
     }
@@ -90,7 +90,7 @@ public class TesteEnderecoDAO {
     private static void testar_deletar() {
         EnderecoDAO eDAO = new EnderecoDAO();
         Endereco e = new Endereco();
-        e.setId(6);
+        //e.setId(6);
 
         eDAO.excluir(e);
     }

@@ -8,7 +8,7 @@ package cmd.telas.login;
 
 import cmd.conexao.ConnectionFactory;
 import cmd.DAO.UsuárioDAO;
-import Entidade.Usuario;
+import cmd.entidade.Funcionario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

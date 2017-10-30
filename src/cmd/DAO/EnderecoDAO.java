@@ -5,9 +5,8 @@
  */
 package cmd.DAO;
 
-import Entidade.Endereco;
+import cmd.entidade.Endereco;
 import cmd.conexao.ConnectionFactory;
-import cmd.entidade.Construcao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +26,7 @@ public class EnderecoDAO implements DAO<Endereco> {
     Connection con = ConnectionFactory.getConexao();
 
     @Override
-    public boolean inserir(Endereco e) {
+    public boolean inserir(Endereco e) {/*
 
         PreparedStatement stat = null;
 
@@ -60,10 +59,10 @@ public class EnderecoDAO implements DAO<Endereco> {
         }
 
         return true;
-    }
+    */ return false;}
 
     @Override
-    public boolean alterar(Endereco e) {
+    public boolean alterar(Endereco e) {/*
 
         PreparedStatement stat = null;
 
@@ -98,10 +97,10 @@ public class EnderecoDAO implements DAO<Endereco> {
             ConnectionFactory.fecharConexao(con, stat);
         }
         return true;
-    }
+    */ return false;}
 
     @Override
-    public boolean excluir(Endereco e) {
+    public boolean excluir(Endereco e) {/*
 
         PreparedStatement stat = null;
 
@@ -128,10 +127,10 @@ public class EnderecoDAO implements DAO<Endereco> {
             ConnectionFactory.fecharConexao(con, stat);
         }
         return true;
-    }
+    */ return false;}
 
     @Override
-    public Endereco buscar(String e) {
+    public Endereco buscar(String e) {/*
 
         PreparedStatement stat = null;
 
@@ -175,10 +174,10 @@ public class EnderecoDAO implements DAO<Endereco> {
             ConnectionFactory.fecharConexao(con, stat);
         }
         return null;
-    }
+    */ return null;}
 
     @Override
-    public List<Endereco> listar() {
+    public List<Endereco> listar() {/*
 
         List<Endereco> es = new ArrayList<>();
 
@@ -204,19 +203,19 @@ public class EnderecoDAO implements DAO<Endereco> {
             }
 
         } catch (SQLException ex) {
-            /*
+            
              Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
              alerta1.setTitle("C.M.D");
              alerta1.setHeaderText("C.M.D Informa!!!");
              alerta1.setContentText("Erro ao listar" + ex);
              alerta1.showAndWait();
-             */
+             
             JOptionPane.showMessageDialog(null, ex);
         } finally {
             ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return es;
-    }
+    */ return null;}
 
     private void Mensagem_Alerta(String conteudo) {
         Alert dialogo = new Alert(Alert.AlertType.INFORMATION);

@@ -6,8 +6,7 @@
 package cmd.DAO;
 
 import cmd.conexao.ConnectionFactory;
-import Entidade.Entidadecliente;
-import Entidade.Material;
+import cmd.entidade.Material;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +22,7 @@ import javafx.scene.control.Alert;
 public class MaterialDAO 
 {
     public void Create(Material M)
-    {
+    {/*
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
@@ -57,11 +56,11 @@ public class MaterialDAO
         {
             ConnectionFactory.fecharConexao(con, stat);
         }
-        
-    }
+    */}
+    
     @SuppressWarnings("Unchecked")
     public List<Material> ListaMaterial()
-    {
+    {/*
         List<Material> M = new ArrayList<>();
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
@@ -99,9 +98,9 @@ public class MaterialDAO
            ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return M;
-    }
+    */ return null;}
     public void Update(Material m)
-    {
+    {/*
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
@@ -135,6 +134,6 @@ public class MaterialDAO
         {
             ConnectionFactory.fecharConexao(con, stat);
         }
-    }
+    */}
     
 }

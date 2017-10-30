@@ -5,16 +5,14 @@
  */
 package cmd.DAO;
 
-import Entidade.Cliente;
+import cmd.entidade.Cliente;
 import cmd.conexao.ConnectionFactory;
-import Entidade.Entidadecliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import javafx.scene.control.Alert;
 
 
@@ -27,7 +25,7 @@ public class ClienteDAO{
     private String sql;
     
     public void Create(Cliente c)
-    {
+    {/*
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
@@ -59,11 +57,11 @@ public class ClienteDAO{
         {
             ConnectionFactory.fecharConexao(con, stat);
         }
-    }
+    */}
     @SuppressWarnings("Unchecked")
-    public List<Entidadecliente> ListaClientes()
-    {
-        List<Entidadecliente> cli = new ArrayList<>();
+    public List<Cliente> ListaClientes()
+    {/*
+        List<Cliente> cli = new ArrayList<>();
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         ResultSet rs = null;
@@ -75,7 +73,7 @@ public class ClienteDAO{
             
             while(rs.next())
             {
-                Entidadecliente c = new Entidadecliente();
+                Cliente c = new Cliente();
                 c.setId(rs.getInt("Id"));
                 c.setNome(rs.getString("Nome"));
                 c.setCpf(rs.getString("Cpf"));
@@ -101,9 +99,9 @@ public class ClienteDAO{
            ConnectionFactory.fecharConexao(con, stat, rs);
         }
         return cli;
-    }
-    public void Update(Entidadecliente c)
-    {
+    */ return null;}
+    public void Update(Cliente c)
+    {/*
         Connection con = ConnectionFactory.getConexao();
         PreparedStatement stat = null;
         
@@ -137,5 +135,5 @@ public class ClienteDAO{
         {
             ConnectionFactory.fecharConexao(con, stat);
         }
-    }
+    */}
 }

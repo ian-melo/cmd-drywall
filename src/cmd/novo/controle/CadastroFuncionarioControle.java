@@ -5,7 +5,7 @@
  */
 package cmd.novo.controle;
 
-import Entidade.Usuario;
+import cmd.entidade.Funcionario;
 import cmd.DAO.UsuárioDAO;
 
 /**
@@ -17,9 +17,9 @@ public class CadastroFuncionarioControle {
     public boolean cadastrarFuncionario(String nome, String senha) {
         try {
 
-            Usuario u = new Usuario();
+            Funcionario u = new Funcionario();
             UsuárioDAO dao = new UsuárioDAO();
-            u.setNome(nome);
+            u.setLogin(nome);
             u.setSenha(senha);
             dao.create(u);
             return true;
