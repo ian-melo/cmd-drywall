@@ -730,6 +730,7 @@ public class TMaterial extends javax.swing.JInternalFrame {
             List resultList = q.list();
             displayResult(resultList);
             session.getTransaction().commit();
+            session.close();
         } catch (HibernateException he) {
             he.printStackTrace();
         }
