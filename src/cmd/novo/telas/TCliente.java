@@ -5,6 +5,7 @@
  */
 package cmd.novo.telas;
 
+import cmd.novo.cep.WebServiceCep;
 import cmd.novo.painel.PnlJuridica;
 import cmd.novo.painel.PnlFisica;
 //import cmd.novo.painel.PnlTelefone;
@@ -27,7 +28,6 @@ public class TCliente extends javax.swing.JInternalFrame {
     PnlJuridica pJu = new PnlJuridica();
 
     //PnlTelefone pTe = new PnlTelefone();
-
     public static TCliente getInstancia() {
         if (clienteT == null) {
             clienteT = new TCliente();
@@ -51,17 +51,11 @@ public class TCliente extends javax.swing.JInternalFrame {
 
         pJuridica();//Inicai com Pessoa Juridica Selecionado
         colocaDataAtual();
-        
-        
-        //pnl_scroll_telefone.removeAll();//remove cliente anterior
 
+        //pnl_scroll_telefone.removeAll();//remove cliente anterior
         //GridLayout gerente1 = new GridLayout(5, 1);//Mostra até 2 itens um em baixo do outro
         //pnl_scroll_telefone.setLayout(gerente1);//apenas um ajuste
-
         //pnl_scroll_telefone.add(pTe);
-        
-        
-
     }
 
     /**
@@ -179,6 +173,11 @@ public class TCliente extends javax.swing.JInternalFrame {
         jLabel14.setText("CEP:");
 
         txt_cep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cepFocusLost(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Logradouro:");
@@ -533,11 +532,41 @@ public class TCliente extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
+    private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
+        buscaCep(txt_cep.getText());
+    }//GEN-LAST:event_txt_cepFocusLost
+
     private void pequenoBug() {
         int x = this.getHeight();
         int y = this.getWidth();
         this.setSize(y - 1, x - 1);
         this.setSize(y, x);
+    }
+
+    public void buscaCep(String cep) {
+        //Faz a busca para o cep 58043-280
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+        //A ferramenta de busca ignora qualquer caracter que não seja numero.
+
+        //caso a busca ocorra bem, imprime os resultados.
+        if (webServiceCep.wasSuccessful()) {
+            txt_logradouro.setText(webServiceCep.getLogradouroFull());
+            txt_cidade.setText(webServiceCep.getCidade());
+            txt_bairro.setText(webServiceCep.getBairro());
+            //txt_uf.setSelectedItem(webServiceCep.getUf());
+            txt_uf.setText(webServiceCep.getUf());
+            System.out.println("Cep: " + webServiceCep.getCep());
+            System.out.println("Logradouro: " + webServiceCep.getLogradouroFull());
+            System.out.println("Bairro: " + webServiceCep.getBairro());
+            System.out.println("Cidade: "
+                    + webServiceCep.getCidade() + "/" + webServiceCep.getUf());
+
+            //caso haja problemas imprime as exceções.
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+        }
     }
 
     private void pJuridica() {
@@ -671,92 +700,92 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_uf;
     // End of variables declaration//GEN-END:variables
 /*
-    ============================================================================
-    *****************CONTEUDO SALVO DA ANTIGA TELA DE CLIENTE*******************
-    ============================================================================
+     ============================================================================
+     *****************CONTEUDO SALVO DA ANTIGA TELA DE CLIENTE*******************
+     ============================================================================
     
     
     
     
-    public class ClienteFXMLController implements Initializable {
+     public class ClienteFXMLController implements Initializable {
 
-    private ClienteDAO dao = new ClienteDAO();
-    private List<Entidadecliente> Listacli;
-    private ObservableList<ClienteTableView> tableview = FXCollections.observableArrayList();
-    @FXML
-    private ComboBox<String> cmb_pessoa;
-    @FXML
-    private Label lb_dataInscricao;
-    @FXML
-    private Button bt_cadastrar;
-    @FXML
-    private Button bt_alterar;
-    @FXML
-    private Button bt_sair;
-    @FXML
-    private TableView<ClienteTableView> tb_fisica;
-    @FXML
-    private TableColumn<ClienteTableView, Integer> tc_id;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_nome;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_cpf;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_dataNasc;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_endereco;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_cep;
-    @FXML
-    private VBox vBox_fisica;
-    @FXML
-    private TextField txt_nome;
-    @FXML
-    private TextField txt_cpf;
-    @FXML
-    private TextField txt_dataNascimento;
-    @FXML
-    private VBox vBox_endereco;
-    @FXML
-    private TextField txt_cep;
-    @FXML
-    private TextField txt_logradouro;
-    @FXML
-    private TextField txt_numero;
-    @FXML
-    private TextField txt_bairro;
-    @FXML
-    private TextField txt_cidade;
-    @FXML
-    private TextField txt_uf;
-    @FXML
-    private VBox vBox_juridica;
-    @FXML
-    private TextField txt_razaoSocial;
-    @FXML
-    private TextField txt_cnpj;
-    @FXML
-    private TextField txt_ramo;
-    @FXML
-    private TextField txt_dataFundacao;
-    @FXML
-    private VBox vBox_telefone;
-    @FXML
-    private TableView<ClienteTableView> tb_juridica;
-    @FXML
-    private TableColumn<ClienteTableView, Integer> tc_id_juridica;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_razaoSocial;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_cnpj;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_dataFunda;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_endereco_Juridica;
-    @FXML
-    private TableColumn<ClienteTableView, String> tc_cep_Juridica;
+     private ClienteDAO dao = new ClienteDAO();
+     private List<Entidadecliente> Listacli;
+     private ObservableList<ClienteTableView> tableview = FXCollections.observableArrayList();
+     @FXML
+     private ComboBox<String> cmb_pessoa;
+     @FXML
+     private Label lb_dataInscricao;
+     @FXML
+     private Button bt_cadastrar;
+     @FXML
+     private Button bt_alterar;
+     @FXML
+     private Button bt_sair;
+     @FXML
+     private TableView<ClienteTableView> tb_fisica;
+     @FXML
+     private TableColumn<ClienteTableView, Integer> tc_id;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_nome;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_cpf;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_dataNasc;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_endereco;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_cep;
+     @FXML
+     private VBox vBox_fisica;
+     @FXML
+     private TextField txt_nome;
+     @FXML
+     private TextField txt_cpf;
+     @FXML
+     private TextField txt_dataNascimento;
+     @FXML
+     private VBox vBox_endereco;
+     @FXML
+     private TextField txt_cep;
+     @FXML
+     private TextField txt_logradouro;
+     @FXML
+     private TextField txt_numero;
+     @FXML
+     private TextField txt_bairro;
+     @FXML
+     private TextField txt_cidade;
+     @FXML
+     private TextField txt_uf;
+     @FXML
+     private VBox vBox_juridica;
+     @FXML
+     private TextField txt_razaoSocial;
+     @FXML
+     private TextField txt_cnpj;
+     @FXML
+     private TextField txt_ramo;
+     @FXML
+     private TextField txt_dataFundacao;
+     @FXML
+     private VBox vBox_telefone;
+     @FXML
+     private TableView<ClienteTableView> tb_juridica;
+     @FXML
+     private TableColumn<ClienteTableView, Integer> tc_id_juridica;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_razaoSocial;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_cnpj;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_dataFunda;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_endereco_Juridica;
+     @FXML
+     private TableColumn<ClienteTableView, String> tc_cep_Juridica;
 
-    /*public void ListandoTableview() {
+     /*public void ListandoTableview() {
      Listacli = dao.ListaClientes();
      tableview.clear();
 
@@ -783,155 +812,108 @@ public class TCliente extends javax.swing.JInternalFrame {
 //    
     /**
      * Initializes the controller class.
-     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        inicia_ComboBox();
-        //ListandoTableview();
-    }
-
-    private void inicia_ComboBox() {
-        ObservableList<String> opcao = FXCollections.observableArrayList(
-                "Pessoa Físíca",
-                "Pessoa Jurídica"
-        );
-
-        cmb_pessoa.setItems(opcao);
-    }
-
-    @FXML
-    private void Cadastrar(ActionEvent event) {
-        //if (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty()) {
-        Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
-        alerta1.setTitle("C.M.D");
-        alerta1.setHeaderText("C.M.D Informa!!!");
-        //alerta1.setContentText("preencha todos os campos para continuar");
-        alerta1.setContentText("Dados cadastrados com sucesso");
-        alerta1.showAndWait();
-        //} else {
-
-         Entidadecliente cli = new Entidadecliente();
-         ClienteDAO dao = new ClienteDAO();
-         String nome = txt_nome.getText();
-         //String endereço = txt_endereco.getText();
-         String cpf = txt_cpf.getText();
-         //String projeto = txt_projeto.getText();
-         //int numero_protocolo = Integer.parseInt(lbl_protocolo.getText());
-         //String telefone = txt_fone.getText();
-         //String email = txt_mail.getText();
-         cli.setNome(nome);
-         cli.setCpf(cpf);
-         //cli.setEndereço(endereço);
-         //cli.setProjeto(projeto);
-         //cli.setProtocolo(numero_protocolo);
-         //cli.setTelefone(telefone);
-         //cli.setEmail(email);
-
-         //dao.Create(cli);
-         txt_nome.setText("");
-
-         txt_cpf.setText("");
-            
-            
-         //ListandoTableview();//+++++++++++++
-         
-        //}
-
-    }
-
-    @FXML
-    private void Alterar(ActionEvent event) {
-        if (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty()) {
-            Alert alerta1 = new Alert(Alert.AlertType.INFORMATION);
-            alerta1.setTitle("C.M.D");
-            alerta1.setHeaderText("C.M.D Informa!!!");
-            alerta1.setContentText("preencha todos os campos para continuar");
-            alerta1.showAndWait();
-
-        } else {
-            /*
-             Entidadecliente cli = new Entidadecliente();
-             ClienteDAO dao = new ClienteDAO();
-             cli.setId(tb_clientes.getSelectionModel().getSelectedItem().getId());
-             cli.setNome(txt_nome.getText());
-             cli.setCpf(txt_cpf.getText());
-             //cli.setEndereço(txt_endereco.getText());
-             //cli.setProjeto(txt_projeto.getText());
-             //cli.setProtocolo(Integer.parseInt(lbl_protocolo.getText()));
-             //cli.setTelefone(txt_fone.getText());
-             //cli.setEmail(txt_mail.getText());
-             dao.Update(cli);
-             txt_nome.setText("");
-             //txt_endereco.setText("");
-             txt_cpf.setText("");
-             //txt_projeto.setText("");
-             //lbl_protocolo.setText("");
-             //txt_fone.setText("");
-             //txt_mail.setText("");
-            
-            
-             //ListandoTableview();//++++++++++++++++++++++++
-             
-        }
-
-    }
-
-    @FXML
-    private void Sair(ActionEvent event) throws IOException {
-        Parent cliente = FXMLLoader.load(getClass().getResource("/cmd/fxml/PrincipalFXML.fxml"));
-        Scene scene = new Scene(cliente);
-        Stage tela = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        tela.setScene(scene);
-        tela.show();
-    }
-
-    @FXML
-    private void Listar(MouseEvent event) {
-        if (event.getClickCount() == 1) {
-            //ClienteTableView view = tb_clientes.getSelectionModel().getSelectedItem();
-            ClienteTableView view = tb_fisica.getSelectionModel().getSelectedItem();
-            String nome = view.getNome();
-            String endereço = view.getEndereço();
-            String cpf = view.getCpf();
-            String projeto = view.getProjeto();
-            int protocolo = view.getProtocolo();
-            String telefone = view.getTelefone();
-            String email = view.getEmail();
-            txt_nome.setText(nome);
-            //txt_endereco.setText(endereço);
-            txt_cpf.setText(cpf);
-            //txt_projeto.setText(projeto);
-            //lbl_protocolo.setText(Integer.toString(protocolo));
-            //txt_fone.setText(telefone);
-            //txt_mail.setText(email);
-        }
-    }
-
-    @FXML
-    private void cbm_click(ActionEvent event) {
-        if (cmb_pessoa.getSelectionModel().getSelectedIndex() == 0) {
-            vBox_fisica.setVisible(true);
-            vBox_juridica.setVisible(false);
-
-            tb_fisica.setVisible(true);
-            tb_juridica.setVisible(false);
-
-        } else if (cmb_pessoa.getSelectionModel().getSelectedIndex() == 1) {
-            vBox_fisica.setVisible(false);
-            vBox_juridica.setVisible(true);
-
-            tb_fisica.setVisible(false);
-            tb_juridica.setVisible(true);
-        }
-
-    }
+     *
+     * @Override public void initialize(URL url, ResourceBundle rb) {
+     * inicia_ComboBox(); //ListandoTableview(); }
+     *
+     * private void inicia_ComboBox() { ObservableList<String> opcao =
+     * FXCollections.observableArrayList( "Pessoa Físíca", "Pessoa Jurídica" );
+     *
+     * cmb_pessoa.setItems(opcao); }
+     *
+     * @FXML private void Cadastrar(ActionEvent event) { //if
+     * (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty()) { Alert
+     * alerta1 = new Alert(Alert.AlertType.INFORMATION);
+     * alerta1.setTitle("C.M.D"); alerta1.setHeaderText("C.M.D Informa!!!");
+     * //alerta1.setContentText("preencha todos os campos para continuar");
+     * alerta1.setContentText("Dados cadastrados com sucesso");
+     * alerta1.showAndWait(); //} else {
+     *
+     * Entidadecliente cli = new Entidadecliente(); ClienteDAO dao = new
+     * ClienteDAO(); String nome = txt_nome.getText(); //String endereço =
+     * txt_endereco.getText(); String cpf = txt_cpf.getText(); //String projeto
+     * = txt_projeto.getText(); //int numero_protocolo =
+     * Integer.parseInt(lbl_protocolo.getText()); //String telefone =
+     * txt_fone.getText(); //String email = txt_mail.getText();
+     * cli.setNome(nome); cli.setCpf(cpf); //cli.setEndereço(endereço);
+     * //cli.setProjeto(projeto); //cli.setProtocolo(numero_protocolo);
+     * //cli.setTelefone(telefone); //cli.setEmail(email);
+     *
+     * //dao.Create(cli); txt_nome.setText("");
+     *
+     * txt_cpf.setText("");
+     *
+     *
+     * //ListandoTableview();//+++++++++++++
+     *
+     * //}
+     *
+     * }
+     *
+     * @FXML private void Alterar(ActionEvent event) { if
+     * (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty()) { Alert
+     * alerta1 = new Alert(Alert.AlertType.INFORMATION);
+     * alerta1.setTitle("C.M.D"); alerta1.setHeaderText("C.M.D Informa!!!");
+     * alerta1.setContentText("preencha todos os campos para continuar");
+     * alerta1.showAndWait();
+     *
+     * } else { /* Entidadecliente cli = new Entidadecliente(); ClienteDAO dao =
+     * new ClienteDAO();
+     * cli.setId(tb_clientes.getSelectionModel().getSelectedItem().getId());
+     * cli.setNome(txt_nome.getText()); cli.setCpf(txt_cpf.getText());
+     * //cli.setEndereço(txt_endereco.getText());
+     * //cli.setProjeto(txt_projeto.getText());
+     * //cli.setProtocolo(Integer.parseInt(lbl_protocolo.getText()));
+     * //cli.setTelefone(txt_fone.getText());
+     * //cli.setEmail(txt_mail.getText()); dao.Update(cli);
+     * txt_nome.setText(""); //txt_endereco.setText(""); txt_cpf.setText("");
+     * //txt_projeto.setText(""); //lbl_protocolo.setText("");
+     * //txt_fone.setText(""); //txt_mail.setText("");
+     *
+     *
+     * //ListandoTableview();//++++++++++++++++++++++++
+     *
+     * }
+     *
+     * }
+     *
+     * @FXML private void Sair(ActionEvent event) throws IOException { Parent
+     * cliente =
+     * FXMLLoader.load(getClass().getResource("/cmd/fxml/PrincipalFXML.fxml"));
+     * Scene scene = new Scene(cliente); Stage tela = (Stage) ((Node)
+     * event.getSource()).getScene().getWindow(); tela.setScene(scene);
+     * tela.show(); }
+     *
+     * @FXML private void Listar(MouseEvent event) { if (event.getClickCount()
+     * == 1) { //ClienteTableView view =
+     * tb_clientes.getSelectionModel().getSelectedItem(); ClienteTableView view
+     * = tb_fisica.getSelectionModel().getSelectedItem(); String nome =
+     * view.getNome(); String endereço = view.getEndereço(); String cpf =
+     * view.getCpf(); String projeto = view.getProjeto(); int protocolo =
+     * view.getProtocolo(); String telefone = view.getTelefone(); String email =
+     * view.getEmail(); txt_nome.setText(nome);
+     * //txt_endereco.setText(endereço); txt_cpf.setText(cpf);
+     * //txt_projeto.setText(projeto);
+     * //lbl_protocolo.setText(Integer.toString(protocolo));
+     * //txt_fone.setText(telefone); //txt_mail.setText(email); } }
+     *
+     * @FXML private void cbm_click(ActionEvent event) { if
+     * (cmb_pessoa.getSelectionModel().getSelectedIndex() == 0) {
+     * vBox_fisica.setVisible(true); vBox_juridica.setVisible(false);
+     *
+     * tb_fisica.setVisible(true); tb_juridica.setVisible(false);
+     *
+     * } else if (cmb_pessoa.getSelectionModel().getSelectedIndex() == 1) {
+     * vBox_fisica.setVisible(false); vBox_juridica.setVisible(true);
+     *
+     * tb_fisica.setVisible(false); tb_juridica.setVisible(true); }
+     *
+     * }
+     *
+     * }
+     *
+     *
+     *
+     */
 
 }
-
-    
-    
-    */
-
-
-}
-
