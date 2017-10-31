@@ -2,7 +2,7 @@ package cmd.DAO;
 
 /**
  * Interface DAO para persistência de dados
- * @author voce
+ * @author ian-melo
  * @param <K> Genérico de item a ser atuado na persistência
  */
 public interface DAO <K> {

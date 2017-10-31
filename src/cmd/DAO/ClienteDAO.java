@@ -1,3 +1,5 @@
+//TODO: Completar
+//TODO: Testar
 package cmd.DAO;
 
 import cmd.util.HibernateUtil;
@@ -9,7 +11,7 @@ import org.hibernate.HibernateException;
 
 /**
  * Classe DAO para Cliente
- * @author voce
+ * @author ian-melo
  */
 public class ClienteDAO implements DAO<Cliente> {
     
