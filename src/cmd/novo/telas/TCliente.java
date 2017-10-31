@@ -5,6 +5,7 @@
  */
 package cmd.novo.telas;
 
+import cmd.novo.Validacao;
 import cmd.novo.cep.WebServiceCep;
 import cmd.novo.painel.PnlJuridica;
 import cmd.novo.painel.PnlFisica;
@@ -75,7 +76,6 @@ public class TCliente extends javax.swing.JInternalFrame {
         lb_dataInscricao = new javax.swing.JLabel();
         pnl_endereco = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        txt_cep = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txt_logradouro = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -88,6 +88,7 @@ public class TCliente extends javax.swing.JInternalFrame {
         txt_uf = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txt_complemento = new javax.swing.JTextField();
+        txt_cep = new javax.swing.JFormattedTextField();
         pnl_botoes = new javax.swing.JPanel();
         btn_Cadastrar = new javax.swing.JButton();
         btn_Alterar = new javax.swing.JButton();
@@ -172,13 +173,6 @@ public class TCliente extends javax.swing.JInternalFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("CEP:");
 
-        txt_cep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_cepFocusLost(evt);
-            }
-        });
-
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Logradouro:");
 
@@ -209,6 +203,20 @@ public class TCliente extends javax.swing.JInternalFrame {
 
         txt_complemento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        try {
+            txt_cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_cep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_cepFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cepFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_enderecoLayout = new javax.swing.GroupLayout(pnl_endereco);
         pnl_endereco.setLayout(pnl_enderecoLayout);
         pnl_enderecoLayout.setHorizontalGroup(
@@ -226,8 +234,8 @@ public class TCliente extends javax.swing.JInternalFrame {
                             .addGroup(pnl_enderecoLayout.createSequentialGroup()
                                 .addGroup(pnl_enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                    .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                                 .addGroup(pnl_enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19)
                                     .addComponent(txt_uf, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -253,7 +261,8 @@ public class TCliente extends javax.swing.JInternalFrame {
                     .addGroup(pnl_enderecoLayout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3))
                     .addGroup(pnl_enderecoLayout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -533,8 +542,26 @@ public class TCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
-        buscaCep(txt_cep.getText());
+        Validacao vali = new Validacao();
+
+        if (vali.validarCep(txt_cep.getText())) {
+            buscaCep(txt_cep.getText());
+        } else {
+            JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Cep");
+        }
+
     }//GEN-LAST:event_txt_cepFocusLost
+
+    private void txt_cepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusGained
+        //txt_cep.selectAll();
+        //txt_cep.select(2, 4);
+        //txt_cidade.grabFocus();
+        //txt_cidade.select(2, 4);
+        //txt_cep.grabFocus();
+//        txt_cep.requestFocus();
+//        txt_cep.select(0, 4);
+
+    }//GEN-LAST:event_txt_cepFocusGained
 
     private void pequenoBug() {
         int x = this.getHeight();
@@ -563,7 +590,7 @@ public class TCliente extends javax.swing.JInternalFrame {
 
             //caso haja problemas imprime as exceções.
         } else {
-            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            //JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
 
             JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
         }
@@ -688,7 +715,7 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_telefone;
     private javax.swing.JTable tb_FisicaEjuridica;
     private javax.swing.JTextField txt_bairro;
-    private javax.swing.JTextField txt_cep;
+    private javax.swing.JFormattedTextField txt_cep;
     private javax.swing.JTextField txt_cidade;
     private javax.swing.JTextField txt_complemento;
     private javax.swing.JTextField txt_logradouro;
