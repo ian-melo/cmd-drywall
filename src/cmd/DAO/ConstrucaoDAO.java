@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 /**
  * Classe de DAO para Construção
- * @author voce
+ * @author ian-melo
  */
 public class ConstrucaoDAO implements DAO<Construcao> {
 

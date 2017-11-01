@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 /**
  * Classe de DAO para Forro
- * @author voce
+ * @author ian-melo
  */
 public class ForroDAO implements DAO<Forro> {
 

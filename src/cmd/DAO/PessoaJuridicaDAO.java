@@ -1,34 +1,20 @@
 //TODO: Testar
 package cmd.DAO;
 
-import cmd.entidade.Parede;
+import cmd.entidade.PessoaJuridica;
 import cmd.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- * Classe de DAO para Parede
+ * Classe de DAO para Pessoa Jurídica
  * @author ian-melo
  */
-public class ParedeDAO implements DAO<Parede> {
+public class PessoaJuridicaDAO implements DAO<PessoaJuridica> {
 
     @Override
-    public boolean inserir(Parede item) {
-        try {
-            Session s = HibernateUtil.getSessionFactory().openSession();
-            s.beginTransaction();
-            s.save(item);
-            s.getTransaction().commit();
-            s.close();
-            return true;
-        } catch(HibernateException e) {
-            return false;
-        }
-    }
-
-    @Override
-    public boolean alterar(Parede item) {
+    public boolean inserir(PessoaJuridica item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -42,7 +28,21 @@ public class ParedeDAO implements DAO<Parede> {
     }
 
     @Override
-    public boolean excluir(Parede item) {
+    public boolean alterar(PessoaJuridica item) {
+        try {
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            s.update(item);
+            s.getTransaction().commit();
+            s.close();
+            return true;
+        } catch(HibernateException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean excluir(PessoaJuridica item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -56,28 +56,28 @@ public class ParedeDAO implements DAO<Parede> {
     }
 
     @Override
-    public Parede buscar(String consulta) {
+    public PessoaJuridica buscar(String consulta) {
         try {
-            Parede p;
+            PessoaJuridica pj;
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            p = (Parede) (s.createQuery("from Parede where CodConstrucao = :cod")
+            pj = (PessoaJuridica) (s.createQuery("from PessoaJuridica where CodCliente = :cod")
                 .setInteger("cod", Integer.parseInt(consulta)).list().get(0));
             s.getTransaction().commit();
             s.close();
-            return p;
+            return pj;
         } catch(HibernateException e) {
             return null;
         }
     }
-
+    
     @Override
-    public List<Parede> listar() {
+    public List<PessoaJuridica> listar() {
         try {
             List li;
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            li = s.createQuery("from Parede").list();
+            li = s.createQuery("from PessoaJuridica").list();
             s.getTransaction().commit();
             s.close();
             return li;

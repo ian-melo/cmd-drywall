@@ -9,19 +9,19 @@ public interface DAO <K> {
     /**
      * Insere item
      * @param item Item a ser inserido
-     * @return true, se inserido<br/>false, caso contrário
+     * @return true, se inserido<br>false, caso contrário
      */
     public boolean inserir(K item);
     /**
      * Altera item
      * @param item Item a ser alterado
-     * @return true, se alterado<br/>false, caso contrário
+     * @return true, se alterado<br>false, caso contrário
      */
     public boolean alterar(K item);
     /**
      * Exclui item
      * @param item Item a ser excluído
-     * @return true, se excluído<br/>false, caso contrário
+     * @return true, se excluído<br>false, caso contrário
      */
     public boolean excluir(K item);
     /**
