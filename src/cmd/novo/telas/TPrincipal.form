@@ -122,6 +122,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C&#xe1;lculo de Forro de Gesso"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_calForroGessoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_calParedeGesso">
           <Properties>

@@ -100,11 +100,11 @@ public class TCliente extends javax.swing.JInternalFrame {
         pnl_cliente_pai = new javax.swing.JPanel();
         pnl_telefone = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        txt_tel = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txt_tel1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txt_tel2 = new javax.swing.JTextField();
+        txt_tel1 = new javax.swing.JFormattedTextField();
+        txt_tel2 = new javax.swing.JFormattedTextField();
+        txt_tel3 = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setResizable(true);
@@ -169,15 +169,15 @@ public class TCliente extends javax.swing.JInternalFrame {
         );
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("CEP:");
+        jLabel14.setText("CEP:*");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel15.setText("Logradouro:");
+        jLabel15.setText("Logradouro:*");
 
         txt_logradouro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setText("Numero:");
+        jLabel16.setText("Numero:*");
 
         txt_numero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_numero.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -189,15 +189,15 @@ public class TCliente extends javax.swing.JInternalFrame {
         txt_bairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("Bairro:");
+        jLabel17.setText("Bairro:*");
 
         txt_cidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("Cidade:");
+        jLabel18.setText("Cidade:*");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setText("UF:");
+        jLabel19.setText("UF:*");
 
         txt_uf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -383,32 +383,44 @@ public class TCliente extends javax.swing.JInternalFrame {
         );
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Telefone:");
-
-        txt_tel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_tel.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_telFocusLost(evt);
-            }
-        });
+        jLabel11.setText("Telefone:*");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Celular 1:");
 
-        txt_tel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Celular 2:");
+
+        try {
+            txt_tel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txt_tel1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_tel1FocusLost(evt);
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Celular 2:");
-
-        txt_tel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        try {
+            txt_tel2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txt_tel2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_tel2FocusLost(evt);
+            }
+        });
+
+        try {
+            txt_tel3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_tel3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_tel3FocusLost(evt);
             }
         });
 
@@ -419,13 +431,16 @@ public class TCliente extends javax.swing.JInternalFrame {
             .addGroup(pnl_telefoneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(txt_tel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(txt_tel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(pnl_telefoneLayout.createSequentialGroup()
+                        .addGroup(pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txt_tel2)
+                    .addComponent(txt_tel3))
+                .addContainerGap())
         );
         pnl_telefoneLayout.setVerticalGroup(
             pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,16 +448,16 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_tel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_tel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addComponent(txt_tel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_metadeLayout = new javax.swing.GroupLayout(pnl_metade);
@@ -463,7 +478,7 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addGroup(pnl_metadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnl_cliente_pai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnl_telefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -499,7 +514,7 @@ public class TCliente extends javax.swing.JInternalFrame {
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(pnl_endereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnl_metade, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pnl_metade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnl_baixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -527,21 +542,53 @@ public class TCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmb_pessoaActionPerformed
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
-        if (verificaCamposEndereco() == false) {//Parte da parte futura de verificação
+        if (verificaCamposEndereco() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os canpos referentes ao Endereço");
         }
+        if ("".equals(txt_tel1.getText().trim()) || "(  )     -    ".equals(txt_tel1.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Telefone");
+            return;
+        }
+//----> A VERIFICAÇÃO ACIMA DEVE SER FEITO PARA AMBAS AS PESSOAS(CLIENTES)
 
-        //Exemplo de como funciona para pegar valores dentro do JTextField de outro JPanel
-        //Colocar igual ao exemplo do JOptionPane.showMessageDialog em baixo
-        //Ele pega no com um get q foi colocado no JPanel
-        if (cmb_pessoa.getSelectedIndex() == 0) {//Pessoa Juridica
-            JOptionPane.showMessageDialog(null, pJu.getTxt_cnpj_cpf_pnl());
-            JOptionPane.showMessageDialog(null, pJu.getTxt_razaoSocial_pnl());
+        //PESSOA JURIDICA
+        if (cmb_pessoa.getSelectedIndex() == 0) {
+            verificaPessoaJuridica();//verifica os campos
+
+//=======================================
+//     PROGRAMAÇÃO PARA SALVAR NO BD(colocar aqui)
+//=======================================
+            //apagar a mensagem a baixo quando o codigo para salvar no BD for colocado E
+                    //quando a validação for testada
+            JOptionPane.showMessageDialog(null, "Se esta mensagem aparecer, quando algum campo de preenchimento obrigatorio não foi preenchido, há um ERRO");
+
         }
-        if (cmb_pessoa.getSelectedIndex() == 1) {//Pessoa Fisica
-            JOptionPane.showMessageDialog(null, pFi.getTxt_cpf_pnl());
-            JOptionPane.showMessageDialog(null, pFi.getTxt_nome_pnl());
+
+        //PESSOA FISICA
+        if (cmb_pessoa.getSelectedIndex() == 1) {
+             verificaPessoaFisica();//verifica os campos
+
+//=======================================
+//     PROGRAMAÇÃO PARA SALVAR NO BD(colocar aqui)
+//=======================================
+            //apagar a mensagem a baixo quando o codigo para salvar no BD for colocado E 
+                    //quando a validação for testada
+            JOptionPane.showMessageDialog(null, "Se esta mensagem aparecer, quando algum campo de preenchimento obrigatorio não foi preenchido, há um ERRO");
+
         }
+
+//        //Exemplo de como funciona para pegar valores dentro do JTextField de outro JPanel
+//        //Colocar igual ao exemplo do JOptionPane.showMessageDialog em baixo
+//        //Ele pega no com um get q foi colocado no JPanel
+//        if (cmb_pessoa.getSelectedIndex() == 0) {//Pessoa Juridica
+//
+//            JOptionPane.showMessageDialog(null, pJu.getTxt_cnpj_pnl());
+//            JOptionPane.showMessageDialog(null, pJu.getTxt_razaoSocial_pnl());
+//        }
+//        if (cmb_pessoa.getSelectedIndex() == 1) {//Pessoa Fisica
+//            JOptionPane.showMessageDialog(null, pFi.getTxt_cpf_pnl());
+//            JOptionPane.showMessageDialog(null, pFi.getTxt_nome_pnl());
+//        }
 
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
@@ -567,34 +614,6 @@ public class TCliente extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_txt_cepFocusGained
 
-    private void txt_telFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telFocusLost
-        Validacao vali = new Validacao();
-        if (vali.validarTelefone(txt_tel.getText())) {
-            return;
-        }
-
-        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
-
-    }//GEN-LAST:event_txt_telFocusLost
-
-    private void txt_tel1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel1FocusLost
-        Validacao vali = new Validacao();
-        if (vali.validarTelefone(txt_tel1.getText())) {
-            return;
-        }
-
-        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
-    }//GEN-LAST:event_txt_tel1FocusLost
-
-    private void txt_tel2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel2FocusLost
-        Validacao vali = new Validacao();
-        if (vali.validarTelefone(txt_tel2.getText())) {
-            return;
-        }
-
-        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
-    }//GEN-LAST:event_txt_tel2FocusLost
-
     private void txt_numeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_numeroFocusLost
         Validacao vali = new Validacao();
         if (vali.validarNumero(txt_numero.getText())) {
@@ -604,6 +623,30 @@ public class TCliente extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(pnl_telefone, "Verifique o numero");
     }//GEN-LAST:event_txt_numeroFocusLost
 
+    private void txt_tel1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel1FocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarTelefone(txt_tel1.getText())) {
+            return;
+        }
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
+    }//GEN-LAST:event_txt_tel1FocusLost
+
+    private void txt_tel2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel2FocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarTelefone(txt_tel2.getText())) {
+            return;
+        }
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Celular");
+    }//GEN-LAST:event_txt_tel2FocusLost
+
+    private void txt_tel3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel3FocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarTelefone(txt_tel3.getText())) {
+            return;
+        }
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Celular");
+    }//GEN-LAST:event_txt_tel3FocusLost
+
     private void pequenoBug() {
         int x = this.getHeight();
         int y = this.getWidth();
@@ -611,36 +654,73 @@ public class TCliente extends javax.swing.JInternalFrame {
         this.setSize(y, x);
     }
 
+    //Verifica se o campo foi preenchido
+    public void verificaPessoaJuridica() {
+        if ("".equals(pJu.getTxt_cnpj_pnl().trim()) || "  .   .   /    -  ".equals(pJu.getTxt_cnpj_pnl().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha o CNPJ");
+            return;
+        }
+        if ("".equals(pJu.getTxt_razaoSocial_pnl().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha a Razão Social");
+            return;
+        }
+        if ("".equals(pJu.getTxt_datafundacao_pnl().trim()) || "  /  /    ".equals(pJu.getTxt_datafundacao_pnl().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha o <<<<<<<<<<<<<<<<");
+            return;
+        }
+//        Não obrigatorio?
+//        if ("".equals(pJu.getTxt_ramoAtuacao_pnl().trim())) {
+//            JOptionPane.showMessageDialog(null, "Preencha o Ramo de Atuação");
+//            return;
+//        }
+    }
+
+    public void verificaPessoaFisica() {
+        if ("".equals(pFi.getTxt_cpf_pnl().trim()) || "   .   .   -  ".equals(pFi.getTxt_cpf_pnl().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha o CPF");
+            return;
+        }
+        if ("".equals(pFi.getTxt_nome_pnl().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Nome");
+            return;
+        }
+        if ("".equals(pFi.getTxt_dataNasc_pnl().trim()) || "  /  /    ".equals(pFi.getTxt_dataNasc_pnl().trim())) {
+            JOptionPane.showMessageDialog(null, "Preencha a Data");
+            return;
+        }
+
+    }
+
     public void buscaCep(String cep) {
         txt_logradouro.setEnabled(false);
         txt_cidade.setEnabled(false);
         txt_bairro.setEnabled(false);
         txt_uf.setEnabled(false);
-        
-        new Thread(()->{
+
+        new Thread(() -> {
             //Faz a busca para o cep 58043-280
             WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
             //A ferramenta de busca ignora qualquer caracter que não seja numero.
-            
+
             //caso a busca ocorra bem, imprime os resultados.
             if (webServiceCep.wasSuccessful()) {
                 txt_logradouro.setText(webServiceCep.getLogradouroFull());
                 txt_cidade.setText(webServiceCep.getCidade());
                 txt_bairro.setText(webServiceCep.getBairro());
-                //txt_uf.setSelectedItem(webServiceCep.getUf());
                 txt_uf.setText(webServiceCep.getUf());
+                //txt_uf.setSelectedItem(webServiceCep.getUf());
                 System.out.println("Cep: " + webServiceCep.getCep());
                 System.out.println("Logradouro: " + webServiceCep.getLogradouroFull());
                 System.out.println("Bairro: " + webServiceCep.getBairro());
                 System.out.println("Cidade: "
                         + webServiceCep.getCidade() + "/" + webServiceCep.getUf());
-                
+
                 //caso haja problemas imprime as exceções.
             } else {
                 //JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
                 JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
             }
-            
+
             txt_logradouro.setEnabled(true);
             txt_cidade.setEnabled(true);
             txt_bairro.setEnabled(true);
@@ -771,9 +851,9 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_complemento;
     private javax.swing.JTextField txt_logradouro;
     private javax.swing.JTextField txt_numero;
-    private javax.swing.JTextField txt_tel;
-    private javax.swing.JTextField txt_tel1;
-    private javax.swing.JTextField txt_tel2;
+    private javax.swing.JFormattedTextField txt_tel1;
+    private javax.swing.JFormattedTextField txt_tel2;
+    private javax.swing.JFormattedTextField txt_tel3;
     private javax.swing.JTextField txt_uf;
     // End of variables declaration//GEN-END:variables
 /*

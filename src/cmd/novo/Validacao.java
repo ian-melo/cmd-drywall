@@ -29,8 +29,8 @@ public class Validacao {
         if (senha == null || validarVazio(senha) == true) {
             senha = "";
         }
-
-        return (senha.length() >= 8 && senha.length() <= 16);
+//      Foi modificado para 6
+        return (senha.length() >= 6 && senha.length() <= 16);
     }
 
     public boolean validarTelefone(String telefone) {

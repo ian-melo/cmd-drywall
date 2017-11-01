@@ -5,13 +5,14 @@
  */
 package cmd.novo.telas;
 
+import cmd.novo.Validacao;
 import cmd.novo.controle.CadastroFuncionarioControle;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
- * Cadastra novos usuarios
+ * @author Usuario Cadastra novos usuarios
  */
 public class TFuncionario extends javax.swing.JInternalFrame {
 
@@ -52,6 +53,7 @@ public class TFuncionario extends javax.swing.JInternalFrame {
         txt_senha = new javax.swing.JPasswordField();
         txt_senha_confirma = new javax.swing.JPasswordField();
         img_funcionario = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -95,6 +97,10 @@ public class TFuncionario extends javax.swing.JInternalFrame {
 
         img_funcionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cmd/imagens/funcionarios.jpg"))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Limpar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,9 +116,10 @@ public class TFuncionario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(bt_cadastro_func)
-                                .addGap(18, 18, 18)
-                                .addComponent(bt_sair_func)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bt_sair_func))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -149,7 +156,8 @@ public class TFuncionario extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_cadastro_func)
-                    .addComponent(bt_sair_func))
+                    .addComponent(bt_sair_func)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -157,11 +165,36 @@ public class TFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_sair_funcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sair_funcActionPerformed
-
         this.dispose();
     }//GEN-LAST:event_bt_sair_funcActionPerformed
 
     private void bt_cadastro_funcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastro_funcActionPerformed
+        if ("".equals(txt_nome_func.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Preecha o Nome");
+            return;
+        }
+
+        if ("".equals(txt_senha.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Preecha a Senha");
+            return;
+        }
+        if ("".equals(txt_senha_confirma.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Preecha o Confirmar Senha");
+            return;
+        }
+
+        if (txt_senha.getText().trim() != txt_senha_confirma.getText().trim()) {
+            JOptionPane.showMessageDialog(null, "A senha é diferente");
+            txt_senha_confirma.requestFocus();
+            txt_senha_confirma.setText("");
+            return;
+        }
+        Validacao vali = new Validacao();
+        if (vali.validarSenha(txt_senha.getText()) == false) {
+            JOptionPane.showMessageDialog(null, "Sua senha deve estar entre 6 e 16");
+            return;
+        }
+
         CadastroFuncionarioControle cadFunC = new CadastroFuncionarioControle();
 
         if (cadFunC.cadastrarFuncionario(txt_nome_func.getText(), txt_senha.getText()) == true) {
@@ -213,6 +246,7 @@ public class TFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JButton bt_cadastro_func;
     private javax.swing.JButton bt_sair_func;
     private javax.swing.JLabel img_funcionario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class PnlJuridica extends javax.swing.JPanel {
 
-    public String getTxt_cnpj_cpf_pnl() {//Fornece acesso a outras classes
+    public String getTxt_cnpj_pnl() {//Fornece acesso a outras classes
         return txt_cnpj_pnl.getText();
     }
 
@@ -59,10 +59,10 @@ public class PnlJuridica extends javax.swing.JPanel {
         txt_cnpj_pnl = new javax.swing.JFormattedTextField();
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("CNPJ");
+        jLabel7.setText("CNPJ:*");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Razão social: ");
+        jLabel8.setText("Razão social:*");
 
         txt_razaoSocial_pnl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -72,7 +72,7 @@ public class PnlJuridica extends javax.swing.JPanel {
         txt_ramoAtuacao_pnl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Data de fundação:");
+        jLabel10.setText("Data de fundação:*");
 
         try {
             txt_datafundacao_pnl.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));

@@ -13,8 +13,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Usuario
- * Tela principal
+ * @author Usuario Tela principal
  */
 public class TPrincipal extends javax.swing.JFrame {
 
@@ -34,6 +33,8 @@ public class TPrincipal extends javax.swing.JFrame {
             lb_logado.setText(nomeL);
         }
 
+        //descomentar
+        btn_calForroGesso.setVisible(false);
     }
 
     /**
@@ -81,6 +82,11 @@ public class TPrincipal extends javax.swing.JFrame {
         btn_calForroGesso.setBackground(new java.awt.Color(255, 255, 255));
         btn_calForroGesso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_calForroGesso.setText("Cálculo de Forro de Gesso");
+        btn_calForroGesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_calForroGessoActionPerformed(evt);
+            }
+        });
 
         btn_calParedeGesso.setBackground(new java.awt.Color(255, 255, 255));
         btn_calParedeGesso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -315,6 +321,10 @@ public class TPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_cadConstrucaoActionPerformed
 
+    private void btn_calForroGessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calForroGessoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_calForroGessoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,7 +366,7 @@ public class TPrincipal extends javax.swing.JFrame {
                 //new TPrincipal().setVisible(true);//Original, foi alterado quando tentei passar info fo Form Login Para este
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
