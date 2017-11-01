@@ -105,8 +105,6 @@ public class TCliente extends javax.swing.JInternalFrame {
         txt_tel1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txt_tel2 = new javax.swing.JTextField();
-        txt_tel3 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
 
         setClosable(true);
         setResizable(true);
@@ -182,6 +180,11 @@ public class TCliente extends javax.swing.JInternalFrame {
         jLabel16.setText("Numero:");
 
         txt_numero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_numero.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_numeroFocusLost(evt);
+            }
+        });
 
         txt_bairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -383,21 +386,31 @@ public class TCliente extends javax.swing.JInternalFrame {
         jLabel11.setText("Telefone:");
 
         txt_tel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_tel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_telFocusLost(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Celular 1:");
 
         txt_tel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_tel1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_tel1FocusLost(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Celular 2:");
 
         txt_tel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        txt_tel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setText("E-mail:");
+        txt_tel2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_tel2FocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_telefoneLayout = new javax.swing.GroupLayout(pnl_telefone);
         pnl_telefone.setLayout(pnl_telefoneLayout);
@@ -406,18 +419,13 @@ public class TCliente extends javax.swing.JInternalFrame {
             .addGroup(pnl_telefoneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_tel3)
-                    .addGroup(pnl_telefoneLayout.createSequentialGroup()
-                        .addGroup(pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(txt_tel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
-                            .addComponent(txt_tel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20))
-                        .addGap(0, 37, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel11)
+                    .addComponent(txt_tel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(txt_tel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         pnl_telefoneLayout.setVerticalGroup(
             pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,11 +442,7 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_tel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_tel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_metadeLayout = new javax.swing.GroupLayout(pnl_metade);
@@ -562,6 +566,43 @@ public class TCliente extends javax.swing.JInternalFrame {
 //        txt_cep.select(0, 4);
 
     }//GEN-LAST:event_txt_cepFocusGained
+
+    private void txt_telFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_telFocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarTelefone(txt_tel.getText())) {
+            return;
+        }
+
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
+
+    }//GEN-LAST:event_txt_telFocusLost
+
+    private void txt_tel1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel1FocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarTelefone(txt_tel1.getText())) {
+            return;
+        }
+
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
+    }//GEN-LAST:event_txt_tel1FocusLost
+
+    private void txt_tel2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tel2FocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarTelefone(txt_tel2.getText())) {
+            return;
+        }
+
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Telefone");
+    }//GEN-LAST:event_txt_tel2FocusLost
+
+    private void txt_numeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_numeroFocusLost
+        Validacao vali = new Validacao();
+        if (vali.validarNumero(txt_numero.getText())) {
+            return;
+        }
+
+        JOptionPane.showMessageDialog(pnl_telefone, "Verifique o numero");
+    }//GEN-LAST:event_txt_numeroFocusLost
 
     private void pequenoBug() {
         int x = this.getHeight();
@@ -701,7 +742,6 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
@@ -723,7 +763,6 @@ public class TCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_tel;
     private javax.swing.JTextField txt_tel1;
     private javax.swing.JTextField txt_tel2;
-    private javax.swing.JTextField txt_tel3;
     private javax.swing.JTextField txt_uf;
     // End of variables declaration//GEN-END:variables
 /*
