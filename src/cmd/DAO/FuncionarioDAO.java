@@ -1,5 +1,4 @@
-//TODO: Completar
-//TODO: Testar
+//TODO: Estabilizar
 package cmd.DAO;
 
 import cmd.util.HibernateUtil;
@@ -34,7 +33,6 @@ public class FuncionarioDAO implements DAO<Funcionario> {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            item = (Funcionario) s.load(Funcionario.class, item.getCodFuncionario());
             s.update(item);
             s.getTransaction().commit();
             s.close();
@@ -49,7 +47,6 @@ public class FuncionarioDAO implements DAO<Funcionario> {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            item = (Funcionario) s.load(Funcionario.class, item.getCodFuncionario());
             s.delete(item);
             s.getTransaction().commit();
             s.close();
@@ -61,7 +58,18 @@ public class FuncionarioDAO implements DAO<Funcionario> {
 
     @Override
     public Funcionario buscar(String consulta) {
-        return null;
+        try {
+            Funcionario f;
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            f = (Funcionario) (s.createQuery("from Funcionario where CodFuncionario = :cod")
+                .setInteger("cod", Integer.parseInt(consulta)).list().get(0));
+            s.getTransaction().commit();
+            s.close();
+            return f;
+        } catch(HibernateException e) {
+            return null;
+        }
     }
 
     @Override

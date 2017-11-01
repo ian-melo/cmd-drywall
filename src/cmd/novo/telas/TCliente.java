@@ -571,29 +571,40 @@ public class TCliente extends javax.swing.JInternalFrame {
     }
 
     public void buscaCep(String cep) {
-        //Faz a busca para o cep 58043-280
-        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
-        //A ferramenta de busca ignora qualquer caracter que não seja numero.
-
-        //caso a busca ocorra bem, imprime os resultados.
-        if (webServiceCep.wasSuccessful()) {
-            txt_logradouro.setText(webServiceCep.getLogradouroFull());
-            txt_cidade.setText(webServiceCep.getCidade());
-            txt_bairro.setText(webServiceCep.getBairro());
-            //txt_uf.setSelectedItem(webServiceCep.getUf());
-            txt_uf.setText(webServiceCep.getUf());
-            System.out.println("Cep: " + webServiceCep.getCep());
-            System.out.println("Logradouro: " + webServiceCep.getLogradouroFull());
-            System.out.println("Bairro: " + webServiceCep.getBairro());
-            System.out.println("Cidade: "
-                    + webServiceCep.getCidade() + "/" + webServiceCep.getUf());
-
-            //caso haja problemas imprime as exceções.
-        } else {
-            //JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
-
-            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
-        }
+        txt_logradouro.setEnabled(false);
+        txt_cidade.setEnabled(false);
+        txt_bairro.setEnabled(false);
+        txt_uf.setEnabled(false);
+        
+        new Thread(()->{
+            //Faz a busca para o cep 58043-280
+            WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+            //A ferramenta de busca ignora qualquer caracter que não seja numero.
+            
+            //caso a busca ocorra bem, imprime os resultados.
+            if (webServiceCep.wasSuccessful()) {
+                txt_logradouro.setText(webServiceCep.getLogradouroFull());
+                txt_cidade.setText(webServiceCep.getCidade());
+                txt_bairro.setText(webServiceCep.getBairro());
+                //txt_uf.setSelectedItem(webServiceCep.getUf());
+                txt_uf.setText(webServiceCep.getUf());
+                System.out.println("Cep: " + webServiceCep.getCep());
+                System.out.println("Logradouro: " + webServiceCep.getLogradouroFull());
+                System.out.println("Bairro: " + webServiceCep.getBairro());
+                System.out.println("Cidade: "
+                        + webServiceCep.getCidade() + "/" + webServiceCep.getUf());
+                
+                //caso haja problemas imprime as exceções.
+            } else {
+                //JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+                JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+            }
+            
+            txt_logradouro.setEnabled(true);
+            txt_cidade.setEnabled(true);
+            txt_bairro.setEnabled(true);
+            txt_uf.setEnabled(true);
+        }).start();
     }
 
     private void pJuridica() {

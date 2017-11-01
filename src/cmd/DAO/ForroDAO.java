@@ -1,12 +1,10 @@
-//TODO: Implementar
+//TODO: Testar
 package cmd.DAO;
 
-import cmd.entidade.Construcao;
 import cmd.entidade.Forro;
 import cmd.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -17,39 +15,75 @@ public class ForroDAO implements DAO<Forro> {
 
     @Override
     public boolean inserir(Forro item) {
-        /*
         try {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Query q = session.createQuery("from Construcao");
-        List resultList = q.list();
-        System.out.println(resultList.indexOf(0));
-        session.getTransaction().commit();
-        } catch (HibernateException he) {
-            he.printStackTrace();
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            s.save(item);
+            s.getTransaction().commit();
+            s.close();
+            return true;
+        } catch(HibernateException e) {
+            return false;
         }
-        */
-        return false;
     }
 
     @Override
     public boolean alterar(Forro item) {
-        return false;
+        try {
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            s.update(item);
+            s.getTransaction().commit();
+            s.close();
+            return true;
+        } catch(HibernateException e) {
+            return false;
+        }
     }
 
     @Override
     public boolean excluir(Forro item) {
-        return false;
+        try {
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            s.delete(item);
+            s.getTransaction().commit();
+            s.close();
+            return true;
+        } catch(HibernateException e) {
+            return false;
+        }
     }
 
     @Override
     public Forro buscar(String consulta) {
-        return null;
+        try {
+            Forro f;
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            f = (Forro) (s.createQuery("from Forro where CodConstrucao = :cod")
+                .setInteger("cod", Integer.parseInt(consulta)).list().get(0));
+            s.getTransaction().commit();
+            s.close();
+            return f;
+        } catch(HibernateException e) {
+            return null;
+        }
     }
 
     @Override
     public List<Forro> listar() {
-        return null;
+        try {
+            List li;
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            li = s.createQuery("from Forro").list();
+            s.getTransaction().commit();
+            s.close();
+            return li;
+        } catch(HibernateException e) {
+            return null;
+        }
     }
     
 }
