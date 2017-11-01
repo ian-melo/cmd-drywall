@@ -5,6 +5,11 @@
  */
 package cmd.novo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -13,7 +18,7 @@ import java.util.regex.Pattern;
  */
 public class Validacao {
 
-    private boolean validarVazio(String val) {
+    public boolean validarVazio(String val) {
         if ("".equals(val.trim())) {
             return true;
         }
@@ -56,10 +61,40 @@ public class Validacao {
         return Pattern.matches("(\\d{5})-(\\d{3})", cep);
     }
 
+    public boolean validarNumero(String numero) {
+        if (numero == null || validarVazio(numero) == true) {
+            numero = "";
+        }
+        return Pattern.matches("^[0-9]*\\d+[0-9]*$", numero);
+    }
+
+//    public boolean validarData(String data) {
+//        if (data == null || validarVazio(data) == true) {
+//            data = "";
+//        }
+//        return Pattern.matches("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}$", data);
+//    }
+    
+    //Retorna NULL se não for data
+    public Date validarData(String dataString) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataDate = null;
+        try {
+            dataDate = formato.parse(dataString);
+        } catch (ParseException ex) {
+            Logger.getLogger(Validacao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return dataDate;
+
+    }
+
     public boolean validarEstado(String estado) {
         if (estado == null || validarVazio(estado) == true) {
             estado = "";
         }
         return Pattern.matches("([A-Z]{2})", estado);
     }
+
+    //Testar: http://tools.lymas.com.br/regexp_br.php
 }
