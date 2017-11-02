@@ -40,7 +40,7 @@ public class UsuárioDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UsuárioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            ConnectionFactory.fecharConexao(con, stat, rs);
+            ConnectionFactory.fechaConexão(con, stat, rs);
         }
         return check;
     }
@@ -60,7 +60,7 @@ public class UsuárioDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso", "C.M.D Informa!!!", 1);
         } finally {
-            ConnectionFactory.fecharConexao(con, stat);
+            ConnectionFactory.fechaConexão(con, stat);
         }
 
     }

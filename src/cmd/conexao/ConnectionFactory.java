@@ -20,61 +20,61 @@ import java.util.logging.Logger;
 public class ConnectionFactory 
 {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/";
-    private static final String DB = "drywall";
+    private static final String URL = "jdbc:mysql://localhost:3306/drywall";
     private static final String USER = "root";
-    //private static  final String PASS = "";
-    //private static  final String PASS = "root";
     private static  final String PASS = "TCC";
     
-    public static Connection getConexao() {
-        try {
+    public static Connection getConexao()
+    {
+        try 
+        {
             Class.forName(DRIVER);
-            return DriverManager.getConnection((URL+DB), USER, PASS);
-            //return DriverManager.getConnection((URL+"tcc"), USER, PASS);
-        } catch (ClassNotFoundException | SQLException ex) {
-            throw new RuntimeException("Erro na conexão " + URL + DB + "\n", ex);
-        }        
-    }
-    
-    public static Connection getConexao(String DB, String USER, String PASS) {
-        try {
-            Class.forName(DRIVER);
-            return DriverManager.getConnection((URL+DB), USER, PASS);
-        } catch (ClassNotFoundException | SQLException ex) {
-            throw new RuntimeException("Erro na conexão " + URL + DB + "\n", ex);
+            return DriverManager.getConnection(URL, USER, PASS);
+        } 
+        catch (ClassNotFoundException | SQLException ex) 
+        {
+            throw new RuntimeException("Erro na conexão: ", ex);
         }
         
     }
     
-    public static void fecharConexao(Connection con) {
-        try {
-            if(con != null)
-                con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void fecharConexao(Connection con, PreparedStatement stat) 
+    public static void fechaConexão(Connection con) 
     {
-        ConnectionFactory.fecharConexao(con);
-        try {
-            if(stat != null)
-                stat.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-     public static void fecharConexao(Connection con, PreparedStatement stat, ResultSet rs) 
-    {
-            ConnectionFactory.fecharConexao(con, stat);
-            try {
-                if(rs != null)
-                    rs.close();
-            } catch (SQLException ex) {
+            try 
+            {
+               if(con != null)
+                   con.close();
+            } 
+            catch (SQLException ex) 
+            {
                 Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
     
+    public static void fechaConexão(Connection con, PreparedStatement stat) 
+    {
+           fechaConexão(con);
+            try 
+            {
+               if(stat != null)
+                   stat.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+     public static void fechaConexão(Connection con, PreparedStatement stat, ResultSet rs) 
+    {
+           fechaConexão(con, stat);
+            try 
+            {
+               if(rs != null)
+                   rs.close();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 }

@@ -5,16 +5,22 @@
  */
 package cmd.novo.telas;
 
+import cmd.DAO.PedidosDAO;
 import java.awt.Color;
 import cmd.email.SwingEmailSender;
+import cmd.entidade.Pedidos;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Usuario
  */
+
 public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
 
     //Controla a quantidade de Janelas abertas
+
     public static TSolicaoOrcamento solicaoOrcamento;
 
     public static TSolicaoOrcamento getInstancia() {
@@ -27,11 +33,43 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
     /**
      * Creates new form SolicaoOrcamento
      */
-    public TSolicaoOrcamento() {
+    public TSolicaoOrcamento() 
+    {
         initComponents();
         getContentPane().setBackground(Color.WHITE);
         pn_conteudo.setBackground(Color.WHITE);
+        DefaultTableModel modelo = (DefaultTableModel) tb_orcamento.getModel();
+        tb_orcamento.setRowSorter(new TableRowSorter(modelo));
+        ReadTable();
        
+    }
+    public void ReadTable()
+    {
+        DefaultTableModel modelo = (DefaultTableModel) tb_orcamento.getModel();
+        PedidosDAO p = new PedidosDAO();
+        modelo.setNumRows(0);
+        
+        for(Pedidos pe : p.Read())
+        {
+             modelo.addRow(new Object[]{
+               pe.getId(),
+               pe.getAltura(),
+               pe.getLargura(),
+               pe.getQtd_paredes(),
+               pe.getEmail(),
+               pe.getValor(),
+               pe.getAmbiente(),
+               pe.getPossui_porta(),
+               pe.getPossui_janela(),
+               pe.getQtd_porta(),
+               pe.getQtd_janela(),
+               pe.getAltura_porta(),
+               pe.getLargura_porta(),
+               pe.getAltura_janela(),
+               pe.getLargura_janela(),
+               pe.getMao_obra()
+           });
+        }
     }
 
     /**
