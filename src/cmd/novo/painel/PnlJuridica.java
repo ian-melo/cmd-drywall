@@ -7,6 +7,7 @@ package cmd.novo.painel;
 
 import cmd.novo.Validacao;
 import java.awt.Color;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,8 +28,8 @@ public class PnlJuridica extends javax.swing.JPanel {
         return txt_ramoAtuacao_pnl.getText();
     }
 
-    public String getTxt_datafundacao_pnl() {//Fornece acesso a outras classes
-        return txt_datafundacao_pnl.getText();
+    public Date getTxt_datafundacao_pnl() {//Fornece acesso a outras classes
+        return txt_datafundacao_pnl.getDate();
     }
 
     /**
@@ -37,6 +38,7 @@ public class PnlJuridica extends javax.swing.JPanel {
     public PnlJuridica() {
         initComponents();
         pnl_empresa.setBackground(Color.WHITE);
+        txt_datafundacao_pnl.setBackground(Color.WHITE);
     }
 
     /**
@@ -55,8 +57,8 @@ public class PnlJuridica extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         txt_ramoAtuacao_pnl = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txt_datafundacao_pnl = new javax.swing.JFormattedTextField();
         txt_cnpj_pnl = new javax.swing.JFormattedTextField();
+        txt_datafundacao_pnl = new com.toedter.calendar.JDateChooser();
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("CNPJ:*");
@@ -75,17 +77,6 @@ public class PnlJuridica extends javax.swing.JPanel {
         jLabel10.setText("Data de fundação:*");
 
         try {
-            txt_datafundacao_pnl.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txt_datafundacao_pnl.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_datafundacao_pnlFocusLost(evt);
-            }
-        });
-
-        try {
             txt_cnpj_pnl.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -96,6 +87,8 @@ public class PnlJuridica extends javax.swing.JPanel {
             }
         });
 
+        txt_datafundacao_pnl.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout pnl_empresaLayout = new javax.swing.GroupLayout(pnl_empresa);
         pnl_empresa.setLayout(pnl_empresaLayout);
         pnl_empresaLayout.setHorizontalGroup(
@@ -103,7 +96,7 @@ public class PnlJuridica extends javax.swing.JPanel {
             .addGroup(pnl_empresaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_empresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txt_datafundacao_pnl)
+                    .addComponent(txt_datafundacao_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_razaoSocial_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
@@ -131,8 +124,8 @@ public class PnlJuridica extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_datafundacao_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(txt_datafundacao_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -146,13 +139,6 @@ public class PnlJuridica extends javax.swing.JPanel {
             .addComponent(pnl_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_datafundacao_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_datafundacao_pnlFocusLost
-        Validacao vali = new Validacao();
-        if (vali.validarData(txt_datafundacao_pnl.getText()) == null) {
-            JOptionPane.showMessageDialog(null, "Verificar a data");
-        }
-    }//GEN-LAST:event_txt_datafundacao_pnlFocusLost
 
     private void txt_cnpj_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cnpj_pnlFocusLost
         Validacao vali = new Validacao();
@@ -169,7 +155,7 @@ public class PnlJuridica extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel pnl_empresa;
     private javax.swing.JFormattedTextField txt_cnpj_pnl;
-    private javax.swing.JFormattedTextField txt_datafundacao_pnl;
+    private com.toedter.calendar.JDateChooser txt_datafundacao_pnl;
     private javax.swing.JTextField txt_ramoAtuacao_pnl;
     private javax.swing.JTextField txt_razaoSocial_pnl;
     // End of variables declaration//GEN-END:variables

@@ -503,7 +503,8 @@ public class TMaterial extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
-        this.disable();
+        //this.disable
+        this.hide();
 
 //        Teste tt = new Teste();
 //        tt.setVisible(true);

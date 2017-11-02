@@ -7,6 +7,7 @@ package cmd.novo.painel;
 
 import cmd.novo.Validacao;
 import java.awt.Color;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,8 +22,8 @@ public class PnlFisica extends javax.swing.JPanel {
     public String getTxt_cpf_pnl() {//Fornece acesso a outras classes
         return txt_cpf_pnl.getText();
     }
-    public String getTxt_dataNasc_pnl() {//Fornece acesso a outras classes
-        return txt_dataNasc_pnl.getText();
+    public Date getTxt_dataNasc_pnl() {//Fornece acesso a outras classes
+        return txt_dataNasc_pnl.getDate();
     }
         
     
@@ -35,6 +36,8 @@ public class PnlFisica extends javax.swing.JPanel {
         initComponents();
 
         pnl_pessoa.setBackground(Color.WHITE);
+        
+        txt_dataNasc_pnl.setBackground(Color.WHITE);
     }
 
     /**
@@ -51,8 +54,8 @@ public class PnlFisica extends javax.swing.JPanel {
         txt_nome_pnl = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txt_dataNasc_pnl = new javax.swing.JFormattedTextField();
         txt_cpf_pnl = new javax.swing.JFormattedTextField();
+        txt_dataNasc_pnl = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nome:*");
@@ -71,17 +74,6 @@ public class PnlFisica extends javax.swing.JPanel {
         jLabel3.setText("Data de Nascimento:*");
 
         try {
-            txt_dataNasc_pnl.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txt_dataNasc_pnl.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_dataNasc_pnlFocusLost(evt);
-            }
-        });
-
-        try {
             txt_cpf_pnl.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -92,6 +84,8 @@ public class PnlFisica extends javax.swing.JPanel {
             }
         });
 
+        txt_dataNasc_pnl.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout pnl_pessoaLayout = new javax.swing.GroupLayout(pnl_pessoa);
         pnl_pessoa.setLayout(pnl_pessoaLayout);
         pnl_pessoaLayout.setHorizontalGroup(
@@ -99,12 +93,12 @@ public class PnlFisica extends javax.swing.JPanel {
             .addGroup(pnl_pessoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_pessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txt_dataNasc_pnl)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_nome_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_cpf_pnl))
+                    .addComponent(txt_cpf_pnl)
+                    .addComponent(txt_dataNasc_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_pessoaLayout.setVerticalGroup(
@@ -121,8 +115,8 @@ public class PnlFisica extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_dataNasc_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(txt_dataNasc_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         txt_nome_pnl.getAccessibleContext().setAccessibleName("");
@@ -138,14 +132,6 @@ public class PnlFisica extends javax.swing.JPanel {
             .addComponent(pnl_pessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_dataNasc_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dataNasc_pnlFocusLost
-       Validacao vali = new Validacao();
-       if( vali.validarData(txt_dataNasc_pnl.getText()) == null){
-           JOptionPane.showMessageDialog(txt_nome_pnl, "Verificar a data");
-       }
-       //JOptionPane.showMessageDialog(txt_nome_pnl, vali.validarData(txt_dataNasc_pnl.getText()));
-    }//GEN-LAST:event_txt_dataNasc_pnlFocusLost
 
     private void txt_cpf_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpf_pnlFocusLost
        Validacao vali = new Validacao();
@@ -168,7 +154,7 @@ public class PnlFisica extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel pnl_pessoa;
     private javax.swing.JFormattedTextField txt_cpf_pnl;
-    private javax.swing.JFormattedTextField txt_dataNasc_pnl;
+    private com.toedter.calendar.JDateChooser txt_dataNasc_pnl;
     private javax.swing.JTextField txt_nome_pnl;
     // End of variables declaration//GEN-END:variables
 }

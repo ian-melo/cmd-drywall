@@ -668,7 +668,7 @@ public class TCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Preencha a Razão Social");
             return false;
         }
-        if ("".equals(pJu.getTxt_datafundacao_pnl().trim()) || "  /  /    ".equals(pJu.getTxt_datafundacao_pnl().trim())) {
+        if (pJu.getTxt_datafundacao_pnl() == null) {
             JOptionPane.showMessageDialog(null, "Preencha o <<<<<<<<<<<<<<<<");
             return false;
         }
@@ -689,7 +689,7 @@ public class TCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Preencha o Nome");
             return false;
         }
-        if ("".equals(pFi.getTxt_dataNasc_pnl().trim()) || "  /  /    ".equals(pFi.getTxt_dataNasc_pnl().trim())) {
+        if (pFi.getTxt_dataNasc_pnl() == null) {
             JOptionPane.showMessageDialog(null, "Preencha a Data");
             return false;
         }
