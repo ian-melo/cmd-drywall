@@ -37,7 +37,7 @@ public class Validacao {
         if (telefone == null || validarVazio(telefone) == true) {
             telefone = "";
         }
-        return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{3,4})", telefone);
+        return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{4})", telefone);
     }
 
     public boolean validarCpf(String cpf) {

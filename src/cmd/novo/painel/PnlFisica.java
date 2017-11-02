@@ -144,6 +144,7 @@ public class PnlFisica extends javax.swing.JPanel {
        if( vali.validarData(txt_dataNasc_pnl.getText()) == null){
            JOptionPane.showMessageDialog(txt_nome_pnl, "Verificar a data");
        }
+       //JOptionPane.showMessageDialog(txt_nome_pnl, vali.validarData(txt_dataNasc_pnl.getText()));
     }//GEN-LAST:event_txt_dataNasc_pnlFocusLost
 
     private void txt_cpf_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpf_pnlFocusLost

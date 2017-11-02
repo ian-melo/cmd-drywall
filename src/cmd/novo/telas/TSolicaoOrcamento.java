@@ -63,14 +63,15 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
         tb_orcamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_orcamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Possui Portas", "Possui Janelas", "Quantidade de Portas (Se houver)", "Quantidade Janelas (Se houver)"
+                "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Quantidade de Portas (Se houver)", "Quantidade Janelas (Se houver)", "Possui Portas", "Altura da Porta", "Largura da Porta", "Possui Janelas", "Altura da Janela", "Largura da Janela", "Mao de Obra"
             }
         ));
+        tb_orcamento.setPreferredSize(new java.awt.Dimension(1250, 48));
         jScrollPane1.setViewportView(tb_orcamento);
 
         javax.swing.GroupLayout pn_conteudoLayout = new javax.swing.GroupLayout(pn_conteudo);
@@ -106,7 +107,7 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_enviarEmail)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
