@@ -6,6 +6,7 @@
 package cmd.novo.telas;
 
 import java.awt.Color;
+import cmd.email.SwingEmailSender;
 
 /**
  *
@@ -114,7 +115,8 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_enviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarEmailActionPerformed
-        // TODO add your handling code here:
+        SwingEmailSender email = new SwingEmailSender();
+        email.show();
     }//GEN-LAST:event_btn_enviarEmailActionPerformed
 
 
