@@ -5,6 +5,7 @@
  */
 package cmd.novo.telas;
 
+import cmd.novo.GerenteDeJanelas;
 import java.awt.Color;
 
 /**
@@ -12,6 +13,8 @@ import java.awt.Color;
  * @author Usuario
  */
 public class TCalculoOrcamento extends javax.swing.JInternalFrame {
+
+    GerenteDeJanelas gerenteDeJanelas;
 
     public static TCalculoOrcamento tCalculoOrcamento;
 
@@ -27,6 +30,8 @@ public class TCalculoOrcamento extends javax.swing.JInternalFrame {
      */
     public TCalculoOrcamento() {
         initComponents();
+        gerenteDeJanelas = new GerenteDeJanelas(TPrincipal.jDesktopPane1);
+
         getContentPane().setBackground(Color.WHITE);
     }
 
@@ -122,10 +127,20 @@ public class TCalculoOrcamento extends javax.swing.JInternalFrame {
         btn_cadastrarOrca.setBackground(new java.awt.Color(153, 153, 255));
         btn_cadastrarOrca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_cadastrarOrca.setText("Cadastrar um Orçamento/Tipologia");
+        btn_cadastrarOrca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrarOrcaActionPerformed(evt);
+            }
+        });
 
         btn_cadCliente.setBackground(new java.awt.Color(153, 153, 255));
         btn_cadCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_cadCliente.setText("Cadastrar um Cliente");
+        btn_cadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadClienteActionPerformed(evt);
+            }
+        });
 
         btn_salvar.setBackground(new java.awt.Color(153, 153, 255));
         btn_salvar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -225,18 +240,41 @@ public class TCalculoOrcamento extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_cadastrarOrca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_salvar)
-                    .addComponent(btn_limpar)
-                    .addComponent(btn_sair)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
-                        .addComponent(lb_valorFinal)))
+                        .addComponent(lb_valorFinal))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_salvar)
+                        .addComponent(btn_limpar)
+                        .addComponent(btn_sair)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_cadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadClienteActionPerformed
+        try {
+            gerenteDeJanelas.abrirJanelas(TCliente.getInstancia());
+        } catch (IllegalArgumentException e) {
+            gerenteDeJanelas.abrirJanelas(TCliente.getInstancia());
+            //System.err.println(e);//ERRO ! - Erro - contornado.... retirar todo o try
+
+        }
+
+
+    }//GEN-LAST:event_btn_cadClienteActionPerformed
+
+    private void btn_cadastrarOrcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarOrcaActionPerformed
+        try {
+            gerenteDeJanelas.abrirJanelas(TCalculo.getInstancia());
+        } catch (IllegalArgumentException e) {
+            gerenteDeJanelas.abrirJanelas(TCalculo.getInstancia());
+            //System.err.println(e);//ERRO ! - Erro - contornado.... retirar todo o try
+
+        }
+    }//GEN-LAST:event_btn_cadastrarOrcaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

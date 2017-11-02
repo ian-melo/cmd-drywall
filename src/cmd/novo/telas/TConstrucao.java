@@ -9,6 +9,7 @@ import cmd.controle.ConstrucaoControle;
 import cmd.entidade.Construcao;
 import cmd.entidade.Forro;
 import cmd.entidade.Parede;
+import cmd.novo.GerenteDeJanelas;
 import java.awt.Color;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class TConstrucao extends javax.swing.JInternalFrame {
+
+    GerenteDeJanelas gerenteDeJanelas;
 
     public static TConstrucao construcaoT;
 
@@ -35,6 +38,8 @@ public class TConstrucao extends javax.swing.JInternalFrame {
      */
     public TConstrucao() {
         initComponents();
+        gerenteDeJanelas = new GerenteDeJanelas(TPrincipal.jDesktopPane1);
+
         getContentPane().setBackground(Color.WHITE);
         pnl_encontra.setBackground(Color.WHITE);
         pnl_protecao.setBackground(Color.WHITE);
@@ -493,42 +498,54 @@ public class TConstrucao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_chk_stActionPerformed
 
     private void btn_procurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_procurarActionPerformed
-        //Retorna, caso o campo esteja inválido ou não foi encontrado construção
-        if (!validarCodigo()) {
-            return;
-        }
-        //Criação dos objetos
-        Construcao co = null;
-        Forro fo;
-        Parede pa;
-        //Busca da construção
-        fo = controle.buscarForro(txt_id.getText());
-        pa = controle.buscarParede(txt_id.getText());
-        //Caso forro
-        if (fo != null) {
-            chk_rf.setSelected(fo.getEhRf());
-            chk_ru.setSelected(fo.getEhRu());
-            chk_st.setSelected(fo.getEhSt());
-            co = fo.getConstrucao();
-            //Caso parede
-        } else if (pa != null) {
-            txt_montante.setText(pa.getMontante().toString());
-            txt_alturaLim.setText(pa.getAlturaLimite().toString());
-            chk_rf.setSelected(pa.getEhRf());
-            chk_ru.setSelected(pa.getEhRu());
-            chk_st.setSelected(pa.getEhSt());
-            co = pa.getConstrucao();
-        }
-        //Construção
-        if (co != null) {
-            co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
-            txt_descricao.setText(co.getDescricao());
-            txt_detalhes.setText(co.getDetalhes());
-            cmb_qualidade.setSelectedItem(co.getQualidade().toString());
+        if ("".equals(txt_id.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma construção");
+            try {
+                gerenteDeJanelas.abrirJanelas(TConstrucaoSelecao.getInstancia());
+            } catch (IllegalArgumentException e) {
+                gerenteDeJanelas.abrirJanelas(TConstrucaoSelecao.getInstancia());
+                //System.err.println(e);//ERRO ! - Erro - contornado.... retirar todo o try
 
+            }
+        } else {
+
+//Retorna, caso o campo esteja inválido ou não foi encontrado construção
+            if (!validarCodigo()) {
+                return;
+            }
+            //Criação dos objetos
+            Construcao co = null;
+            Forro fo;
+            Parede pa;
+            //Busca da construção
+            fo = controle.buscarForro(txt_id.getText());
+            pa = controle.buscarParede(txt_id.getText());
+            //Caso forro
+            if (fo != null) {
+                chk_rf.setSelected(fo.getEhRf());
+                chk_ru.setSelected(fo.getEhRu());
+                chk_st.setSelected(fo.getEhSt());
+                co = fo.getConstrucao();
+                //Caso parede
+            } else if (pa != null) {
+                txt_montante.setText(pa.getMontante().toString());
+                txt_alturaLim.setText(pa.getAlturaLimite().toString());
+                chk_rf.setSelected(pa.getEhRf());
+                chk_ru.setSelected(pa.getEhRu());
+                chk_st.setSelected(pa.getEhSt());
+                co = pa.getConstrucao();
+            }
+            //Construção
+            if (co != null) {
+                co.setCodConstrucao(Integer.parseInt(txt_id.getText()));
+                txt_descricao.setText(co.getDescricao());
+                txt_detalhes.setText(co.getDetalhes());
+                cmb_qualidade.setSelectedItem(co.getQualidade().toString());
+
+            }
+            //Habilita exclusão e alteração
+            habilitarAlteravel(true);
         }
-        //Habilita exclusão e alteração
-        habilitarAlteravel(true);
     }//GEN-LAST:event_btn_procurarActionPerformed
 
     private void btn_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarActionPerformed
