@@ -102,12 +102,12 @@ public class TSolicaoOrcamento extends javax.swing.JInternalFrame {
         tb_orcamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_orcamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Possui Porta", "Possui Janela", "Quantidade de portas", "Quantidade de Janelas", "Altura da Porta", "Largura da porta", "Altura da Janela", "Largura da Janela", "Mao de Obra"
+                "Altura", "Largura", "Quantidade de Paredes", "Email", "Valor disponivel/desejado", "Ambiente", "Quantidade de Portas (Se houver)", "Quantidade Janelas (Se houver)", "Possui Portas", "Altura da Porta", "Largura da Porta", "Possui Janelas", "Altura da Janela", "Largura da Janela", "Mao de Obra"
             }
         ));
         tb_orcamento.setPreferredSize(new java.awt.Dimension(1250, 48));

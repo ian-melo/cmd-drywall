@@ -5,16 +5,26 @@
  */
 package cmd.novo.telas;
 
+import cmd.entidade.Cliente;
+import cmd.entidade.Endereco;
+import cmd.entidade.PessoaJuridica;
+import cmd.entidade.Telefone;
+import cmd.entidade.TelefoneId;
 import cmd.novo.Validacao;
 import cmd.novo.cep.WebServiceCep;
+import cmd.novo.controle.CadastroClientesControle;
 import cmd.novo.painel.PnlJuridica;
 import cmd.novo.painel.PnlFisica;
 //import cmd.novo.painel.PnlTelefone;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -23,7 +33,7 @@ import javax.swing.JTextField;
  * @author Usuario
  */
 public class TCliente extends javax.swing.JInternalFrame {
-
+    
     public static TCliente clienteT;
     PnlFisica pFi = new PnlFisica();
     PnlJuridica pJu = new PnlJuridica();
@@ -49,7 +59,7 @@ public class TCliente extends javax.swing.JInternalFrame {
         pnl_cliente_pai.setBackground(Color.WHITE);
         pnl_metade.setBackground(Color.WHITE);
         pnl_baixo.setBackground(Color.WHITE);
-
+        
         pJuridica();//Inicai com Pessoa Juridica Selecionado
         colocaDataAtual();
 
@@ -528,7 +538,7 @@ public class TCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_SairActionPerformed
 
     private void cmb_pessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_pessoaActionPerformed
-
+        
         if (cmb_pessoa.getSelectedIndex() == 0) {//Pessoa Juridica
             pJuridica();
         }
@@ -551,7 +561,8 @@ public class TCliente extends javax.swing.JInternalFrame {
         }
 //----> A VERIFICAÇÃO ACIMA DEVE SER FEITO PARA AMBAS AS PESSOAS(CLIENTES)
 
-        //PESSOA JURIDICA
+
+//======PESSOA JURIDICA====================================================================
         if (cmb_pessoa.getSelectedIndex() == 0) {
             if (verificaPessoaJuridica() == false) {//verifica os campos
                 return;
@@ -560,10 +571,60 @@ public class TCliente extends javax.swing.JInternalFrame {
 //=======================================
 //     PROGRAMAÇÃO PARA SALVAR NO BD(colocar aqui)
 //=======================================
+            CadastroClientesControle cadCliC = new CadastroClientesControle();
+            Cliente cli = new Cliente();
+            Endereco end = new Endereco();
+            PessoaJuridica pJur = new PessoaJuridica();
+            Telefone tel = new Telefone();
+            TelefoneId telId = new TelefoneId();
+            
+            end.setBairro(txt_bairro.getText());
+            end.setCep(txt_cep.getText());
+            end.setCidade(txt_cidade.getText());
+            end.setComplemento(txt_complemento.getText());
+            end.setLogradouro(txt_logradouro.getText());
+            end.setNumero(txt_numero.getText());
+            end.setUf(txt_uf.getText());
+            end.setXdead(false);
+            
+            pJur.setCnpj(pJu.getTxt_cnpj_pnl());
+            pJur.setDataFundacao(pJur.getDataFundacao());
+            pJur.setRamoAtuacao(pJur.getRamoAtuacao());
+            pJur.setRazaoSocial(pJur.getRazaoSocial());
+            pJur.setXdead(false);
+            
+            telId.setNumero(txt_tel1.getText());
+            
+            tel.setId(telId);
+            
+            
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date dataDate = null;
+            try {
+                dataDate = formato.parse(lb_dataInscricao.getText());
+            } catch (ParseException ex) {
+                Logger.getLogger(Validacao.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+            
+            cli.setCodCliente(null);
+            cli.setOrcamentos(null);
+            cli.setDataInscricao(dataDate);
+            cli.setEndereco(end);
+            cli.setPessoaJuridica(pJur);
+            cli.setTelefones(null);//Quando for verificar o pq não esta cadastrando mais tel no BD começar por AQUI é um vetor
+            cli.setXdead(false);
+            
+            if (cadCliC.inserir(cli) == true) {
+                JOptionPane.showMessageDialog(null, "Cadastrado");
+                
+            }
+
             //apagar a mensagem a baixo quando o codigo para salvar no BD for colocado E
             //quando a validação for testada
             JOptionPane.showMessageDialog(null, "Se esta mensagem aparecer, quando algum campo de preenchimento obrigatorio não foi preenchido, há um ERRO");
-
+            
         }
 
         //PESSOA FISICA
@@ -578,7 +639,7 @@ public class TCliente extends javax.swing.JInternalFrame {
             //apagar a mensagem a baixo quando o codigo para salvar no BD for colocado E 
             //quando a validação for testada
             JOptionPane.showMessageDialog(null, "Se esta mensagem aparecer, quando algum campo de preenchimento obrigatorio não foi preenchido, há um ERRO");
-
+            
         }
 
 //        //Exemplo de como funciona para pegar valores dentro do JTextField de outro JPanel
@@ -598,7 +659,7 @@ public class TCliente extends javax.swing.JInternalFrame {
 
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
         Validacao vali = new Validacao();
-
+        
         if (vali.validarCep(txt_cep.getText())) {
             buscaCep(txt_cep.getText());
         } else {
@@ -623,7 +684,7 @@ public class TCliente extends javax.swing.JInternalFrame {
         if (vali.validarNumero(txt_numero.getText())) {
             return;
         }
-
+        
         JOptionPane.showMessageDialog(pnl_telefone, "Verifique o numero");
     }//GEN-LAST:event_txt_numeroFocusLost
 
@@ -650,7 +711,7 @@ public class TCliente extends javax.swing.JInternalFrame {
         }
         JOptionPane.showMessageDialog(pnl_telefone, "Verifique o Celular 2");
     }//GEN-LAST:event_txt_cel2FocusLost
-
+    
     private void pequenoBug() {
         int x = this.getHeight();
         int y = this.getWidth();
@@ -679,7 +740,7 @@ public class TCliente extends javax.swing.JInternalFrame {
 //        }
         return true;
     }
-
+    
     public boolean verificaPessoaFisica() {
         if ("".equals(pFi.getTxt_cpf_pnl().trim()) || "   .   .   -  ".equals(pFi.getTxt_cpf_pnl().trim())) {
             JOptionPane.showMessageDialog(null, "Preencha o CPF");
@@ -693,16 +754,16 @@ public class TCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Preencha a Data");
             return false;
         }
-
+        
         return true;
     }
-
+    
     public void buscaCep(String cep) {
         txt_logradouro.setEnabled(false);
         txt_cidade.setEnabled(false);
         txt_bairro.setEnabled(false);
         txt_uf.setEnabled(false);
-
+        
         new Thread(() -> {
             //Faz a busca para o cep 58043-280
             WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
@@ -726,14 +787,14 @@ public class TCliente extends javax.swing.JInternalFrame {
                 //JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
                 JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
             }
-
+            
             txt_logradouro.setEnabled(true);
             txt_cidade.setEnabled(true);
             txt_bairro.setEnabled(true);
             txt_uf.setEnabled(true);
         }).start();
     }
-
+    
     private void pJuridica() {
         pnl_cliente_pai.removeAll();//remove cliente anterior
 
@@ -742,7 +803,7 @@ public class TCliente extends javax.swing.JInternalFrame {
 
         pnl_cliente_pai.add(pJu);
     }
-
+    
     private void pFisica() {
         pnl_cliente_pai.removeAll();//remove cliente anterior
 
@@ -751,19 +812,19 @@ public class TCliente extends javax.swing.JInternalFrame {
 
         pnl_cliente_pai.add(pFi);
     }
-
+    
     private void colocaDataAtual() {
         try {
-
+            
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             lb_dataInscricao.setText(sdf.format(new Date(System.currentTimeMillis())));
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        
     }
-
+    
     private boolean verificaCamposEndereco() {
 //Verifica se todos os campos JTetField q estão dentro do pnl_endereco
 //estão sem nada exceto o campo txt_complemento q pode ficar sem nada
@@ -1078,5 +1139,5 @@ public class TCliente extends javax.swing.JInternalFrame {
      *
      *
      */
-
+    
 }
