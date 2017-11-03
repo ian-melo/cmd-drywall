@@ -1,9 +1,8 @@
 package cmd.testes;
 
-import cmd.DAO.DAO;
-import cmd.DAO.FuncionarioDAO;
-import cmd.entidade.Construcao;
-import cmd.entidade.Funcionario;
+import cmd.DAO.*;
+import cmd.entidade.*;
+import java.math.BigDecimal;
 
 public class TesteDAO {
     
@@ -21,16 +20,41 @@ public class TesteDAO {
 //        System.out.println(f2.getLogin());
         
         //Construção-Forro-Parede
+        Forro f = new Forro();
+        Parede p = new Parede();
         Construcao c = new Construcao();
-//        //c.setCodFuncionario(4);
-//        c.setLogin("fun_teste21");
-//        c.setSenha("fun_senha21");
-//        c.setXdead(Boolean.FALSE);
-//        c.setRegistroAtividades(null);
-//        DAO dao = new ConstrucaoDAO();
-//        dao.inserir(c);
-//        Construcao c2 = (Construcao) dao.buscar("1");
-//        System.out.println(c2.getLogin());
+        
+        p.setAlturaLimite(BigDecimal.valueOf(10));
+        p.setEhRf(Boolean.TRUE);
+        p.setEhRu(Boolean.FALSE);
+        p.setEhSt(Boolean.TRUE);
+        p.setMontante(BigDecimal.valueOf(0.038));
+        p.setXdead(false);
+        
+        f.setEhRf(true);
+        f.setEhRu(false);
+        f.setEhSt(true);
+        f.setXdead(Boolean.FALSE);
+        
+        c.setCodConstrucao(1);
+        c.setDescricao("con_teste11");
+        c.setDetalhes("con_teste11");
+        c.setQualidade(10);
+        c.setXdead(Boolean.FALSE);
+        
+        c.setForro(f);
+        c.setParede(p);
+        f.setConstrucao(c);
+        p.setConstrucao(c);
+        
+        DAO dao = new ConstrucaoDAO();
+        DAO daof = new ForroDAO();
+        DAO daop = new ParedeDAO();
+        
+        daop.excluir(p);
+        //dao.inserir(c);
+        //Construcao c2 = (Construcao) dao.buscar("1");
+        //System.out.println(c2.getDescricao());
 
         System.exit(0);
     }

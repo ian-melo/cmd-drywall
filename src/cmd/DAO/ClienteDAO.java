@@ -1,4 +1,3 @@
-//TODO: Completar
 //TODO: Testar
 package cmd.DAO;
 
@@ -31,21 +30,60 @@ public class ClienteDAO implements DAO<Cliente> {
 
     @Override
     public boolean alterar(Cliente item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            s.update(item);
+            s.getTransaction().commit();
+            s.close();
+            return true;
+        } catch(HibernateException e) {
+            return false;
+        }
     }
 
     @Override
     public boolean excluir(Cliente item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            s.delete(item);
+            s.getTransaction().commit();
+            s.close();
+            return true;
+        } catch(HibernateException e) {
+            return false;
+        }
     }
 
     @Override
     public Cliente buscar(String consulta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Cliente c;
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            c = (Cliente) (s.createQuery("from Cliente where CodCliente = :cod")
+                .setInteger("cod", Integer.parseInt(consulta)).list().get(0));
+            s.getTransaction().commit();
+            s.close();
+            return c;
+        } catch(HibernateException e) {
+            return null;
+        }
     }
 
     @Override
     public List<Cliente> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List li;
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            li = s.createQuery("from Cliente").list();
+            s.getTransaction().commit();
+            s.close();
+            return li;
+        } catch(HibernateException e) {
+            return null;
+        }
     }
 }
