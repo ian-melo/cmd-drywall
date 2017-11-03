@@ -1,20 +1,20 @@
 //TODO: Testar
 package cmd.DAO;
 
-import cmd.entidade.Telefone;
+import cmd.entidade.Orcamento;
 import cmd.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- * Classe de DAO para Telefone
+ * Classe de DAO para Orçamento
  * @author ian-melo
  */
-public class TelefoneDAO implements DAO<Telefone> {
+public class OrcamentoDAO implements DAO<Orcamento> {
 
     @Override
-    public boolean inserir(Telefone item) {
+    public boolean inserir(Orcamento item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -28,7 +28,7 @@ public class TelefoneDAO implements DAO<Telefone> {
     }
 
     @Override
-    public boolean alterar(Telefone item) {
+    public boolean alterar(Orcamento item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -42,7 +42,7 @@ public class TelefoneDAO implements DAO<Telefone> {
     }
 
     @Override
-    public boolean excluir(Telefone item) {
+    public boolean excluir(Orcamento item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -55,37 +55,29 @@ public class TelefoneDAO implements DAO<Telefone> {
         }
     }
 
-    /**
-     * Busca item
-     * @param consulta Parâmetro de busca, necessário estar no modelo
-     * "codCliente,numero"
-     * @return item encontrado
-     */
     @Override
-    public Telefone buscar(String consulta) {
+    public Orcamento buscar(String consulta) {
         try {
-            String[] vals = consulta.split(",");
-            Telefone t;
+            Orcamento o;
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            t = (Telefone) (s.createQuery("from Telefone where CodCliente = :cod and Numero = :num")
-                .setInteger("cod", Integer.parseInt(vals[0]))
-                .setInteger("num", Integer.parseInt(vals[1])).list().get(0));
+            o = (Orcamento) (s.createQuery("from Orcamento where CodOrcamento = :cod")
+                .setInteger("cod", Integer.parseInt(consulta)).list().get(0));
             s.getTransaction().commit();
             s.close();
-            return t;
+            return o;
         } catch(HibernateException e) {
             return null;
         }
     }
 
     @Override
-    public List<Telefone> listar() {
+    public List<Orcamento> listar() {
         try {
             List li;
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            li = s.createQuery("from Telefone").list();
+            li = s.createQuery("from Orcamento").list();
             s.getTransaction().commit();
             s.close();
             return li;

@@ -1,20 +1,20 @@
 //TODO: Testar
 package cmd.DAO;
 
-import cmd.entidade.Telefone;
+import cmd.entidade.MaterialItem;
 import cmd.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- * Classe de DAO para Telefone
+ * Classe de DAO para materiais instanciados em item
  * @author ian-melo
  */
-public class TelefoneDAO implements DAO<Telefone> {
+public class MaterialItemDAO implements DAO<MaterialItem> {
 
     @Override
-    public boolean inserir(Telefone item) {
+    public boolean inserir(MaterialItem item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -28,7 +28,7 @@ public class TelefoneDAO implements DAO<Telefone> {
     }
 
     @Override
-    public boolean alterar(Telefone item) {
+    public boolean alterar(MaterialItem item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -42,7 +42,7 @@ public class TelefoneDAO implements DAO<Telefone> {
     }
 
     @Override
-    public boolean excluir(Telefone item) {
+    public boolean excluir(MaterialItem item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -58,34 +58,34 @@ public class TelefoneDAO implements DAO<Telefone> {
     /**
      * Busca item
      * @param consulta Parâmetro de busca, necessário estar no modelo
-     * "codCliente,numero"
+     * "codMaterial,codItem"
      * @return item encontrado
      */
     @Override
-    public Telefone buscar(String consulta) {
+    public MaterialItem buscar(String consulta) {
         try {
             String[] vals = consulta.split(",");
-            Telefone t;
+            MaterialItem o;
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            t = (Telefone) (s.createQuery("from Telefone where CodCliente = :cod and Numero = :num")
-                .setInteger("cod", Integer.parseInt(vals[0]))
-                .setInteger("num", Integer.parseInt(vals[1])).list().get(0));
+            o = (MaterialItem) (s.createQuery("from MaterialItem where CodMaterial = :codm and CodItem = :codi")
+                .setInteger("codm", Integer.parseInt(vals[0]))
+                .setInteger("codi", Integer.parseInt(vals[1])).list().get(0));
             s.getTransaction().commit();
             s.close();
-            return t;
+            return o;
         } catch(HibernateException e) {
             return null;
         }
     }
 
     @Override
-    public List<Telefone> listar() {
+    public List<MaterialItem> listar() {
         try {
             List li;
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
-            li = s.createQuery("from Telefone").list();
+            li = s.createQuery("from MaterialItem").list();
             s.getTransaction().commit();
             s.close();
             return li;
