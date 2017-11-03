@@ -38,7 +38,7 @@ public class SwingEmailSender extends JFrame {
 	private JTextField fieldSubject = new JTextField(30);
 	
 	private JButton buttonSend = new JButton("SEND");
-	
+        
 	private JFilePicker filePicker = new JFilePicker("Attached", "Attach File...");
 	
 	private JTextArea textAreaMessage = new JTextArea(10, 30);
@@ -58,7 +58,7 @@ public class SwingEmailSender extends JFrame {
 		
 		pack();
 		setLocationRelativeTo(null);	// center on screen
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);		
 	}
 
 	private void setupMenu() {
@@ -98,14 +98,14 @@ public class SwingEmailSender extends JFrame {
 		constraints.fill = GridBagConstraints.BOTH;
 		buttonSend.setFont(new Font("Arial", Font.BOLD, 16));
 		add(buttonSend, constraints);
-		
+                
 		buttonSend.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				buttonSendActionPerformed(event);
 			}
 		});
-		
+           	
 		constraints.gridx = 0;
 		constraints.gridy = 2;
 		constraints.gridheight = 1;
