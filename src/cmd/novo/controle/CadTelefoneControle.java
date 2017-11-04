@@ -6,7 +6,7 @@
 package cmd.novo.controle;
 
 import cmd.DAO.DAO;
-import cmd.entidade.Cliente;
+import cmd.entidade.Telefone;
 import cmd.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -16,10 +16,10 @@ import org.hibernate.Session;
  *
  * @author Usuario
  */
-public class CadastroClientesControle implements DAO<Cliente> {
+public class CadTelefoneControle {
 
-    @Override
-    public boolean inserir(Cliente item) {
+  
+    public boolean Cadastrar(Telefone item) {
         try {
             Session s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
@@ -32,23 +32,24 @@ public class CadastroClientesControle implements DAO<Cliente> {
         }
     }
 
-    @Override
-    public boolean alterar(Cliente item) {
+   
+    public boolean alterar(Telefone item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean excluir(Cliente item) {
+    
+    public boolean excluir(Telefone item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Cliente buscar(String consulta) {
+    
+    public Telefone buscar(String consulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public List<Cliente> listar() {
+   
+    public List<Telefone> listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

@@ -12,7 +12,7 @@ import cmd.DAO.UsuárioDAO;
  *
  * @author Usuario
  */
-public class CadastroFuncionarioControle {
+public class CadFuncionarioControle {
 
     public boolean cadastrarFuncionario(String nome, String senha) {
         try {

@@ -5,49 +5,46 @@
  */
 package cmd.novo.controle;
 
-import cmd.DAO.DAO;
+
+import cmd.DAO.EnderecoDAO;
 import cmd.entidade.Endereco;
-import cmd.util.HibernateUtil;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 
 /**
  *
  * @author Usuario
  */
-public class CadastroEnderecoControle implements DAO<Endereco> {
+public class CadEnderecoControle {
 
-    @Override
-    public boolean inserir(Endereco item) {
-        try {
-            Session s = HibernateUtil.getSessionFactory().openSession();
-            s.beginTransaction();
-            s.save(item);
-            s.getTransaction().commit();
-            s.close();
+    public boolean Cadastrar(Endereco item) {
+       
+        
+        EnderecoDAO endDao = new EnderecoDAO();
+        
+        if(endDao.inserir(item)){
             return true;
-        } catch (HibernateException e) {
-            return false;
         }
+        return false;
+        
+        
     }
 
-    @Override
+ 
     public boolean alterar(Endereco item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+ 
     public boolean excluir(Endereco item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+ 
     public Endereco buscar(String consulta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public List<Endereco> listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

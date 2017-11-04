@@ -6,7 +6,7 @@
 package cmd.novo.telas;
 
 import cmd.novo.Validacao;
-import cmd.novo.controle.CadastroFuncionarioControle;
+import cmd.novo.controle.CadFuncionarioControle;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -200,7 +200,7 @@ public class TFuncionario extends javax.swing.JInternalFrame {
             return;
         }
 
-        CadastroFuncionarioControle cadFunC = new CadastroFuncionarioControle();
+        CadFuncionarioControle cadFunC = new CadFuncionarioControle();
 
         if (cadFunC.cadastrarFuncionario(txt_nome_func.getText(), txt_senha.getText()) == true) {
             txt_nome_func.setText("");

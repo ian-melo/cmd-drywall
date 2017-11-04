@@ -12,7 +12,7 @@ import cmd.entidade.Telefone;
 import cmd.entidade.TelefoneId;
 import cmd.novo.Validacao;
 import cmd.novo.cep.WebServiceCep;
-import cmd.novo.controle.CadastroClientesControle;
+import cmd.novo.controle.CadClientesControle;
 import cmd.novo.painel.PnlJuridica;
 import cmd.novo.painel.PnlFisica;
 //import cmd.novo.painel.PnlTelefone;
@@ -571,7 +571,7 @@ public class TCliente extends javax.swing.JInternalFrame {
 //=======================================
 //     PROGRAMAÇÃO PARA SALVAR NO BD(colocar aqui)
 //=======================================
-            CadastroClientesControle cadCliC = new CadastroClientesControle();
+            CadClientesControle cadCliC = new CadClientesControle();
             Cliente cli = new Cliente();
             Endereco end = new Endereco();
             PessoaJuridica pJur = new PessoaJuridica();
@@ -616,7 +616,7 @@ public class TCliente extends javax.swing.JInternalFrame {
             cli.setTelefones(null);//Quando for verificar o pq não esta cadastrando mais tel no BD começar por AQUI é um vetor
             cli.setXdead(false);
             
-            if (cadCliC.inserir(cli) == true) {
+            if (cadCliC.CadastrarClienteEnderecoTelefone(cli) == true) {
                 JOptionPane.showMessageDialog(null, "Cadastrado");
                 
             }
