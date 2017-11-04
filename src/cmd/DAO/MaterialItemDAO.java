@@ -8,7 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- * Classe de DAO para materiais instanciados em item
+ * Classe de DAO para Materiais instanciados em um Item
  * @author ian-melo
  */
 public class MaterialItemDAO implements DAO<MaterialItem> {
