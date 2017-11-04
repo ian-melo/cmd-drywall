@@ -142,7 +142,7 @@ public class PnlJuridica extends javax.swing.JPanel {
 
     private void txt_cnpj_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cnpj_pnlFocusLost
         Validacao vali = new Validacao();
-        if (vali.validarCnpj(txt_cnpj_pnl.getText()) == true) {
+        if (vali.validarCnpj(txt_cnpj_pnl.getText()) == false) {
             JOptionPane.showMessageDialog(null, "Verificar o CNPJ");
         }
     }//GEN-LAST:event_txt_cnpj_pnlFocusLost

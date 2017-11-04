@@ -135,7 +135,7 @@ public class PnlFisica extends javax.swing.JPanel {
 
     private void txt_cpf_pnlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpf_pnlFocusLost
        Validacao vali = new Validacao();
-       if( vali.validarCpf(txt_cpf_pnl.getText()) == true){
+       if( vali.validarCpf(txt_cpf_pnl.getText()) == false){
            JOptionPane.showMessageDialog(txt_nome_pnl, "Verificar o CPF");
        }
     }//GEN-LAST:event_txt_cpf_pnlFocusLost

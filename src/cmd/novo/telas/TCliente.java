@@ -18,11 +18,10 @@ import cmd.novo.painel.PnlFisica;
 //import cmd.novo.painel.PnlTelefone;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -63,6 +62,14 @@ public class TCliente extends javax.swing.JInternalFrame {
         pJuridica();//Inicai com Pessoa Juridica Selecionado
         colocaDataAtual();
 
+//        
+//        pnl_baixo.setLocation(10, 10);
+//        pnl_baixo.setSize(10, 10);
+        
+//        int x = this.getHeight();
+//        int y = this.getWidth();
+//        this.setSize(y - 1, x - 1);
+//        this.setSize(y, x);
         //pnl_scroll_telefone.removeAll();//remove cliente anterior
         //GridLayout gerente1 = new GridLayout(5, 1);//Mostra até 2 itens um em baixo do outro
         //pnl_scroll_telefone.setLayout(gerente1);//apenas um ajuste
@@ -368,17 +375,13 @@ public class TCliente extends javax.swing.JInternalFrame {
         pnl_baixo.setLayout(pnl_baixoLayout);
         pnl_baixoLayout.setHorizontalGroup(
             pnl_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_baixoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         pnl_baixoLayout.setVerticalGroup(
             pnl_baixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_baixoLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_cliente_paiLayout = new javax.swing.GroupLayout(pnl_cliente_pai);
@@ -389,7 +392,7 @@ public class TCliente extends javax.swing.JInternalFrame {
         );
         pnl_cliente_paiLayout.setVerticalGroup(
             pnl_cliente_paiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 141, Short.MAX_VALUE)
         );
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -455,11 +458,10 @@ public class TCliente extends javax.swing.JInternalFrame {
         pnl_telefoneLayout.setVerticalGroup(
             pnl_telefoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_telefoneLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_tel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_cel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,7 +469,7 @@ public class TCliente extends javax.swing.JInternalFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_cel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_metadeLayout = new javax.swing.GroupLayout(pnl_metade);
@@ -484,11 +486,10 @@ public class TCliente extends javax.swing.JInternalFrame {
         pnl_metadeLayout.setVerticalGroup(
             pnl_metadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_metadeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_metadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnl_cliente_pai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl_telefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnl_metadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnl_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl_cliente_pai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -522,12 +523,12 @@ public class TCliente extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnl_escolha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnl_endereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnl_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnl_metade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnl_baixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -798,7 +799,8 @@ public class TCliente extends javax.swing.JInternalFrame {
     private void pJuridica() {
         pnl_cliente_pai.removeAll();//remove cliente anterior
 
-        GridLayout gerente = new GridLayout(2, 1);//Mostra até 2 itens um em baixo do outro
+        FlowLayout gerente = new FlowLayout(1);
+        
         pnl_cliente_pai.setLayout(gerente);//apenas um ajuste
 
         pnl_cliente_pai.add(pJu);
@@ -807,7 +809,7 @@ public class TCliente extends javax.swing.JInternalFrame {
     private void pFisica() {
         pnl_cliente_pai.removeAll();//remove cliente anterior
 
-        GridLayout gerente = new GridLayout(2, 1);//Mostra até 2 itens um em baixo do outro
+        FlowLayout gerente = new FlowLayout(1);
         pnl_cliente_pai.setLayout(gerente);//apenas um ajuste
 
         pnl_cliente_pai.add(pFi);
